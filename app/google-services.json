@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "255614784878",
+    "project_id": "okunurmu-d2a7e",
+    "storage_bucket": "okunurmu-d2a7e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:255614784878:android:9f9e3b810c4fc48e045d7f",
+        "android_client_info": {
+          "package_name": "com.ungratz.okunurmu"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "255614784878-6qbjji5njhm4o89fio5be41ktuortuee.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAi7duex6nVpPmua1IV_sy5qBJ_iZqyF9w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "255614784878-6qbjji5njhm4o89fio5be41ktuortuee.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
