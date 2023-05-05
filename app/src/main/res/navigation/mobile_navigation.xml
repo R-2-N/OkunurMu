@@ -22,4 +22,8 @@
         android:name="com.ungratz.okunurmu.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
+    <activity
+        android:id="@+id/emailPasswordActivity"
+        android:name="com.ungratz.okunurmu.EmailPasswordActivity"
+        android:label="EmailPasswordActivity" />
 </navigation>
