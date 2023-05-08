@@ -35,13 +35,24 @@ android {
 }
 
 dependencies {
+
+    constraints{
+        implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.0"){
+            because("kotlin-stdlib-jdk7 is now a part of kotlin-stdlib")
+        }
+        implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.0"){
+            because("kotlin-stdlib-jdk8 is now a part of kotlin-stdlib")
+        }
+    }
+
+    //Will need to update this in the future
+    implementation "androidx.appcompat:appcompat:1.6.1"
+
     // Import the Firebase BoM
     implementation platform('com.google.firebase:firebase-bom:32.0.0')
 
     // Import Authentication basically accounts
-    implementation ('com.firebaseui:firebase-ui-auth')
-
-    implementation ('com.google.gms:google-services')
+    implementation 'com.google.gms:google-services:4.3.15'
 
     implementation ('com.google.firebase:firebase-auth')
 

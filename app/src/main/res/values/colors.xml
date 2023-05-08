@@ -11,7 +11,7 @@
     //our colors
     <color name="orange">#E49B63</color>
     <color name="blue">#285181</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="white">#FFFFFF</color>
 
     //clicked colors (experimental)
     <color name="clicked_blue">#4D285181</color>

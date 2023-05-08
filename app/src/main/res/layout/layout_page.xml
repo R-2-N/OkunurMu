@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="172dp"
-        android:src="@drawable/ChooseYourFutureUniversity_WithALittleHelp"
+        android:src="@drawable/search_icon"
         app:layout_constraintBottom_toTopOf="@+id/imageView7"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="50dp" />
@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="100dp"
         app:layout_constraintBottom_toTopOf="@+id/imageView4"
-        app:srcCompat="@drawable/OkunurMu_O"
+        app:srcCompat="@drawable/search_icon"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="19dp" />
 
@@ -30,8 +30,12 @@
         android:id="@+id/imageView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/TheUnderGradz"
+        app:srcCompat="@drawable/search_icon"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="106dp"
         tools:layout_editor_absoluteY="579dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
+<!--@drawable/ChooseYourFutureUniversity_WithALittleHelp
+@drawable/OkunurMu_O
+app:srcCompat="@drawable/TheUnderGradz"
+-->
