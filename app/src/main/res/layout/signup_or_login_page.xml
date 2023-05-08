@@ -11,11 +11,11 @@
         android:layout_width="470dp"
         android:layout_height="480dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.52"
+        app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/rectangle"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="280dp" />
+        tools:layout_editor_absoluteY="265dp" />
 
     <ImageView
         android:id="@+id/imageView2"

@@ -5,13 +5,39 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        app:srcCompat="@drawable/Buttons"
-        tools:layout_editor_absoluteX="20dp"
-        tools:layout_editor_absoluteY="341dp" />
+        android:id="@+id/imageView13"
+        android:layout_width="48dp"
+        android:layout_height="44dp"
+        android:scrollbarSize="26dp"
+        app:srcCompat="@drawable/baseline_keyboard_arrow_left_24"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="16dp"
+
+        tools:layout_editor_absoluteY="36dp" />
+
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="78dp"
+        android:layout_height="45dp"
+        android:text="Log in"
+        android:textColor="#000000"
+        android:textSize="26sp"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="166dp"
+        tools:layout_editor_absoluteY="36dp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="171dp"
+        android:layout_height="29dp"
+        android:text="Forgot password?"
+        android:textColor="#0B1D5E"
+        android:textSize="20sp"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="19dp"
+        tools:layout_editor_absoluteY="392dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
