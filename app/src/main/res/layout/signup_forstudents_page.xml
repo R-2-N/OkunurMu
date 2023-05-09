@@ -19,14 +19,17 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView5"
+        android:id="@+id/studentSignUpView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="27dp"
         android:layout_marginBottom="208dp"
+        android:clickable="true"
+        android:contentDescription="Click to sign in"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/sign_up_button" />
+        app:srcCompat="@drawable/sign_up_button"
+        tools:ignore="MissingConstraints"/>
 
     <ImageView
         android:id="@+id/imageView6"
@@ -63,7 +66,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextText3"
+        android:id="@+id/emailStudentSignUp"
         android:layout_width="350dp"
         android:layout_height="50dp"
         android:layout_marginStart="27dp"
@@ -75,7 +78,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextTextPassword"
+        android:id="@+id/passwordOfStudentSignUp"
         android:layout_width="350dp"
         android:layout_height="50dp"
         android:layout_marginStart="27dp"
@@ -87,7 +90,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextTextPassword2"
+        android:id="@+id/passwordAgainStudentSignUp"
         android:layout_width="350dp"
         android:layout_height="50dp"
         android:layout_marginStart="27dp"

@@ -18,7 +18,11 @@ package com.ungratz.okunurmu;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.text.Editable;
 import android.util.Log;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -31,6 +35,13 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class StudentSignUpActivity extends Activity {
 
+    StudentSignUpActivity ssa = this;
+    EditText nameOfStudent;
+    EditText emailOfStudent;
+    EditText passwordOfStudent;
+    EditText passwordAgainStudent;
+    ImageView studentSignUpImage;
+
     private static final String TAG = "EmailPassword";
     // [START declare_auth]
     private FirebaseAuth mAuth;
@@ -39,11 +50,32 @@ public class StudentSignUpActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.signup_forstudents_page);
+
+        nameOfStudent = findViewById(R.id.nameStudentSignUp);
+        emailOfStudent = findViewById(R.id.emailStudentSignUp);
+        passwordOfStudent = findViewById(R.id.passwordOfStudentSignUp);
+        passwordAgainStudent = findViewById(R.id.emailStudentSignUp);
+        studentSignUpImage = findViewById(R.id.studentSignUpView);
+
+        String name = emailOfStudent.getText().toString();
+        String password = passwordOfStudent.getText().toString();
+        String passwordAgain = passwordAgainStudent.getText().toString();
         // [START initialize_auth]
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
         // [END initialize_auth]
+        studentSignUpImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (password.equals(passwordAgain)) {
+                    createAccount(name, password);
+                }
+            }
+        });
     }
+
 
     // [START on_start_check_user]
     @Override
