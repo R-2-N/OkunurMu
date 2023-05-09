@@ -28,7 +28,7 @@
         app:srcCompat="@drawable/baseline_keyboard_arrow_left_24" />
 
     <EditText
-        android:id="@+id/editTextName"
+        android:id="@+id/nameStudentSignUp"
         android:layout_width="350dp"
         android:layout_height="50dp"
         android:layout_marginStart="30dp"
