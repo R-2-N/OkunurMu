@@ -39,23 +39,29 @@
         android:id="@+id/imageView27"
         android:layout_width="386dp"
         android:layout_height="132dp"
-        app:srcCompat="@drawable/okunur_mu_o"
-        tools:layout_editor_absoluteX="12dp"
-        tools:layout_editor_absoluteY="127dp" />
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="124dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/okunur_mu_o" />
 
     <ImageView
         android:id="@+id/imageView28"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/choose_your_future_university_with_a_little_help"
-        tools:layout_editor_absoluteX="50dp"
-        tools:layout_editor_absoluteY="338dp" />
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="338dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/choose_your_future_university_with_a_little_help" />
 
     <ImageView
         android:id="@+id/imageView29"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/the_under_gradz"
-        tools:layout_editor_absoluteX="106dp"
-        tools:layout_editor_absoluteY="590dp" />
+        android:layout_marginStart="106dp"
+        android:layout_marginBottom="121dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/the_under_gradz" />
 </androidx.constraintlayout.widget.ConstraintLayout>

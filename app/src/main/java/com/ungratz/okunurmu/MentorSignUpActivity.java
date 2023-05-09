@@ -1,7 +1,7 @@
 package com.ungratz.okunurmu;
 
-import androidx.appcompat.app.AppCompatActivity;
+import android.app.Activity;
 
-public class MentorSignUpActivity extends AppCompatActivity {
+public class MentorSignUpActivity extends Activity {
 
 }

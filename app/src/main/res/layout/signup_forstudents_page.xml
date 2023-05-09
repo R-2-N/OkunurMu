@@ -7,22 +7,18 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/textViewSignUpForStudents"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="Mentee Sign Up"
-        android:textColor="#000000"
-        android:textSize="24sp"
-        android:textStyle="normal"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="121dp" />
+        android:text="TextView"
+        tools:layout_editor_absoluteX="174dp"
+        tools:layout_editor_absoluteY="40dp" />
 
     <ImageView
-        android:id="@+id/imageView19"
-        android:layout_width="41dp"
-        android:layout_height="36dp"
-        app:srcCompat="@drawable/baseline_keyboard_arrow_left_24"
-        tools:layout_editor_absoluteX="26dp"
-        tools:layout_editor_absoluteY="32dp" />
+        android:id="@+id/imageView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/sign_up_button"
+        tools:layout_editor_absoluteX="27dp"
+        tools:layout_editor_absoluteY="532dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
