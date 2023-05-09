@@ -10,52 +10,38 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class FirstPageActivity extends AppCompatActivity {
 
+    FirstPageActivity fpa = this;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.first_page_activity);
 
-        ImageView imageViewStudent;
-        ImageView imageViewMentor;
-        ImageView imageViewLogIn;
+        ImageView createStudent = findViewById(R.id.createStudent);
+        ImageView createMentor = findViewById(R.id.createMentor);
+        ImageView login = findViewById(R.id.loginView);
 
-        @SuppressLint("MissingInflatedId")
-        @Override
-        protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.signup_formentors_page);
+        createStudent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(fpa, StudentSignUpActivity.class);
+                startActivity(intent);
+            }
+        });
 
-            // initialize imageView
-            // with method findViewById()
-            imageViewStudent = findViewById(R.id.createStudent);
+        createMentor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(fpa, MentorSignUpActivity.class);
+                startActivity(intent);
+            }
+        });
 
-            // Apply OnClickListener  to imageView to
-            // switch from one activity to another
-            imageViewStudent.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    // Intent class will help to go to next activity using
-                    // it's object named intent.
-                    // SecondActivty is the name of new created EmptyActivity.
-                    Intent intent = new Intent(com.ungratz.okunurmu.FirstPageActivity.this, StudentSignUpActivity.class);
-                    startActivity(intent);
-                }
-            });
-
-            imageViewMentor = findViewById(R.id.createMentor);
-
-            imageViewMentor.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(com.ungratz.okunurmu.FirstPageActivity.this, MentorSignUpActivity.class);
-                    startActivity(intent);
-                }
-            });
-
-            imageViewLogIn = findViewById(R.id.loginView);
-
-            imageViewLogIn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(com.ungratz.okunurmu.FirstPageActivity.this, LoginActivity.class);
-                    startActivity(intent);
-                }
-            });
-        }
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(fpa, LoginActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
 }
