@@ -1,4 +1,11 @@
 package com.ungratz.okunurmu;
 
-public class MentorSignUpActivity {
+import android.widget.ImageView;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+public class MentorSignUpActivity extends AppCompatActivity {
+    ImageView imageView;
+
+
 }
