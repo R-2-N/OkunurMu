@@ -7,14 +7,15 @@
 
 
     <ImageView
-        android:id="@+id/imageView13"
+        android:id="@+id/backButton"
         android:layout_width="48dp"
         android:layout_height="44dp"
+        android:clickable="true"
         android:scrollbarSize="26dp"
         app:srcCompat="@drawable/baseline_keyboard_arrow_left_24"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="16dp"
 
+        tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="36dp" />
 
 
@@ -30,14 +31,25 @@
         tools:layout_editor_absoluteY="36dp" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/forgotPasswordView"
         android:layout_width="171dp"
         android:layout_height="29dp"
+        android:clickable="true"
         android:text="Forgot password?"
         android:textColor="#0B1D5E"
         android:textSize="20sp"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="19dp"
         tools:layout_editor_absoluteY="392dp" />
+
+    <ImageView
+        android:id="@+id/loginView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:srcCompat="@drawable/login_button"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="20dp"
+        tools:layout_editor_absoluteY="309dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
