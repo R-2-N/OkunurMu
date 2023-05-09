@@ -7,7 +7,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
+//shja<bDSBDISANC
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link ChatFragment#newInstance} factory method to
