@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/textViewSignUpForMentor"
         android:layout_width="168dp"
         android:layout_height="34dp"
         android:layout_marginStart="121dp"
@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/backButtonMentor"
         android:layout_width="44dp"
         android:layout_height="39dp"
         android:layout_marginStart="16dp"
@@ -28,7 +28,7 @@
         app:srcCompat="@drawable/baseline_keyboard_arrow_left_24" />
 
     <EditText
-        android:id="@+id/nameStudentSignUp"
+        android:id="@+id/nameMentorSignUp"
         android:layout_width="350dp"
         android:layout_height="50dp"
         android:layout_marginStart="30dp"
@@ -40,7 +40,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextUsername"
+        android:id="@+id/usernameMentorSignUp"
         android:layout_width="350dp"
         android:layout_height="50dp"
         android:layout_marginStart="30dp"
@@ -53,7 +53,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextUniversity"
+        android:id="@+id/uniMentorSignUp"
         android:layout_width="350dp"
         android:layout_height="50dp"
         android:layout_marginStart="30dp"
@@ -66,7 +66,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextDepartment"
+        android:id="@+id/departmentMentorSignUp"
         android:layout_width="350dp"
         android:layout_height="50dp"
         android:layout_marginStart="30dp"
@@ -79,7 +79,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextEmailAddress"
+        android:id="@+id/emailMentorSignUp"
         android:layout_width="350dp"
         android:layout_height="50dp"
         android:layout_marginStart="29dp"
@@ -91,7 +91,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextPassword"
+        android:id="@+id/passwordMentorSignUp"
         android:layout_width="350dp"
         android:layout_height="50dp"
         android:layout_marginStart="29dp"
@@ -104,7 +104,7 @@
         tools:ignore="MissingConstraints" />
 
     <EditText
-        android:id="@+id/editTextPasswordAgain"
+        android:id="@+id/passwordAgainMentorSignUp"
         android:layout_width="350dp"
         android:layout_height="50dp"
         android:layout_marginStart="29dp"
@@ -117,7 +117,7 @@
         tools:ignore="MissingConstraints" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/mentorSignUpView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="22dp"

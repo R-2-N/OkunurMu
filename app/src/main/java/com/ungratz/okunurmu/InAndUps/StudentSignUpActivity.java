@@ -20,8 +20,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -33,22 +31,24 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.ungratz.okunurmu.MainActivity;
 import com.ungratz.okunurmu.databinding.SignupForstudentsPageBinding;
+import com.ungratz.okunurmu.singleton.CurrentUser;
 
 public class StudentSignUpActivity extends Activity {
 
     private static FirebaseUser user;
     private StudentSignUpActivity ssa = this;
     private SignupForstudentsPageBinding binding;
-    EditText nameOfStudent;
-    EditText emailOfStudent;
-    EditText passwordOfStudent;
-    EditText passwordAgainStudent;
-    ImageView studentSignUpImage;
 
     private static final String TAG = "EmailPassword";
     // [START declare_auth]
     private FirebaseAuth mAuth;
     // [END declare_auth]
+
+    private String name;
+    private String userName;
+    private String email;
+    private String password;
+    private String passwordAgain;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -60,19 +60,22 @@ public class StudentSignUpActivity extends Activity {
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
         // [END initialize_auth]
+
         binding.studentSignUpView.setOnClickListener(v -> {
 
-            String name = binding.emailStudentSignUp.getText().toString();
-            String password = binding.passwordOfStudentSignUp.getText().toString();
-            String passwordAgain = binding.passwordAgainStudentSignUp.getText().toString();
+            name = binding.nameStudentSignUp.getText().toString();
+            userName = binding.usernameStudentSignUp.getText().toString();
+            email = binding.emailStudentSignUp.getText().toString();
+            password = binding.passwordStudentSignUp.getText().toString();
+            passwordAgain = binding.passwordAgainStudentSignUp.getText().toString();
 
             if ((password.equals(passwordAgain)) && (password!="")) {
-                createAccount(name, password);
+                createAccount(email, password);
             }
 
         });
 
-        binding.backButton.setOnClickListener(v -> {
+        binding.backButtonStudent.setOnClickListener(v -> {
 
             Intent intent = new Intent(ssa, FirstPageActivity.class);
             startActivity(intent);
@@ -121,21 +124,18 @@ public class StudentSignUpActivity extends Activity {
     private void signIn(String email, String password) {
         // [START sign_in_with_email]
         mAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "signInWithEmail:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            //updateUI(user);
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG, "signInWithEmail:failure", task.getException());
-                            Toast.makeText(StudentSignUpActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-                            updateUI(null);
-                        }
+                .addOnCompleteListener(this, task -> {
+                    if (task.isSuccessful()) {
+                        // Sign in success, update UI with the signed-in user's information
+                        Log.d(TAG, "signInWithEmail:success");
+                        FirebaseUser user = mAuth.getCurrentUser();
+                        //updateUI(user);
+                    } else {
+                        // If sign in fails, display a message to the user.
+                        Log.w(TAG, "signInWithEmail:failure", task.getException());
+                        Toast.makeText(StudentSignUpActivity.this, "Authentication failed.",
+                                Toast.LENGTH_SHORT).show();
+                        updateUI(null);
                     }
                 });
         // [END sign_in_with_email]
@@ -145,11 +145,10 @@ public class StudentSignUpActivity extends Activity {
         // Send verification email
         // [START send_email_verification]
         user.sendEmailVerification()
-                .addOnCompleteListener(this, new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        updateUI(user);
-                    }
+                .addOnCompleteListener(this, task -> {
+                    CurrentUser.getInstance();
+                    CurrentUser.setNewFirebaseUser(user, name, userName, false);
+                    updateUI(user);
                 });
         // [END send_email_verification]
     }

@@ -41,7 +41,7 @@ public class LoginActivity extends Activity {
             }
         });
 
-        imageViewBackButton = findViewById(R.id.backButton);
+        imageViewBackButton = findViewById(R.id.backButtonStudent);
 
         imageViewBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
