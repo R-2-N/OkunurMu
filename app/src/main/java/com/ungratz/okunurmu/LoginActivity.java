@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.ungratz.okunurmu.InAndUps.FirstPageActivity;
+
 public class LoginActivity extends Activity {
     TextView imageViewLogIn;
     ImageView textViewForgotPassword;

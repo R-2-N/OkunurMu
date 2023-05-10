@@ -1,4 +1,4 @@
-package com.ungratz.okunurmu;
+package com.ungratz.okunurmu.InAndUps;
 
 import android.app.Activity;
 

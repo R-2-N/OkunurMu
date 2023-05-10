@@ -14,13 +14,12 @@
  * limitations under the License.
  */
 
-package com.ungratz.okunurmu;
+package com.ungratz.okunurmu.InAndUps;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
 import android.util.Log;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -32,10 +31,12 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.ungratz.okunurmu.databinding.SignupForstudentsPageBinding;
 
 public class StudentSignUpActivity extends Activity {
 
-    StudentSignUpActivity ssa = this;
+    private StudentSignUpActivity ssa = this;
+    private SignupForstudentsPageBinding binding;
     EditText nameOfStudent;
     EditText emailOfStudent;
     EditText passwordOfStudent;
@@ -50,29 +51,27 @@ public class StudentSignUpActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.signup_forstudents_page);
+        binding = SignupForstudentsPageBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-        nameOfStudent = findViewById(R.id.nameStudentSignUp);
-        emailOfStudent = findViewById(R.id.emailStudentSignUp);
-        passwordOfStudent = findViewById(R.id.passwordOfStudentSignUp);
-        passwordAgainStudent = findViewById(R.id.emailStudentSignUp);
-        studentSignUpImage = findViewById(R.id.studentSignUpView);
-
-        String name = emailOfStudent.getText().toString();
-        String password = passwordOfStudent.getText().toString();
-        String passwordAgain = passwordAgainStudent.getText().toString();
+        String name = binding.emailStudentSignUp.getText().toString();
+        String password = binding.passwordOfStudentSignUp.getText().toString();
+        String passwordAgain = binding.passwordAgainStudentSignUp.getText().toString();
         // [START initialize_auth]
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
         // [END initialize_auth]
-        studentSignUpImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        binding.studentSignUpView.setOnClickListener(v -> {
 
-                if (password.equals(passwordAgain)) {
-                    createAccount(name, password);
-                }
+            if ((password.equals(passwordAgain)) && (password!="")) {
+                createAccount(name, password);
             }
+        });
+
+        binding.backButton.setOnClickListener(v -> {
+
+            Intent intent = new Intent(ssa, FirstPageActivity.class);
+            startActivity(intent);
         });
     }
 
