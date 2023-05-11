@@ -24,6 +24,6 @@
         tools:layout="@layout/fragment_notifications" />
     <activity
         android:id="@+id/emailPasswordActivity"
-        android:name="com.ungratz.okunurmu.StudentSignUpActivity"
+        android:name="com.ungratz.okunurmu.InAndUps.StudentSignUpActivity"
         android:label="EmailPasswordActivity" />
 </navigation>

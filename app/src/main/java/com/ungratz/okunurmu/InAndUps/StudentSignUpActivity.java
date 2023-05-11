@@ -14,9 +14,10 @@
  * limitations under the License.
  */
 
-package com.ungratz.okunurmu;
+package com.ungratz.okunurmu.InAndUps;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -28,24 +29,63 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.ungratz.okunurmu.MainActivity;
+import com.ungratz.okunurmu.databinding.SignupForstudentsPageBinding;
+import com.ungratz.okunurmu.singleton.CurrentUser;
 
 public class StudentSignUpActivity extends Activity {
+
+    private static FirebaseUser user;
+    private StudentSignUpActivity ssa = this;
+    private SignupForstudentsPageBinding binding;
 
     private static final String TAG = "EmailPassword";
     // [START declare_auth]
     private FirebaseAuth mAuth;
     // [END declare_auth]
 
+    private String name;
+    private String userName;
+    private String email;
+    private String password;
+    private String passwordAgain;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        binding = SignupForstudentsPageBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
         // [START initialize_auth]
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
         // [END initialize_auth]
+
+        binding.studentSignUpView.setOnClickListener(v -> {
+
+            name = binding.nameStudentSignUp.getText().toString();
+            userName = binding.usernameStudentSignUp.getText().toString();
+            email = binding.emailStudentSignUp.getText().toString();
+            password = binding.passwordStudentSignUp.getText().toString();
+            passwordAgain = binding.passwordAgainStudentSignUp.getText().toString();
+
+            if ((password.equals(passwordAgain)) && (password!="")) {
+                createAccount(email, password);
+            }
+
+        });
+
+        binding.backButtonStudent.setOnClickListener(v -> {
+
+            Intent intent = new Intent(ssa, FirstPageActivity.class);
+            startActivity(intent);
+
+        });
     }
 
+
     // [START on_start_check_user]
+    /*
     @Override
     public void onStart() {
         super.onStart();
@@ -56,6 +96,8 @@ public class StudentSignUpActivity extends Activity {
         }
     }
     // [END on_start_check_user]
+    */
+
 
     private void createAccount(String email, String password) {
         // [START create_user_with_email]
@@ -66,8 +108,8 @@ public class StudentSignUpActivity extends Activity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "createUserWithEmail:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);
+                            user = mAuth.getCurrentUser();
+                            sendEmailVerification(user);
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
@@ -80,39 +122,15 @@ public class StudentSignUpActivity extends Activity {
         // [END create_user_with_email]
     }
 
-    private void signIn(String email, String password) {
-        // [START sign_in_with_email]
-        mAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "signInWithEmail:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG, "signInWithEmail:failure", task.getException());
-                            Toast.makeText(StudentSignUpActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-                            updateUI(null);
-                        }
-                    }
-                });
-        // [END sign_in_with_email]
-    }
 
-    private void sendEmailVerification() {
+    private void sendEmailVerification(FirebaseUser user) {
         // Send verification email
         // [START send_email_verification]
-        final FirebaseUser user = mAuth.getCurrentUser();
         user.sendEmailVerification()
-                .addOnCompleteListener(this, new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        // Email sent
-                    }
+                .addOnCompleteListener(this, task -> {
+                    CurrentUser.getInstance();
+                    CurrentUser.setNewFirebaseUser(user, name, userName, false, "", "");
+                    updateUI(user);
                 });
         // [END send_email_verification]
     }
@@ -120,6 +138,7 @@ public class StudentSignUpActivity extends Activity {
     private void reload() { }
 
     private void updateUI(FirebaseUser user) {
-
+        Intent intent = new Intent(ssa, MainActivity.class);
+        startActivity(intent);
     }
 }
