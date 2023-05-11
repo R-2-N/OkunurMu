@@ -1,5 +1,6 @@
 package com.ungratz.okunurmu.singleton;
 
+import android.net.Uri;
 import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,6 +9,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -23,10 +26,12 @@ public class CurrentUser extends AppCompatActivity {
         return u;
     }
 
-    private static FirebaseFirestore fs = FirebaseFirestore.getInstance();
+    private static FirebaseFirestore ff = FirebaseFirestore.getInstance();
     private static FirebaseUser user;
     private static DocumentReference dr;
     private static DocumentSnapshot ds;
+    private static FirebaseStorage fs = FirebaseStorage.getInstance();
+    private static StorageReference sr;
     private static String id;
     private static String realName;
     private static String mail;
@@ -40,6 +45,7 @@ public class CurrentUser extends AppCompatActivity {
         user = u;
         setID(user.getUid());
 
+
         /*
         Quick tutorial on how to get field data from Firestore
         First by using get() you have to turn document reference into Task<DocumentSnapshot>
@@ -47,8 +53,9 @@ public class CurrentUser extends AppCompatActivity {
         and finally you could get the field using a string to indicate its name
         */
 
-        setUserDocumentRef(fs.collection("users").document(getID()));
+        setUserDocumentRef(ff.collection("users").document(getID()));
         setUserDocumentSnapshot(dr.get().getResult());
+        setStorageRef(fs.getReference());
         setRealName(ds.getString("realName"));
         setUserName(ds.getString("userName"));
         setMail(user.getEmail());
@@ -64,7 +71,7 @@ public class CurrentUser extends AppCompatActivity {
         setIsMentor(isItMentor);
 
         //writing the info into the database
-        fs.collection("users").document(u.getUid()).
+        ff.collection("users").document(u.getUid()).
                 set(createUserHashMap(userRealName, userName, u.getEmail(), isMentor, university, department))
                 .addOnSuccessListener(unused -> {
                     Log.d("W", "Data is written");
@@ -79,6 +86,7 @@ public class CurrentUser extends AppCompatActivity {
     public static void setID(String i){id = i;}
     public static void setUserDocumentRef(DocumentReference d){dr = d;}
     public static void setUserDocumentSnapshot(DocumentSnapshot d){ds = d;}
+    private static void setStorageRef(StorageReference s){sr = s;}
     public static void setRealName(String n){realName = n;}
     public static void setUserName(String u){userName = u;}
     public static void setMail(String m){mail = m;}
@@ -92,6 +100,7 @@ public class CurrentUser extends AppCompatActivity {
     public static String getID(){return id;}
     public static DocumentReference getUserDocumentRef(){return dr;}
     public static DocumentSnapshot getUserDocumentSnapshot(){return ds;}
+    private static StorageReference getStorageRef(){return sr;}
     public static String getRealName(){return ds.getString("realName");}
     public static String getUserName(){return ds.getString("userName");}
     public static String getMail(){return ds.getString("email");}
@@ -113,5 +122,14 @@ public class CurrentUser extends AppCompatActivity {
         }
 
         return newUserMap;
+    }
+
+    public static void uploadFileToStorage(Uri u){
+
+        String[] s = u.toString().split("/");
+        getStorageRef().child(getID() + "/" + s[s.length-1]).putFile(u)
+                .addOnCompleteListener(task -> Log.d("Upload:", "success"))
+                .addOnFailureListener(e -> Log.w("Upload:", "failed"));
+
     }
 }
