@@ -146,7 +146,7 @@
         android:layout_marginStart="76dp"
         android:layout_marginTop="107dp"
         android:ems="10"
-        android:hint="Search..."
+        android:hint="Ahmet Burak Yıldırım"
         android:inputType="text"
         android:textColorHint="#172D70"
         app:layout_constraintStart_toStartOf="parent"
