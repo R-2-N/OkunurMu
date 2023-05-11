@@ -5,7 +5,6 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.ungratz.okunurmu.LoginActivity;
 import com.ungratz.okunurmu.databinding.FirstPageActivityBinding;
 
 public class FirstPageActivity extends AppCompatActivity {

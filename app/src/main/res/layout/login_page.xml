@@ -6,18 +6,42 @@
     android:layout_height="match_parent">
 
 
+    <EditText
+        android:id="@+id/emailLogin"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="148dp"
+        android:ems="10"
+        android:hint="E-mail"
+        android:inputType="textEmailAddress"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/passwordLogin"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="224dp"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textPassword"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ImageView
-        android:id="@+id/backButtonStudent"
-        android:layout_width="48dp"
-        android:layout_height="44dp"
+        android:id="@+id/backButtonLogin"
+        android:layout_width="56dp"
+        android:layout_height="52dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="36dp"
         android:clickable="true"
+        android:contentDescription="Button to go back to launch page"
         android:scrollbarSize="26dp"
-
+        android:src="@drawable/baseline_keyboard_arrow_left_24"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/baseline_keyboard_arrow_left_24"
         tools:ignore="MissingConstraints" />
 
 
@@ -25,8 +49,8 @@
         android:id="@+id/textView"
         android:layout_width="78dp"
         android:layout_height="45dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="167dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="164dp"
         android:text="Log in"
         android:textColor="#000000"
         android:textSize="26sp"
@@ -36,10 +60,10 @@
 
     <TextView
         android:id="@+id/forgotPasswordView"
-        android:layout_width="171dp"
-        android:layout_height="29dp"
-        android:layout_marginStart="19dp"
-        android:layout_marginBottom="310dp"
+        android:layout_width="219dp"
+        android:layout_height="65dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="296dp"
         android:clickable="true"
         android:text="Forgot password?"
         android:textColor="#0B1D5E"
@@ -54,10 +78,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="309dp"
+        android:contentDescription="Button to initiate log in"
         android:clickable="true"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/login_button"
-        tools:ignore="MissingConstraints" />
+        android:src="@drawable/login_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

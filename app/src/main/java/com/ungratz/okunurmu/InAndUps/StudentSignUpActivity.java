@@ -79,6 +79,7 @@ public class StudentSignUpActivity extends Activity {
 
             Intent intent = new Intent(ssa, FirstPageActivity.class);
             startActivity(intent);
+
         });
     }
 
@@ -121,25 +122,6 @@ public class StudentSignUpActivity extends Activity {
         // [END create_user_with_email]
     }
 
-    private void signIn(String email, String password) {
-        // [START sign_in_with_email]
-        mAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, task -> {
-                    if (task.isSuccessful()) {
-                        // Sign in success, update UI with the signed-in user's information
-                        Log.d(TAG, "signInWithEmail:success");
-                        FirebaseUser user = mAuth.getCurrentUser();
-                        //updateUI(user);
-                    } else {
-                        // If sign in fails, display a message to the user.
-                        Log.w(TAG, "signInWithEmail:failure", task.getException());
-                        Toast.makeText(StudentSignUpActivity.this, "Authentication failed.",
-                                Toast.LENGTH_SHORT).show();
-                        updateUI(null);
-                    }
-                });
-        // [END sign_in_with_email]
-    }
 
     private void sendEmailVerification(FirebaseUser user) {
         // Send verification email
@@ -147,7 +129,7 @@ public class StudentSignUpActivity extends Activity {
         user.sendEmailVerification()
                 .addOnCompleteListener(this, task -> {
                     CurrentUser.getInstance();
-                    CurrentUser.setNewFirebaseUser(user, name, userName, false);
+                    CurrentUser.setNewFirebaseUser(user, name, userName, false, "", "");
                     updateUI(user);
                 });
         // [END send_email_verification]

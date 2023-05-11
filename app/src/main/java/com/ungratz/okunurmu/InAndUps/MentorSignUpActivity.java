@@ -20,7 +20,7 @@ import com.ungratz.okunurmu.singleton.CurrentUser;
 public class MentorSignUpActivity extends Activity {
 
     private static FirebaseUser user;
-    private MentorSignUpActivity ssa = this;
+    private MentorSignUpActivity msa = this;
     private SignupFormentorsPageBinding binding;
 
     private static final String TAG = "EmailPassword";
@@ -61,7 +61,7 @@ public class MentorSignUpActivity extends Activity {
             password = binding.passwordMentorSignUp.getText().toString();
             passwordAgain = binding.passwordAgainMentorSignUp.getText().toString();
 
-            boolean uniReal = checkIfUniExists(uniName);
+            boolean uniReal = checkIfUniExists(email);
 
             if (((password.equals(passwordAgain)) && (password!="")) && uniReal) {
                 createAccount(email, password);
@@ -71,7 +71,7 @@ public class MentorSignUpActivity extends Activity {
 
         binding.backButtonMentor.setOnClickListener(v -> {
 
-            Intent intent = new Intent(ssa, FirstPageActivity.class);
+            Intent intent = new Intent(msa, FirstPageActivity.class);
             startActivity(intent);
         });
     }
@@ -115,51 +115,31 @@ public class MentorSignUpActivity extends Activity {
         // [END create_user_with_email]
     }
 
-    private void signIn(String email, String password) {
-        // [START sign_in_with_email]
-        mAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, task -> {
-                    if (task.isSuccessful()) {
-                        // Sign in success, update UI with the signed-in user's information
-                        Log.d(TAG, "signInWithEmail:success");
-                        FirebaseUser user = mAuth.getCurrentUser();
-                        //updateUI(user);
-                    } else {
-                        // If sign in fails, display a message to the user.
-                        Log.w(TAG, "signInWithEmail:failure", task.getException());
-                        Toast.makeText(MentorSignUpActivity.this, "Authentication failed.",
-                                Toast.LENGTH_SHORT).show();
-                        updateUI(null);
-                    }
-                });
-        // [END sign_in_with_email]
-    }
-
     private void sendEmailVerification(FirebaseUser user) {
         // Send verification email
         // [START send_email_verification]
         user.sendEmailVerification()
                 .addOnCompleteListener(this, task -> {
                     CurrentUser.getInstance();
-                    CurrentUser.setNewFirebaseUser(user, name, userName, false);
+                    CurrentUser.setNewFirebaseUser(user, name, userName, true, uniName, departmentName);
                     updateUI(user);
                 });
         // [END send_email_verification]
     }
 
-    private boolean checkIfUniExists(String u){
+    private boolean checkIfUniExists(String e){
         for (int i = 0; i < uniMailNameCheck.length; i++){
-
-            if (uniMailNameCheck[i].)
-
-
+            if (e.contains(uniMailNameCheck[i])){
+                return true;
+            }
         }
         return false;
     }
+
     private void reload() { }
 
     private void updateUI(FirebaseUser user) {
-        Intent intent = new Intent(ssa, MainActivity.class);
+        Intent intent = new Intent(msa, MainActivity.class);
         startActivity(intent);
     }
 }

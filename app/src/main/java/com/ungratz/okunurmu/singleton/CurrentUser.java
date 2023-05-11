@@ -32,6 +32,8 @@ public class CurrentUser extends AppCompatActivity {
     private static String mail;
     private static String userName;
     private static boolean isMentor;
+    private static String university;
+    private static String department;
 
 
     public static void setFirebaseUser(FirebaseUser u){
@@ -50,15 +52,20 @@ public class CurrentUser extends AppCompatActivity {
         setRealName(ds.getString("realName"));
         setUserName(ds.getString("userName"));
         setMail(user.getEmail());
+        if(ds.getBoolean("isMentor")){
+            setUniversity(ds.getString("university"));
+            setDepartment(ds.getString("department"));
+        }
     }
 
-    public static void setNewFirebaseUser(FirebaseUser u, String userRealName, String userName, boolean b){
+    public static void setNewFirebaseUser
+            (FirebaseUser u, String userRealName, String userName, boolean isItMentor, String university, String department){
 
-        setIsMentor(b);
+        setIsMentor(isItMentor);
 
         //writing the info into the database
         fs.collection("users").document(u.getUid()).
-                set(createUserHashMap(userRealName, userName, u.getEmail(), isMentor))
+                set(createUserHashMap(userRealName, userName, u.getEmail(), isMentor, university, department))
                 .addOnSuccessListener(unused -> {
                     Log.d("W", "Data is written");
                     setFirebaseUser(u);
@@ -76,7 +83,8 @@ public class CurrentUser extends AppCompatActivity {
     public static void setUserName(String u){userName = u;}
     public static void setMail(String m){mail = m;}
     public static void setIsMentor(boolean b){isMentor = b;}
-
+    public static void setUniversity(String u){university = u;}
+    public static void setDepartment(String d){department = d;}
 
 
     //getters
@@ -88,15 +96,21 @@ public class CurrentUser extends AppCompatActivity {
     public static String getUserName(){return ds.getString("userName");}
     public static String getMail(){return ds.getString("email");}
     public static boolean getIsMentor(){return isMentor;}
+    public static String getUniversity(){return university;}
+    public static String getDepartment(){return department;}
 
 
     public static Map<String, Object>
-    createUserHashMap(String rn, String un, String e, boolean b){
+    createUserHashMap(String rn, String un, String e, boolean b, String uniN, String d){
         Map<String, Object> newUserMap = new HashMap<>();
         newUserMap.put("realName", rn);
         newUserMap.put("userName", un);
         newUserMap.put("email", e);
         newUserMap.put("isMentor", b);
+        if (b==true){
+            newUserMap.put("university", uniN);
+            newUserMap.put("department", d);
+        }
 
         return newUserMap;
     }
