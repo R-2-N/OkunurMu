@@ -49,8 +49,8 @@
         android:id="@+id/rectangle"
         android:layout_width="354dp"
         android:layout_height="84dp"
-        android:layout_marginStart="26dp"
-        android:layout_marginTop="115dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="112dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/rectangle_scheduled" />
