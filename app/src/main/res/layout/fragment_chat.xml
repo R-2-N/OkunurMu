@@ -157,10 +157,10 @@
 
     <ImageView
         android:id="@+id/photoOfMentor"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="47dp"
+        android:layout_height="48dp"
         android:layout_marginStart="312dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="92dp"
         android:src="@drawable/chat_avatar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
