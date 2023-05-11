@@ -34,8 +34,8 @@ public class LoginActivity extends Activity {
         mAuth = FirebaseAuth.getInstance();
 
         binding.loginView.setOnClickListener(v -> {
-            email = binding.emailLogin.getText().toString();
-            password = binding.passwordLogin.getText().toString();
+            email = binding.emailLogIn.getText().toString();
+            password = binding.passwordLogIn.getText().toString();
             signIn(email, password);
         });
 
