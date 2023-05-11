@@ -1,13 +1,12 @@
 package com.ungratz.okunurmu;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-//shja<bDSBDISANC
+
+import androidx.fragment.app.Fragment;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link ChatFragment#newInstance} factory method to
