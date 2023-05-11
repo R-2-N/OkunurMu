@@ -54,7 +54,14 @@ dependencies {
     // Import Authentication basically accounts
     implementation 'com.google.gms:google-services:4.3.15'
 
-    implementation ('com.google.firebase:firebase-auth')
+    // Import Authentication from Firebase
+    implementation 'com.google.firebase:firebase-auth'
+
+    // Import Stroge from Firebase
+    implementation 'com.google.firebase:firebase-storage'
+
+    //Import FireSTORE not Firebase FireSTORE
+    implementation 'com.google.firebase:firebase-firestore'
 
     // TODO: Add the dependencies for Firebase products you want to use
     // When using the BoM, don't specify versions in Firebase dependencies

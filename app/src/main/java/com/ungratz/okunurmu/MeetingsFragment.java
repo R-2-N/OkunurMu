@@ -1,19 +1,18 @@
 package com.ungratz.okunurmu;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.fragment.app.Fragment;
+
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link ScheduledFragment#newInstance} factory method to
+ * Use the {@link MeetingsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ScheduledFragment extends Fragment {
+public class MeetingsFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,7 +23,7 @@ public class ScheduledFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public ScheduledFragment() {
+    public MeetingsFragment() {
         // Required empty public constructor
     }
 
@@ -37,8 +36,8 @@ public class ScheduledFragment extends Fragment {
      * @return A new instance of fragment ScheduledFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static ScheduledFragment newInstance(String param1, String param2) {
-        ScheduledFragment fragment = new ScheduledFragment();
+    public static MeetingsFragment newInstance(String param1, String param2) {
+        MeetingsFragment fragment = new MeetingsFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -59,6 +58,6 @@ public class ScheduledFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_scheduled, container, false);
+        return inflater.inflate(R.layout.fragment_scheduled_meetings, container, false);
     }
 }

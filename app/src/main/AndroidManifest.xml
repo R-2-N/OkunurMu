@@ -12,7 +12,7 @@ xmlns:tools="http://schemas.android.com/tools">
         android:theme="@style/Theme.MyApplication"
         tools:targetApi="31">
         <activity
-            android:name=".FirstPageActivity"
+            android:name=".InAndUps.FirstPageActivity"
             android:exported="true"
             android:label="@string/app_name">
             <intent-filter>
@@ -22,16 +22,24 @@ xmlns:tools="http://schemas.android.com/tools">
             </intent-filter>
         </activity>
         <activity
-            android:name=".StudentSignUpActivity"
+            android:name=".InAndUps.StudentSignUpActivity"
             android:exported="true"
-            android:label="@string/app_name"></activity>
+            android:label="@string/app_name">
+        </activity>
         <activity
-            android:name=".MentorSignUpActivity"
+            android:name=".InAndUps.MentorSignUpActivity"
             android:exported="true"
-            android:label="@string/app_name"></activity>
+            android:label="@string/app_name">
+        </activity>
         <activity
-            android:name=".LoginActivity"
+            android:name=".InAndUps.LoginActivity"
             android:exported="true"
-            android:label="@string/app_name"></activity>
+            android:label="@string/app_name">
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:label="@string/app_name">
+        </activity>
     </application>
 </manifest>

@@ -28,18 +28,17 @@
         android:contentDescription="Click to sign in"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/sign_up_button"
-        tools:ignore="MissingConstraints"/>
+        android:src="@drawable/sign_up_button" />
 
     <ImageView
-        android:id="@+id/imageView6"
+        android:id="@+id/backButtonStudent"
         android:layout_width="35dp"
         android:layout_height="42dp"
         android:layout_marginStart="27dp"
         android:layout_marginTop="32dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/baseline_keyboard_arrow_left_24" />
+        android:src="@drawable/baseline_keyboard_arrow_left_24" />
 
     <EditText
         android:id="@+id/nameStudentSignUp"
@@ -78,7 +77,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/passwordOfStudentSignUp"
+        android:id="@+id/passwordStudentSignUp"
         android:layout_width="350dp"
         android:layout_height="50dp"
         android:layout_marginStart="27dp"
