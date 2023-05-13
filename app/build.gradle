@@ -48,6 +48,8 @@ dependencies {
     //Will need to update this in the future
     implementation "androidx.appcompat:appcompat:1.6.1"
 
+    implementation "androidx.fragment:fragment:1.5.7"
+
     // Import the Firebase BoM
     implementation platform('com.google.firebase:firebase-bom:32.0.0')
 
