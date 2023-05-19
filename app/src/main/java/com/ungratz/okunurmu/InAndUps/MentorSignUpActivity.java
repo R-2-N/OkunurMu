@@ -118,6 +118,7 @@ public class MentorSignUpActivity extends Activity {
     private void sendEmailVerification(FirebaseUser user) {
         // Send verification email
         // [START send_email_verification]
+        //user.isEmailVerified()
         user.sendEmailVerification()
                 .addOnCompleteListener(this, task -> {
                     CurrentUser.getInstance();
