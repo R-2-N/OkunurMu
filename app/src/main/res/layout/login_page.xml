@@ -7,8 +7,8 @@
 
     <ImageView
         android:id="@+id/backButtonLogin"
-        android:layout_width="56dp"
-        android:layout_height="52dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="36dp"
         android:clickable="true"
@@ -29,7 +29,7 @@
         android:layout_marginEnd="164dp"
         android:text="@string/login_title"
         android:textColor="#000000"
-        android:textSize="26sp"
+        android:textSize="18sp"
         android:fontFamily="@font/inter"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"

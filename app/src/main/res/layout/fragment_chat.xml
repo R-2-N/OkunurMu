@@ -9,85 +9,16 @@
 
 
     <TextView
-        android:id="@+id/chatName2"
-        android:layout_width="122dp"
-        android:layout_height="16dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="92dp"
-        android:layout_marginTop="308dp"
-        android:gravity="top"
-        android:lineSpacingExtra="-2sp"
-        android:text="@string/chat_mentor_name"
-        android:textColor="#000000"
-        android:textSize="14sp"
+        android:id="@+id/textViewSearch2"
+        android:layout_width="167dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="160dp"
         android:fontFamily="@font/inter"
+        android:text="@string/inbox_title"
+        android:textColor="#000000"
+        android:textSize="36sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/time"
-        android:layout_width="122dp"
-        android:layout_height="16dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="248dp"
-        android:layout_marginTop="308dp"
-        android:gravity="right"
-        android:lineSpacingExtra="-2sp"
-        android:text="@string/message_date"
-        android:textColor="#9D000000"
-        android:textSize="12sp"
-        android:fontFamily="@font/inter"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="RtlHardcoded" />
-
-    <TextView
-        android:id="@+id/time2"
-        android:layout_width="122dp"
-        android:layout_height="16dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="248dp"
-        android:layout_marginTop="180dp"
-        android:gravity="right"
-        android:lineSpacingExtra="-2sp"
-        android:text="@string/message_date"
-        android:textColor="#9D000000"
-        android:textSize="12sp"
-        android:fontFamily="@font/inter"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="RtlHardcoded" />
-
-    <TextView
-        android:id="@+id/message2"
-        android:layout_width="0dp"
-        android:layout_height="16dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="92dp"
-
-        android:layout_marginTop="336dp"
-        android:gravity="top"
-        android:lineSpacingExtra="1sp"
-        android:text="@string/chat_text"
-        android:textColor="#000000"
-        android:fontFamily="@font/inter"
-
-        android:textSize="12sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/photoOfMentor3"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="308dp"
-        android:src="@drawable/chat_avatar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -95,58 +26,22 @@
         android:id="@+id/textViewSearch"
         android:layout_width="79dp"
         android:layout_height="39dp"
-        android:layout_marginStart="164dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="160dp"
+        android:layout_marginTop="36dp"
         android:text="@string/inbox_title"
         android:textColor="#000000"
-        android:textSize="24sp"
+        android:textSize="18sp"
         android:fontFamily="@font/inter"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/chatName"
-        android:layout_width="122dp"
-        android:layout_height="16dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="92dp"
-        android:layout_marginTop="180dp"
-        android:gravity="top"
-        android:lineSpacingExtra="-2sp"
-        android:text="@string/chat_mentor_name"
-        android:textColor="#000000"
-        android:textSize="14sp"
-        android:fontFamily="@font/inter"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/message"
-        android:layout_width="0dp"
-        android:layout_height="16dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="92dp"
-
-        android:layout_marginTop="208dp"
-        android:gravity="top"
-        android:lineSpacingExtra="1sp"
-        android:text="@string/chat_text"
-        android:textColor="#000000"
-        android:textSize="12sp"
-        android:fontFamily="@font/inter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageView8"
-        android:layout_width="53dp"
-        android:layout_height="44dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="27dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="27dp"
+        android:layout_marginTop="30dp"
         android:contentDescription="@string/back_button_description"
         android:src="@drawable/baseline_keyboard_arrow_left_24"
         app:layout_constraintStart_toStartOf="parent"
@@ -154,8 +49,8 @@
 
     <ImageView
         android:id="@+id/photoOfMentor"
-        android:layout_width="47dp"
-        android:layout_height="48dp"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
         android:layout_marginStart="312dp"
         android:layout_marginTop="92dp"
         android:src="@drawable/chat_avatar"
@@ -180,7 +75,7 @@
         android:id="@+id/imageView11"
         android:layout_width="50dp"
         android:layout_height="49dp"
-        android:layout_marginStart="36dp"
+        android:layout_marginStart="28dp"
         android:layout_marginTop="92dp"
         android:src="@drawable/search_icon"
         app:layout_constraintStart_toStartOf="parent"
@@ -188,11 +83,130 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="53dp"
-        android:layout_height="58dp"
-        android:layout_marginStart="23dp"
-        android:layout_marginTop="180dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="240dp"
         android:src="@drawable/chat_avatar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/message2"
+        android:layout_width="0dp"
+        android:layout_height="16dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="96dp"
+
+        android:layout_marginTop="360dp"
+        android:fontFamily="@font/inter"
+        android:gravity="top"
+        android:lineSpacingExtra="1sp"
+        android:text="@string/chat_text"
+        android:textColor="#000000"
+
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/chatName2"
+        android:layout_width="122dp"
+        android:layout_height="16dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="96dp"
+        android:layout_marginTop="340dp"
+        android:fontFamily="@font/inter"
+        android:gravity="top"
+        android:lineSpacingExtra="-2sp"
+        android:text="@string/chat_mentor_name"
+        android:textColor="#000000"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/photoOfMentor3"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="340dp"
+        android:src="@drawable/chat_avatar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="122dp"
+        android:layout_height="16dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="252dp"
+        android:layout_marginTop="340dp"
+        android:fontFamily="@font/inter"
+        android:gravity="right"
+        android:lineSpacingExtra="-2sp"
+        android:text="@string/message_date"
+        android:textColor="#9D000000"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="RtlHardcoded" />
+
+    <TextView
+        android:id="@+id/chatName"
+        android:layout_width="122dp"
+        android:layout_height="16dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="96dp"
+        android:layout_marginTop="240dp"
+        android:fontFamily="@font/inter"
+        android:gravity="top"
+        android:lineSpacingExtra="-2sp"
+        android:text="@string/chat_mentor_name"
+        android:textColor="#000000"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/time2"
+        android:layout_width="122dp"
+        android:layout_height="16dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="252dp"
+        android:layout_marginTop="240dp"
+        android:fontFamily="@font/inter"
+        android:gravity="right"
+        android:lineSpacingExtra="-2sp"
+        android:text="@string/message_date"
+        android:textColor="#9D000000"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="RtlHardcoded" />
+
+    <TextView
+        android:id="@+id/message"
+        android:layout_width="0dp"
+        android:layout_height="16dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="96dp"
+
+        android:layout_marginTop="268dp"
+        android:fontFamily="@font/inter"
+        android:gravity="top"
+        android:lineSpacingExtra="1sp"
+        android:text="@string/chat_text"
+        android:textColor="#000000"
+        android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
