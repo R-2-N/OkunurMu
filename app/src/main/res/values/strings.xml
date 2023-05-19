@@ -55,5 +55,8 @@
     <string name="chat_text">Message</string>
     <string name="message_date">Message Date</string>
 
+    <!-- Scheduled Meeting Page -->
+    <string name="scheduled_meetings_title">Scheduled Meetings</string>
+
 
 </resources>
