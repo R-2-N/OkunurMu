@@ -37,11 +37,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
-        android:layout_marginTop="324dp"
+        android:layout_marginTop="328dp"
+        android:fontFamily="@font/inter"
         android:text="@string/send_message"
         android:textColor="#FFFFFF"
         android:textSize="15sp"
-        android:fontFamily="@font/inter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -50,7 +50,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="240dp"
-        android:layout_marginTop="326dp"
+        android:layout_marginTop="328dp"
         android:text="@string/send_meeting_req"
         android:textColor="#FFFFFF"
         android:textSize="13sp"
@@ -62,7 +62,7 @@
         android:id="@+id/textViewSearch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="150dp"
+        android:layout_marginStart="176dp"
         android:layout_marginTop="36dp"
         android:fontFamily="@font/inter"
         android:text="@string/search_title"
@@ -78,14 +78,14 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="228dp"
+        android:layout_marginStart="224dp"
         android:layout_marginTop="176dp"
+        android:fontFamily="@font/inter"
         android:gravity="top"
         android:lineSpacingExtra="-2sp"
         android:text="@string/mentor_name"
         android:textColor="#000000"
         android:textSize="16sp"
-        android:fontFamily="@font/inter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -95,13 +95,13 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="228dp"
+        android:layout_marginStart="224dp"
         android:layout_marginTop="220dp"
+        android:fontFamily="@font/inter"
         android:gravity="top"
         android:lineSpacingExtra="1sp"
         android:text="@string/mentor_university_with_dept"
         android:translationY="-0.74sp"
-        android:fontFamily="@font/inter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -111,13 +111,13 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="228dp"
+        android:layout_marginStart="224dp"
         android:layout_marginTop="256dp"
+        android:fontFamily="@font/inter"
         android:gravity="top"
         android:lineSpacingExtra="1sp"
         android:text="@string/mentor_hourly_price"
         android:translationY="-0.74sp"
-        android:fontFamily="@font/inter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -125,7 +125,7 @@
         android:id="@+id/imageView8"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginStart="27dp"
+        android:layout_marginStart="40dp"
         android:layout_marginTop="30dp"
         android:contentDescription="@string/back_button_description"
         android:src="@drawable/baseline_keyboard_arrow_left_24"
@@ -134,8 +134,8 @@
 
     <ImageView
         android:id="@+id/photoOfMentor"
-        android:layout_width="147dp"
-        android:layout_height="122dp"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:layout_marginStart="40dp"
         android:layout_marginTop="176dp"
         android:src="@drawable/aby_photo"
@@ -144,8 +144,8 @@
 
     <EditText
         android:id="@+id/searchText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="255dp"
+        android:layout_height="54dp"
         android:layout_marginStart="96dp"
         android:layout_marginTop="104dp"
         android:ems="10"
@@ -158,10 +158,10 @@
 
     <ImageView
         android:id="@+id/imageView11"
-        android:layout_width="42dp"
-        android:layout_height="47dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="104dp"
+        android:layout_marginTop="116dp"
         android:src="@drawable/search_icon"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
