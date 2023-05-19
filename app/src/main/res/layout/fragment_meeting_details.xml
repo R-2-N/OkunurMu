@@ -7,8 +7,8 @@
 
     <TextView
         android:id="@+id/nameOfMentor"
-        android:layout_width="192dp"
-        android:layout_height="49dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="160dp"
@@ -41,11 +41,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/rectangle_scheduled" />
+    <ImageView
+        android:id="@+id/rectangle4"
+        android:layout_width="354dp"
+        android:layout_height="84dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="472dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/rectangle_scheduled" />
 
     <TextView
         android:id="@+id/nameOfMentor4"
-        android:layout_width="192dp"
-        android:layout_height="49dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="32dp"
@@ -62,8 +71,8 @@
 
     <TextView
         android:id="@+id/nameOfMentor6"
-        android:layout_width="217dp"
-        android:layout_height="28dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="152dp"
@@ -77,20 +86,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/rectangle4"
-        android:layout_width="354dp"
-        android:layout_height="84dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="472dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/rectangle_scheduled" />
+
 
     <TextView
         android:id="@+id/nameOfMentor5"
-        android:layout_width="236dp"
-        android:layout_height="33dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="152dp"
@@ -106,8 +107,8 @@
 
     <TextView
         android:id="@+id/april_tue_3"
-        android:layout_width="156dp"
-        android:layout_height="22dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="32dp"

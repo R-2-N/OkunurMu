@@ -4,11 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <ImageView
+        android:id="@+id/rectangle5"
+        android:layout_width="354dp"
+        android:layout_height="84dp"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="345dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/rectangle_scheduled" />
 
     <TextView
         android:id="@+id/nameOfMentor1"
-        android:layout_width="0dp"
-        android:layout_height="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="116dp"
@@ -59,8 +68,8 @@
 
     <TextView
         android:id="@+id/nameOfMentor2"
-        android:layout_width="0dp"
-        android:layout_height="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="116dp"
@@ -75,15 +84,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/rectangle5"
-        android:layout_width="354dp"
-        android:layout_height="84dp"
-        android:layout_marginStart="26dp"
-        android:layout_marginTop="345dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/rectangle_scheduled" />
+
 
     <ImageView
         android:id="@+id/rectangle6"
@@ -95,10 +96,11 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/rectangle_scheduled" />
 
+
     <TextView
         android:id="@+id/nameOfMentor3"
-        android:layout_width="0dp"
-        android:layout_height="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="116dp"
@@ -145,8 +147,8 @@
 
     <TextView
         android:id="@+id/meeting_date1"
-        android:layout_width="156dp"
-        android:layout_height="22dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="116dp"
@@ -160,8 +162,8 @@
 
     <TextView
         android:id="@+id/meeting_date2"
-        android:layout_width="156dp"
-        android:layout_height="22dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="116dp"
@@ -175,8 +177,8 @@
 
     <TextView
         android:id="@+id/meeting_date3"
-        android:layout_width="156dp"
-        android:layout_height="22dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="116dp"

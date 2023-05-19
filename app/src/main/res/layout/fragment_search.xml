@@ -34,8 +34,8 @@
 
     <TextView
         android:id="@+id/textViewSendAMessage"
-        android:layout_width="168dp"
-        android:layout_height="34dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
         android:layout_marginTop="324dp"
         android:text="@string/send_message"
@@ -47,8 +47,8 @@
 
     <TextView
         android:id="@+id/textViewSendMeetingRequest"
-        android:layout_width="168dp"
-        android:layout_height="34dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="240dp"
         android:layout_marginTop="326dp"
         android:text="@string/send_meeting_req"
@@ -60,8 +60,8 @@
 
     <TextView
         android:id="@+id/textViewSearch"
-        android:layout_width="114dp"
-        android:layout_height="33dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="150dp"
         android:layout_marginTop="36dp"
         android:fontFamily="@font/inter"
@@ -74,8 +74,8 @@
 
     <TextView
         android:id="@+id/ahmet_burak"
-        android:layout_width="0dp"
-        android:layout_height="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="228dp"
@@ -91,8 +91,8 @@
 
     <TextView
         android:id="@+id/bilkent_uni"
-        android:layout_width="0dp"
-        android:layout_height="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="228dp"
@@ -107,8 +107,8 @@
 
     <TextView
         android:id="@+id/price"
-        android:layout_width="0dp"
-        android:layout_height="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="228dp"
@@ -144,24 +144,24 @@
 
     <EditText
         android:id="@+id/searchText"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="76dp"
-        android:layout_marginTop="107dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="96dp"
+        android:layout_marginTop="104dp"
         android:ems="10"
+        android:fontFamily="@font/inter"
         android:hint="@string/mentor_name"
         android:inputType="text"
         android:textColorHint="@color/clicked_blue"
-        android:fontFamily="@font/inter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageView11"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="26dp"
-        android:layout_marginTop="106dp"
+        android:layout_width="42dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="104dp"
         android:src="@drawable/search_icon"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

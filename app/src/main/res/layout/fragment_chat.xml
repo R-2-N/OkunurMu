@@ -10,8 +10,8 @@
 
     <TextView
         android:id="@+id/textViewSearch2"
-        android:layout_width="167dp"
-        android:layout_height="47dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
         android:layout_marginTop="160dp"
         android:fontFamily="@font/inter"
@@ -24,8 +24,8 @@
 
     <TextView
         android:id="@+id/textViewSearch"
-        android:layout_width="79dp"
-        android:layout_height="39dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="160dp"
         android:layout_marginTop="36dp"
         android:text="@string/inbox_title"
@@ -51,7 +51,7 @@
         android:id="@+id/photoOfMentor"
         android:layout_width="36dp"
         android:layout_height="36dp"
-        android:layout_marginStart="312dp"
+        android:layout_marginStart="344dp"
         android:layout_marginTop="92dp"
         android:src="@drawable/chat_avatar"
         app:layout_constraintStart_toStartOf="parent"
@@ -59,8 +59,8 @@
 
     <EditText
         android:id="@+id/searchText"
-        android:layout_width="186dp"
-        android:layout_height="48dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="88dp"
         android:layout_marginTop="92dp"
         android:ems="10"
@@ -93,8 +93,8 @@
 
     <TextView
         android:id="@+id/message2"
-        android:layout_width="0dp"
-        android:layout_height="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="96dp"
@@ -112,8 +112,8 @@
 
     <TextView
         android:id="@+id/chatName2"
-        android:layout_width="122dp"
-        android:layout_height="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="96dp"
@@ -140,11 +140,11 @@
 
     <TextView
         android:id="@+id/time"
-        android:layout_width="122dp"
-        android:layout_height="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="252dp"
+        android:layout_marginStart="296dp"
         android:layout_marginTop="340dp"
         android:fontFamily="@font/inter"
         android:gravity="right"
@@ -158,8 +158,8 @@
 
     <TextView
         android:id="@+id/chatName"
-        android:layout_width="122dp"
-        android:layout_height="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="96dp"
@@ -176,11 +176,11 @@
 
     <TextView
         android:id="@+id/time2"
-        android:layout_width="122dp"
-        android:layout_height="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="252dp"
+        android:layout_marginStart="296dp"
         android:layout_marginTop="240dp"
         android:fontFamily="@font/inter"
         android:gravity="right"
@@ -194,8 +194,8 @@
 
     <TextView
         android:id="@+id/message"
-        android:layout_width="0dp"
-        android:layout_height="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="96dp"

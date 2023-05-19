@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">My Application</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
@@ -44,7 +43,7 @@
     <!-- Meeting Details Page -->
     <string name="meeting_details_title">Meeting Details</string>
     <string name="meeting_details">Meeting Details</string>
-    <string name="meeting_date">Date - Hour</string>ü
+    <string name="meeting_date">Date - Hour</string>
     <string name="add_to_calendar">Add to your calendar</string>
     <string name="join_zoom">Join Zoom Meeting</string>
 
