@@ -10,7 +10,7 @@
 
     <View
         android:id="@+id/rectangle"
-        android:layout_width="150dp"
+        android:layout_width="164dp"
         android:layout_height="43dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
@@ -22,8 +22,8 @@
 
     <View
         android:id="@+id/rectangle2"
-        android:layout_width="150dp"
-        android:layout_height="43dp"
+        android:layout_width="164dp"
+        android:layout_height="42dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="224dp"
@@ -41,6 +41,7 @@
         android:text="@string/send_message"
         android:textColor="#FFFFFF"
         android:textSize="15sp"
+        android:fontFamily="@font/inter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -53,18 +54,21 @@
         android:text="@string/send_meeting_req"
         android:textColor="#FFFFFF"
         android:textSize="13sp"
+        android:fontFamily="@font/inter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textViewSearch"
-        android:layout_width="79dp"
-        android:layout_height="39dp"
+        android:layout_width="114dp"
+        android:layout_height="33dp"
         android:layout_marginStart="164dp"
         android:layout_marginTop="32dp"
+        android:fontFamily="@font/inter"
         android:text="@string/search_title"
         android:textColor="#000000"
         android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -81,6 +85,7 @@
         android:text="@string/mentor_name"
         android:textColor="#000000"
         android:textSize="16sp"
+        android:fontFamily="@font/inter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -96,6 +101,7 @@
         android:lineSpacingExtra="1sp"
         android:text="@string/mentor_university_with_dept"
         android:translationY="-0.74sp"
+        android:fontFamily="@font/inter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -111,6 +117,7 @@
         android:lineSpacingExtra="1sp"
         android:text="@string/mentor_hourly_price"
         android:translationY="-0.74sp"
+        android:fontFamily="@font/inter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -144,7 +151,8 @@
         android:ems="10"
         android:hint="@string/mentor_name"
         android:inputType="text"
-        android:textColorHint="#172D70"
+        android:textColorHint="@color/clicked_blue"
+        android:fontFamily="@font/inter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

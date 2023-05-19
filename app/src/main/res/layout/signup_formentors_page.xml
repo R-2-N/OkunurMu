@@ -7,13 +7,15 @@
 
     <TextView
         android:id="@+id/textViewSignUpForMentor"
-        android:layout_width="168dp"
+        android:layout_width="196dp"
         android:layout_height="34dp"
         android:layout_marginStart="121dp"
         android:layout_marginTop="32dp"
+        android:fontFamily="@font/inter"
         android:text="@string/mentor_signup_title"
         android:textColor="#000000"
         android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -36,6 +38,7 @@
         android:ems="10"
         android:hint="@string/signup_name"
         android:inputType="text"
+        android:fontFamily="@font/inter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -49,6 +52,7 @@
         android:hint="@string/signup_username"
         android:inputType="text"
         android:textColor="#000000"
+        android:fontFamily="@font/inter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -62,6 +66,7 @@
         android:hint="@string/signup_university"
         android:inputType="text"
         android:textColor="#000000"
+        android:fontFamily="@font/inter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -75,6 +80,7 @@
         android:hint="@string/signup_department"
         android:inputType="text"
         android:textColor="#000000"
+        android:fontFamily="@font/inter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -87,6 +93,7 @@
         android:ems="10"
         android:hint="@string/email"
         android:inputType="textEmailAddress"
+        android:fontFamily="@font/inter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -99,6 +106,7 @@
         android:ems="10"
         android:hint="@string/password"
         android:inputType="textPassword"
+        android:fontFamily="@font/inter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
@@ -112,6 +120,7 @@
         android:ems="10"
         android:hint="@string/signup_second_password"
         android:inputType="textPassword"
+        android:fontFamily="@font/inter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />

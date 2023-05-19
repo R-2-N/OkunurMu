@@ -19,8 +19,10 @@
         android:gravity="top"
         android:lineSpacingExtra="-2sp"
         android:text="@string/chat_mentor_name"
-        android:textColor="#9D000000"
+        android:textColor="#000000"
         android:textSize="14sp"
+        android:fontFamily="@font/inter"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -37,6 +39,7 @@
         android:text="@string/message_date"
         android:textColor="#9D000000"
         android:textSize="12sp"
+        android:fontFamily="@font/inter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="RtlHardcoded" />
@@ -54,6 +57,7 @@
         android:text="@string/message_date"
         android:textColor="#9D000000"
         android:textSize="12sp"
+        android:fontFamily="@font/inter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="RtlHardcoded" />
@@ -71,6 +75,8 @@
         android:lineSpacingExtra="1sp"
         android:text="@string/chat_text"
         android:textColor="#000000"
+        android:fontFamily="@font/inter"
+
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -94,6 +100,8 @@
         android:text="@string/inbox_title"
         android:textColor="#000000"
         android:textSize="24sp"
+        android:fontFamily="@font/inter"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -108,8 +116,10 @@
         android:gravity="top"
         android:lineSpacingExtra="-2sp"
         android:text="@string/chat_mentor_name"
-        android:textColor="#9D000000"
+        android:textColor="#000000"
         android:textSize="14sp"
+        android:fontFamily="@font/inter"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -127,6 +137,7 @@
         android:text="@string/chat_text"
         android:textColor="#000000"
         android:textSize="12sp"
+        android:fontFamily="@font/inter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -160,7 +171,8 @@
         android:ems="10"
         android:hint="@string/chat_search"
         android:inputType="text"
-        android:textColorHint="#172D70"
+        android:textColorHint="@color/clicked_blue"
+        android:fontFamily="@font/inter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

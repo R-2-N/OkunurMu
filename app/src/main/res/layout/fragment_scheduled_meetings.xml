@@ -18,6 +18,8 @@
         android:text="@string/mentor_name"
         android:textColor="#000000"
         android:textSize="16sp"
+        android:fontFamily="@font/inter"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -30,7 +32,8 @@
         android:text="@string/scheduled_meetings_title"
         android:textColor="#000000"
         android:textSize="24sp"
-        android:textStyle="normal"
+        android:fontFamily="@font/inter"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -48,7 +51,7 @@
         android:id="@+id/rectangle"
         android:layout_width="354dp"
         android:layout_height="84dp"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="26dp"
         android:layout_marginTop="112dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -67,6 +70,8 @@
         android:text="@string/mentor_name"
         android:textColor="#000000"
         android:textSize="16sp"
+        android:fontFamily="@font/inter"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -74,7 +79,7 @@
         android:id="@+id/rectangle5"
         android:layout_width="354dp"
         android:layout_height="84dp"
-        android:layout_marginStart="28dp"
+        android:layout_marginStart="26dp"
         android:layout_marginTop="345dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -103,6 +108,8 @@
         android:text="@string/mentor_name"
         android:textColor="#000000"
         android:textSize="16sp"
+        android:fontFamily="@font/inter"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -147,6 +154,7 @@
         android:gravity="top"
         android:lineSpacingExtra="-2sp"
         android:text="@string/meeting_date"
+        android:fontFamily="@font/inter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -161,6 +169,7 @@
         android:gravity="top"
         android:lineSpacingExtra="-2sp"
         android:text="@string/meeting_date"
+        android:fontFamily="@font/inter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -175,6 +184,7 @@
         android:gravity="top"
         android:lineSpacingExtra="-2sp"
         android:text="@string/meeting_date"
+        android:fontFamily="@font/inter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

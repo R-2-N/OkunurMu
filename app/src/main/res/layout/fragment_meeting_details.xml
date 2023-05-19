@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -13,34 +14,47 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/rectangle_scheduled" />
+    <ImageView
+        android:id="@+id/rectangle4"
+        android:layout_width="354dp"
+        android:layout_height="84dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="428dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/rectangle_scheduled" />
 
     <TextView
         android:id="@+id/nameOfMentor5"
-        android:layout_width="199dp"
-        android:layout_height="30dp"
+        android:layout_width="236dp"
+        android:layout_height="33dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="148dp"
         android:layout_marginTop="348dp"
+        android:fontFamily="@font/inter"
         android:lineSpacingExtra="-2sp"
         android:text="@string/add_to_calendar"
         android:textColor="#000000"
         android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/nameOfMentor6"
-        android:layout_width="199dp"
-        android:layout_height="31dp"
+        android:layout_width="217dp"
+        android:layout_height="28dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="148dp"
         android:layout_marginTop="456dp"
+        android:fontFamily="@font/inter"
         android:lineSpacingExtra="-2sp"
         android:text="@string/join_zoom"
         android:textColor="#000000"
         android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -57,6 +71,8 @@
         android:text="@string/meeting_details"
         android:textColor="#000000"
         android:textSize="24sp"
+        android:fontFamily="@font/inter"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -73,6 +89,8 @@
         android:text="@string/signup_name"
         android:textColor="#000000"
         android:textSize="24sp"
+        android:fontFamily="@font/inter"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -89,6 +107,7 @@
         android:text="@string/meeting_date"
         android:textColor="#000000"
         android:textSize="20sp"
+        android:fontFamily="@font/inter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -111,20 +130,11 @@
         android:text="@string/meeting_details_title"
         android:textColor="#000000"
         android:textSize="24sp"
-        android:textStyle="normal"
+        android:textStyle="bold"
+        android:fontFamily="@font/inter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
-    <ImageView
-        android:id="@+id/rectangle4"
-        android:layout_width="354dp"
-        android:layout_height="84dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="428dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/rectangle_scheduled" />
 
     <ImageView
         android:id="@+id/imageView"
