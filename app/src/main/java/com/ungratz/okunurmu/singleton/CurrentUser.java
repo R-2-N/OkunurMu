@@ -3,8 +3,10 @@ package com.ungratz.okunurmu.singleton;
 import android.net.Uri;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -12,8 +14,10 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class CurrentUser extends AppCompatActivity {
     private static CurrentUser u;
@@ -45,7 +49,6 @@ public class CurrentUser extends AppCompatActivity {
         user = u;
         setID(user.getUid());
 
-
         /*
         Quick tutorial on how to get field data from Firestore
         First by using get() you have to turn document reference into Task<DocumentSnapshot>
@@ -63,11 +66,12 @@ public class CurrentUser extends AppCompatActivity {
             setUniversity(ds.getString("university"));
             setDepartment(ds.getString("department"));
         }
+
+        setDefaultProfilePicOnStorage();
     }
 
     public static void setNewFirebaseUser
             (FirebaseUser u, String userRealName, String userName, boolean isItMentor, String university, String department){
-
         setIsMentor(isItMentor);
 
         //writing the info into the database
@@ -86,7 +90,7 @@ public class CurrentUser extends AppCompatActivity {
     public static void setID(String i){id = i;}
     public static void setUserDocumentRef(DocumentReference d){dr = d;}
     public static void setUserDocumentSnapshot(DocumentSnapshot d){ds = d;}
-    private static void setStorageRef(StorageReference s){sr = s;}
+    public static void setStorageRef(StorageReference s){sr = s;}
     public static void setRealName(String n){realName = n;}
     public static void setUserName(String u){userName = u;}
     public static void setMail(String m){mail = m;}
@@ -100,13 +104,27 @@ public class CurrentUser extends AppCompatActivity {
     public static String getID(){return id;}
     public static DocumentReference getUserDocumentRef(){return dr;}
     public static DocumentSnapshot getUserDocumentSnapshot(){return ds;}
-    private static StorageReference getStorageRef(){return sr;}
+    public static StorageReference getStorageRef(){return sr;}
     public static String getRealName(){return ds.getString("realName");}
     public static String getUserName(){return ds.getString("userName");}
     public static String getMail(){return ds.getString("email");}
     public static boolean getIsMentor(){return isMentor;}
     public static String getUniversity(){return university;}
     public static String getDepartment(){return department;}
+
+    //I think this is redundant bc of glide
+    public static Uri getProfilePic(){
+        AtomicReference<Uri> sUri = null;
+        getStorageRef().child(getID()+"/userProfilePic").getDownloadUrl()
+                .addOnSuccessListener(uri -> sUri.set(uri))
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+
+                    }
+                });
+        return sUri.get();
+    }
 
 
     public static Map<String, Object>
@@ -124,12 +142,16 @@ public class CurrentUser extends AppCompatActivity {
         return newUserMap;
     }
 
-    public static void uploadFileToStorage(Uri u){
+    public static void uploadPersonalPhotoToStorage(Uri u){
 
         String[] s = u.toString().split("/");
         getStorageRef().child(getID() + "/" + s[s.length-1]).putFile(u)
                 .addOnCompleteListener(task -> Log.d("Upload:", "success"))
                 .addOnFailureListener(e -> Log.w("Upload:", "failed"));
+    }
 
+    public static void setDefaultProfilePicOnStorage(){
+        Uri uri = Uri.fromFile(new File("defaultPP.png"));
+        getStorageRef().child(getID()+"/userProfilePic").putFile(uri);
     }
 }
