@@ -140,7 +140,13 @@ public class StudentSignUpActivity extends Activity {
     private void reload() { }
 
     private void updateUI(FirebaseUser user) {
-        Intent intent = new Intent(ssa, MainActivity.class);
-        startActivity(intent);
+
+        try {
+            Intent intent = new Intent(ssa, MainActivity.class);
+            startActivity(intent);
+        }
+        catch (Exception e){
+            updateUI(user);
+        }
     }
 }

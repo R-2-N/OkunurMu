@@ -15,7 +15,7 @@ import com.ungratz.okunurmu.databinding.LoginPageBinding;
 import com.ungratz.okunurmu.singleton.CurrentUser;
 
 public class LoginActivity extends Activity {
-
+    private CurrentUser currentUser = CurrentUser.getInstance();
     private LoginActivity la = this;
     private FirebaseAuth mAuth;
     private LoginPageBinding binding;
@@ -66,8 +66,7 @@ public class LoginActivity extends Activity {
     }
 
     public void updateUI(FirebaseUser user){
-        CurrentUser.getInstance();
-        CurrentUser.setFirebaseUser(user);
+        currentUser.setFirebaseUser(user);
 
         Intent intent = new Intent(la, MainActivity.class);
         startActivity(intent);

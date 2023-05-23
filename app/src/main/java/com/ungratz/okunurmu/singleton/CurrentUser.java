@@ -4,9 +4,10 @@ import android.net.Uri;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -19,8 +20,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicReference;
 
-public class CurrentUser extends AppCompatActivity {
-    private static CurrentUser u;
+public class CurrentUser {
+    public static CurrentUser u;
     public CurrentUser(){}
 
     public static CurrentUser getInstance(){
@@ -33,6 +34,9 @@ public class CurrentUser extends AppCompatActivity {
     private static FirebaseFirestore ff = FirebaseFirestore.getInstance();
     private static FirebaseUser user;
     private static DocumentReference dr;
+
+    // I actually cannot store DocumentSnapshot. I have to call .addOnCompleteListener
+    // everytime on the DocumentReference
     private static DocumentSnapshot ds;
     private static FirebaseStorage fs = FirebaseStorage.getInstance();
     private static StorageReference sr;
@@ -51,21 +55,36 @@ public class CurrentUser extends AppCompatActivity {
 
         /*
         Quick tutorial on how to get field data from Firestore
-        First by using get() you have to turn document reference into Task<DocumentSnapshot>
-        After which you can turn that into a documentSnapshot with getResult()
-        and finally you could get the field using a string to indicate its name
+        Do what I do in lines 63 to 78
         */
 
         setUserDocumentRef(ff.collection("users").document(getID()));
-        setUserDocumentSnapshot(dr.get().getResult());
+
+        dr.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+
+                        setRealName(task.getResult().getString("realName"));
+                        setUserName(task.getResult().getString("userName"));
+
+                        if (task.getResult().getBoolean("isMentor")) {
+                            setUniversity(task.getResult().getString("university"));
+                            setDepartment(task.getResult().getString("department"));
+                        }
+                    } else {
+                        Log.d("Sikim", "No such document");
+                    }
+                } else {
+                    Log.d("Sikim", "get failed with ", task.getException());
+                }
+            }
+        }).addOnFailureListener(e -> Log.d("TAG", "Snapshot just doesn't work"));
+
         setStorageRef(fs.getReference());
-        setRealName(ds.getString("realName"));
-        setUserName(ds.getString("userName"));
         setMail(user.getEmail());
-        if(ds.getBoolean("isMentor")){
-            setUniversity(ds.getString("university"));
-            setDepartment(ds.getString("department"));
-        }
 
         setDefaultProfilePicOnStorage();
     }
@@ -105,9 +124,9 @@ public class CurrentUser extends AppCompatActivity {
     public static DocumentReference getUserDocumentRef(){return dr;}
     public static DocumentSnapshot getUserDocumentSnapshot(){return ds;}
     public static StorageReference getStorageRef(){return sr;}
-    public static String getRealName(){return ds.getString("realName");}
-    public static String getUserName(){return ds.getString("userName");}
-    public static String getMail(){return ds.getString("email");}
+    public static String getRealName(){return realName;}
+    public static String getUserName(){return userName;}
+    public static String getMail(){return mail;}
     public static boolean getIsMentor(){return isMentor;}
     public static String getUniversity(){return university;}
     public static String getDepartment(){return department;}
@@ -151,7 +170,8 @@ public class CurrentUser extends AppCompatActivity {
     }
 
     public static void setDefaultProfilePicOnStorage(){
-        Uri uri = Uri.fromFile(new File("defaultPP.png"));
-        getStorageRef().child(getID()+"/userProfilePic").putFile(uri);
+        String currentPath = new File("").getAbsolutePath();
+        Uri uri = Uri.fromFile(new File(currentPath + "defaultPP.png"));
+        getStorageRef().child(getID()+"/userProfilePic.png").putFile(uri);
     }
 }
