@@ -37,11 +37,19 @@ public class ProfileFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState){
 
         binding.userName.setText(CurrentUser.getUserName());
+        binding.bio.setText(CurrentUser.getBio());
 
         Glide.with(this)
                 .load(CurrentUser.getStorageRef().child(CurrentUser.getID()+"/userProfilePic.png"))
                 .placeholder(R.drawable.chat_avatar)
                 .into(binding.currentUserProfilePic);
+
+        binding.saveProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CurrentUser.updateBio(binding.bio.getText().toString());
+            }
+        });
 
     }
 }
