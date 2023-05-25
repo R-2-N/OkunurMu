@@ -46,6 +46,7 @@ public class CurrentUser {
     private static String university;
     private static String department;
     private static String bio;
+    private static int amountOfPersonalPhotos;
 
 
     public static void setFirebaseUser(FirebaseUser u){
@@ -61,13 +62,13 @@ public class CurrentUser {
 
         setStorageRef(fs.getReference());
         setMail(user.getEmail());
-
-        setDefaultProfilePicOnStorage();
     }
 
     public static void setNewFirebaseUser
             (FirebaseUser u, String userRealName, String userName, boolean isItMentor, String university, String department){
+
         setIsMentor(isItMentor);
+        setDefaultProfilePicOnStorage();
 
         //writing the info into the database
         ff.collection("users").document(u.getUid()).
@@ -93,6 +94,7 @@ public class CurrentUser {
     public static void setUniversity(String u){university = u;}
     public static void setDepartment(String d){department = d;}
     public static void setBio(String b){bio=b;}
+    public static void setAmountOfPersonalPhotos(int a){amountOfPersonalPhotos = a;}
 
 
     //getters
@@ -111,29 +113,11 @@ public class CurrentUser {
 
     public static void updateBio(String b){
         ff.collection("users").document(getID()).update("bio", b)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void unused) {
-                        setBio(b);
-                        //code for writing that they were successfull in updating their bio
-                    }
+                .addOnSuccessListener(unused -> {
+                    setBio(b);
+                    //code for writing that they were successfull in updating their bio
                 });
     }
-
-    //I think this is redundant bc of glide
-    public static Uri getProfilePic(){
-        AtomicReference<Uri> sUri = null;
-        getStorageRef().child(getID()+"/userProfilePic").getDownloadUrl()
-                .addOnSuccessListener(uri -> sUri.set(uri))
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-
-                    }
-                });
-        return sUri.get();
-    }
-
 
     public static Map<String, Object>
     createUserHashMap(String rn, String un, String e, boolean b, String uniN, String d){
@@ -142,7 +126,8 @@ public class CurrentUser {
         newUserMap.put("userName", un);
         newUserMap.put("email", e);
         newUserMap.put("isMentor", b);
-        newUserMap.put("bio", "");
+        newUserMap.put("bio", "")
+        newUserMap.put("photoAmount",0);
         if (b==true){
             newUserMap.put("university", uniN);
             newUserMap.put("department", d);
@@ -161,6 +146,6 @@ public class CurrentUser {
 
     public static void setDefaultProfilePicOnStorage(){
         Uri uri = Uri.parse("android.resource://com.ungratz.okunurmu/drawable/aby_photo");
-        getStorageRef().child(getID()+"/userProfilePic.png").putFile(uri);
+        getStorageRef().child(getID()+"/userProfilePic").putFile(uri);
     }
 }
