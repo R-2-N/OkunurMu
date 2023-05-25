@@ -1,33 +1,44 @@
 package com.ungratz.okunurmu;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
-import com.ungratz.okunurmu.databinding.LaunchPageBinding;
-import com.ungratz.okunurmu.databinding.MainActivityBinding;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
-public class MainActivity extends Activity {
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.ungratz.okunurmu.databinding.MainActivityBinding;
+import com.ungratz.okunurmu.fragments.ProfileFragment;
+import com.ungratz.okunurmu.fragments.SearchFragment;
+import com.ungratz.okunurmu.singleton.CurrentUser;
+
+public class MainActivity extends FragmentActivity {
 
     private MainActivity ma = this;
+
+    private ProfileFragment pf;
+    private SearchFragment sf;
+
+    private FragmentManager fm = getSupportFragmentManager();
+    private FragmentTransaction ft = fm.beginTransaction();
 
     private MainActivityBinding binding;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+
         binding = MainActivityBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        binding.homeProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        pf = new ProfileFragment();
+        sf = new SearchFragment();
+        ft.replace(R.id.main_fragment, pf).commit();
 
-            }
-        });
+        binding.homeProfile.setOnClickListener(v -> ft.replace(R.id.main_fragment, pf));
 
     }
-
-
-
 }

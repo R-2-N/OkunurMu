@@ -10,12 +10,13 @@ import androidx.annotation.Nullable;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.ungratz.okunurmu.MainActivity;
 import com.ungratz.okunurmu.databinding.LoginPageBinding;
 import com.ungratz.okunurmu.singleton.CurrentUser;
 
 public class LoginActivity extends Activity {
-
+    private CurrentUser currentUser = CurrentUser.getInstance();
     private LoginActivity la = this;
     private FirebaseAuth mAuth;
     private LoginPageBinding binding;
@@ -54,6 +55,7 @@ public class LoginActivity extends Activity {
                         // Sign in success, update UI with the signed-in user's information
                         Log.d(TAG, "signInWithEmail:success");
                         FirebaseUser user = mAuth.getCurrentUser();
+                        currentUser.setFirebaseUser(user);
                         updateUI(user);
                     } else {
                         // If sign in fails, display a message to the user.
@@ -66,11 +68,30 @@ public class LoginActivity extends Activity {
     }
 
     public void updateUI(FirebaseUser user){
-        CurrentUser.getInstance();
-        CurrentUser.setFirebaseUser(user);
 
-        Intent intent = new Intent(la, MainActivity.class);
-        startActivity(intent);
+        CurrentUser.getUserDocumentRef().get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                DocumentSnapshot document = task.getResult();
+                if (document.exists()) {
+
+                    CurrentUser.setRealName(task.getResult().getString("realName"));
+                    CurrentUser.setUserName(task.getResult().getString("userName"));
+                    CurrentUser.setBio(task.getResult().getString("Bio"));
+
+                    if (task.getResult().getBoolean("isMentor")) {
+                        CurrentUser.setUniversity(task.getResult().getString("university"));
+                        CurrentUser.setDepartment(task.getResult().getString("department"));
+                    }
+
+                    Intent intent = new Intent(la, MainActivity.class);
+                    startActivity(intent);
+
+                } else {
+                    Log.d("Bazinga", "No such document");
+                }
+            } else {
+                Log.d("Bazinga", "get failed with ", task.getException());
+            }
+        });
     }
-
 }

@@ -62,8 +62,16 @@ dependencies {
     // Import Stroge from Firebase
     implementation 'com.google.firebase:firebase-storage'
 
-    //Import FireSTORE not Firebase FireSTORE
+    // Import FireSTORE not Firebase FireSTORE
     implementation 'com.google.firebase:firebase-firestore'
+
+    // Import FirebaseUI's storage part only
+    implementation 'com.firebaseui:firebase-ui-storage:7.2.0'
+
+
+    // Adding the glide functionality
+    implementation 'com.github.bumptech.glide:glide:4.15.1'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.14.2'
 
     // TODO: Add the dependencies for Firebase products you want to use
     // When using the BoM, don't specify versions in Firebase dependencies

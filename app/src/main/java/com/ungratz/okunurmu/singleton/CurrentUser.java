@@ -1,22 +1,32 @@
 package com.ungratz.okunurmu.singleton;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.NonNull;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Source;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.ungratz.okunurmu.InAndUps.LoginActivity;
+import com.ungratz.okunurmu.MainActivity;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicReference;
 
-public class CurrentUser extends AppCompatActivity {
-    private static CurrentUser u;
+public class CurrentUser {
+    public static CurrentUser u;
     public CurrentUser(){}
 
     public static CurrentUser getInstance(){
@@ -29,6 +39,9 @@ public class CurrentUser extends AppCompatActivity {
     private static FirebaseFirestore ff = FirebaseFirestore.getInstance();
     private static FirebaseUser user;
     private static DocumentReference dr;
+
+    // I actually cannot store DocumentSnapshot. I have to call .addOnCompleteListener
+    // everytime on the DocumentReference
     private static DocumentSnapshot ds;
     private static FirebaseStorage fs = FirebaseStorage.getInstance();
     private static StorageReference sr;
@@ -39,35 +52,28 @@ public class CurrentUser extends AppCompatActivity {
     private static boolean isMentor;
     private static String university;
     private static String department;
+    private static String bio;
 
 
     public static void setFirebaseUser(FirebaseUser u){
         user = u;
         setID(user.getUid());
-
-
+        ff = FirebaseFirestore.getInstance();
         /*
         Quick tutorial on how to get field data from Firestore
-        First by using get() you have to turn document reference into Task<DocumentSnapshot>
-        After which you can turn that into a documentSnapshot with getResult()
-        and finally you could get the field using a string to indicate its name
+        Do what I do in lines 63 to 78
         */
 
         setUserDocumentRef(ff.collection("users").document(getID()));
-        setUserDocumentSnapshot(dr.get().getResult());
+
         setStorageRef(fs.getReference());
-        setRealName(ds.getString("realName"));
-        setUserName(ds.getString("userName"));
         setMail(user.getEmail());
-        if(ds.getBoolean("isMentor")){
-            setUniversity(ds.getString("university"));
-            setDepartment(ds.getString("department"));
-        }
+
+        setDefaultProfilePicOnStorage();
     }
 
     public static void setNewFirebaseUser
             (FirebaseUser u, String userRealName, String userName, boolean isItMentor, String university, String department){
-
         setIsMentor(isItMentor);
 
         //writing the info into the database
@@ -86,13 +92,14 @@ public class CurrentUser extends AppCompatActivity {
     public static void setID(String i){id = i;}
     public static void setUserDocumentRef(DocumentReference d){dr = d;}
     public static void setUserDocumentSnapshot(DocumentSnapshot d){ds = d;}
-    private static void setStorageRef(StorageReference s){sr = s;}
+    public static void setStorageRef(StorageReference s){sr = s;}
     public static void setRealName(String n){realName = n;}
     public static void setUserName(String u){userName = u;}
     public static void setMail(String m){mail = m;}
     public static void setIsMentor(boolean b){isMentor = b;}
     public static void setUniversity(String u){university = u;}
     public static void setDepartment(String d){department = d;}
+    public static void setBio(String b){bio=b;}
 
 
     //getters
@@ -100,13 +107,38 @@ public class CurrentUser extends AppCompatActivity {
     public static String getID(){return id;}
     public static DocumentReference getUserDocumentRef(){return dr;}
     public static DocumentSnapshot getUserDocumentSnapshot(){return ds;}
-    private static StorageReference getStorageRef(){return sr;}
-    public static String getRealName(){return ds.getString("realName");}
-    public static String getUserName(){return ds.getString("userName");}
-    public static String getMail(){return ds.getString("email");}
+    public static StorageReference getStorageRef(){return sr;}
+    public static String getRealName(){return realName;}
+    public static String getUserName(){return userName;}
+    public static String getMail(){return mail;}
     public static boolean getIsMentor(){return isMentor;}
     public static String getUniversity(){return university;}
     public static String getDepartment(){return department;}
+    public static String getBio(){return bio;}
+
+    public static void updateBio(String b){
+        ff.collection("users").document(getID()).update("bio", b)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        //code for writing that they were successfull in updating their bio
+                    }
+                });
+    }
+
+    //I think this is redundant bc of glide
+    public static Uri getProfilePic(){
+        AtomicReference<Uri> sUri = null;
+        getStorageRef().child(getID()+"/userProfilePic").getDownloadUrl()
+                .addOnSuccessListener(uri -> sUri.set(uri))
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+
+                    }
+                });
+        return sUri.get();
+    }
 
 
     public static Map<String, Object>
@@ -116,6 +148,7 @@ public class CurrentUser extends AppCompatActivity {
         newUserMap.put("userName", un);
         newUserMap.put("email", e);
         newUserMap.put("isMentor", b);
+        newUserMap.put("bio", "");
         if (b==true){
             newUserMap.put("university", uniN);
             newUserMap.put("department", d);
@@ -124,12 +157,16 @@ public class CurrentUser extends AppCompatActivity {
         return newUserMap;
     }
 
-    public static void uploadFileToStorage(Uri u){
+    public static void uploadPersonalPhotoToStorage(Uri u){
 
         String[] s = u.toString().split("/");
         getStorageRef().child(getID() + "/" + s[s.length-1]).putFile(u)
                 .addOnCompleteListener(task -> Log.d("Upload:", "success"))
                 .addOnFailureListener(e -> Log.w("Upload:", "failed"));
+    }
 
+    public static void setDefaultProfilePicOnStorage(){
+        Uri uri = Uri.parse("android.resource://com.ungratz.okunurmu/drawable/aby_photo");
+        getStorageRef().child(getID()+"/userProfilePic.png").putFile(uri);
     }
 }

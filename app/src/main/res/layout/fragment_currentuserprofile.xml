@@ -15,11 +15,15 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/chat_avatar" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="409dp"
-        android:layout_height="475dp"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="124dp"
-        tools:listitem="@layout/recycler_view_item" />
+    <TextView
+        android:id="@+id/userName"
+        android:layout_width="105dp"
+        android:layout_height="33dp"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="53dp"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/currentUserProfilePic"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
