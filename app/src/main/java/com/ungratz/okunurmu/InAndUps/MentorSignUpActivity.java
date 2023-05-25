@@ -49,9 +49,9 @@ public class MentorSignUpActivity extends Activity{
 
 
     private final String[] uniMailNameCheck =
-            {"ug.bilkent.edu.tr", "sabaniuniv.edu", "itü.edu.tr",
+            {"ug.bilkent.edu.tr", "sabanciuniv.edu", "itü.edu.tr",
             "hacettepe.edu.tr", "ku.edu.tr"};
-    private final String[] unis = new String[]{"Bilkent", "Sabancı", "ITÜ",
+    private final String[] uniNames = new String[]{"Bilkent", "Sabanci", "İTÜ",
             "Hacettepe", "Koç"};
 
     @Override
@@ -64,7 +64,7 @@ public class MentorSignUpActivity extends Activity{
         passwordText = binding.passwordMentorSignUp;
         emailText = binding.emailMentorSignUp;
         dropdown = binding.spinner1;
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, unis);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, uniNames);
         dropdown.setAdapter(adapter);
         dropdown.setPrompt("Choose Your University");
 
@@ -79,7 +79,7 @@ public class MentorSignUpActivity extends Activity{
 
             name = binding.nameMentorSignUp.getText().toString();
             userName = binding.usernameMentorSignUp.getText().toString();
-            uniName= unis[dropdown.getSelectedItemPosition()];
+            uniName= uniNames[dropdown.getSelectedItemPosition()];
             departmentName = binding.departmentMentorSignUp.getText().toString();
             email = binding.emailMentorSignUp.getText().toString();
             password = binding.passwordMentorSignUp.getText().toString();
@@ -91,6 +91,7 @@ public class MentorSignUpActivity extends Activity{
             if(!uniReal){
                 emailText.setError("Invalid email!");
             }
+
             if(password.trim().length()<8){
                 passwordText.setError("Too short for a password");
             }
@@ -194,6 +195,8 @@ public class MentorSignUpActivity extends Activity{
         }
         return false;
     }
+
+
 
 
     private void reload() { }
