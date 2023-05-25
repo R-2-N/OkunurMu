@@ -7,8 +7,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -20,7 +18,6 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.ungratz.okunurmu.MainActivity;
-import com.ungratz.okunurmu.R;
 import com.ungratz.okunurmu.databinding.SignupFormentorsPageBinding;
 import com.ungratz.okunurmu.singleton.CurrentUser;
 
@@ -51,14 +48,10 @@ public class MentorSignUpActivity extends Activity{
 
 
 
-    private String[] uniMailNameCheck =
+    private final String[] uniMailNameCheck =
             {"ug.bilkent.edu.tr", "sabaniuniv.edu", "itü.edu.tr",
             "hacettepe.edu.tr", "ku.edu.tr"};
-
-    private String[] uniNameCheck= {"Bilkent", "Sabancı", "ITÜ",
-            "Hacettepe", "Koç"};
-
-    String[] unis = new String[]{"Bilkent", "Sabancı", "ITÜ",
+    private final String[] unis = new String[]{"Bilkent", "Sabancı", "ITÜ",
             "Hacettepe", "Koç"};
 
     @Override
