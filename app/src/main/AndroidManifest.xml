@@ -13,8 +13,7 @@ xmlns:tools="http://schemas.android.com/tools">
         tools:targetApi="31">
         <activity
             android:name=".InAndUps.FirstPageActivity"
-            android:exported="true"
->
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,23 +22,19 @@ xmlns:tools="http://schemas.android.com/tools">
         </activity>
         <activity
             android:name=".InAndUps.StudentSignUpActivity"
-            android:exported="true"
-   >
+            android:exported="true">
         </activity>
         <activity
             android:name=".InAndUps.MentorSignUpActivity"
-            android:exported="true"
-        >
+            android:exported="true">
         </activity>
         <activity
             android:name=".InAndUps.LoginActivity"
-            android:exported="true"
-          >
+            android:exported="true">
         </activity>
         <activity
             android:name=".MainActivity"
-            android:exported="true"
-      >
+            android:exported="true">
         </activity>
 
         <meta-data

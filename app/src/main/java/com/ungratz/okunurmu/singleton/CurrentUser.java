@@ -1,5 +1,6 @@
 package com.ungratz.okunurmu.singleton;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
 
@@ -7,13 +8,17 @@ import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Source;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.ungratz.okunurmu.InAndUps.LoginActivity;
+import com.ungratz.okunurmu.MainActivity;
 
 import java.io.File;
 import java.util.HashMap;
@@ -47,41 +52,19 @@ public class CurrentUser {
     private static boolean isMentor;
     private static String university;
     private static String department;
+    private static String bio;
 
 
     public static void setFirebaseUser(FirebaseUser u){
         user = u;
         setID(user.getUid());
-
+        ff = FirebaseFirestore.getInstance();
         /*
         Quick tutorial on how to get field data from Firestore
         Do what I do in lines 63 to 78
         */
 
         setUserDocumentRef(ff.collection("users").document(getID()));
-
-        dr.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-
-                        setRealName(task.getResult().getString("realName"));
-                        setUserName(task.getResult().getString("userName"));
-
-                        if (task.getResult().getBoolean("isMentor")) {
-                            setUniversity(task.getResult().getString("university"));
-                            setDepartment(task.getResult().getString("department"));
-                        }
-                    } else {
-                        Log.d("Sikim", "No such document");
-                    }
-                } else {
-                    Log.d("Sikim", "get failed with ", task.getException());
-                }
-            }
-        }).addOnFailureListener(e -> Log.d("TAG", "Snapshot just doesn't work"));
 
         setStorageRef(fs.getReference());
         setMail(user.getEmail());
@@ -116,6 +99,7 @@ public class CurrentUser {
     public static void setIsMentor(boolean b){isMentor = b;}
     public static void setUniversity(String u){university = u;}
     public static void setDepartment(String d){department = d;}
+    public static void setBio(String b){bio=b;}
 
 
     //getters
@@ -130,6 +114,17 @@ public class CurrentUser {
     public static boolean getIsMentor(){return isMentor;}
     public static String getUniversity(){return university;}
     public static String getDepartment(){return department;}
+    public static String getBio(){return bio;}
+
+    public static void updateBio(String b){
+        ff.collection("users").document(getID()).update("bio", b)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        //code for writing that they were successfull in updating their bio
+                    }
+                });
+    }
 
     //I think this is redundant bc of glide
     public static Uri getProfilePic(){
@@ -153,6 +148,7 @@ public class CurrentUser {
         newUserMap.put("userName", un);
         newUserMap.put("email", e);
         newUserMap.put("isMentor", b);
+        newUserMap.put("bio", "");
         if (b==true){
             newUserMap.put("university", uniN);
             newUserMap.put("department", d);
@@ -170,8 +166,7 @@ public class CurrentUser {
     }
 
     public static void setDefaultProfilePicOnStorage(){
-        String currentPath = new File("").getAbsolutePath();
-        Uri uri = Uri.fromFile(new File(currentPath + "defaultPP.png"));
+        Uri uri = Uri.parse("android.resource://com.ungratz.okunurmu/drawable/aby_photo");
         getStorageRef().child(getID()+"/userProfilePic.png").putFile(uri);
     }
 }
