@@ -37,4 +37,5 @@ public class MainActivity extends FragmentActivity {
         binding.homeProfile.setOnClickListener(v -> ft.replace(R.id.main_fragment, pf));
 
     }
+
 }

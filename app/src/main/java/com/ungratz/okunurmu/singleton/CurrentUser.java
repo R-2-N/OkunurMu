@@ -3,10 +3,6 @@ package com.ungratz.okunurmu.singleton;
 import android.net.Uri;
 import android.util.Log;
 
-import androidx.annotation.NonNull;
-
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -16,7 +12,6 @@ import com.google.firebase.storage.StorageReference;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.atomic.AtomicReference;
 
 public class CurrentUser {
     public static CurrentUser u;
@@ -110,11 +105,20 @@ public class CurrentUser {
     public static String getUniversity(){return university;}
     public static String getDepartment(){return department;}
     public static String getBio(){return bio;}
+    public static int getAmountOfPersonalPhotos(){return amountOfPersonalPhotos;}
 
     public static void updateBio(String b){
         ff.collection("users").document(getID()).update("bio", b)
                 .addOnSuccessListener(unused -> {
                     setBio(b);
+                    //code for writing that they were successfull in updating their bio
+                });
+    }
+
+    public static void updatePhotoAmount(int p){
+        ff.collection("users").document(getID()).update("photoAmount", p)
+                .addOnSuccessListener(unused -> {
+                    setAmountOfPersonalPhotos(p);
                     //code for writing that they were successfull in updating their bio
                 });
     }
@@ -126,7 +130,7 @@ public class CurrentUser {
         newUserMap.put("userName", un);
         newUserMap.put("email", e);
         newUserMap.put("isMentor", b);
-        newUserMap.put("bio", "")
+        newUserMap.put("bio", "");
         newUserMap.put("photoAmount",0);
         if (b==true){
             newUserMap.put("university", uniN);
@@ -137,11 +141,12 @@ public class CurrentUser {
     }
 
     public static void uploadPersonalPhotoToStorage(Uri u){
+        getStorageRef().child(getID()+"/"+(getAmountOfPersonalPhotos())).putFile(u);
+        updatePhotoAmount(getAmountOfPersonalPhotos()+1);
+    }
 
-        String[] s = u.toString().split("/");
-        getStorageRef().child(getID() + "/" + s[s.length-1]).putFile(u)
-                .addOnCompleteListener(task -> Log.d("Upload:", "success"))
-                .addOnFailureListener(e -> Log.w("Upload:", "failed"));
+    public static void changeProfilePicOnStorage(Uri uri){
+        getStorageRef().child(getID()+"/userProfilePic").putFile(uri);
     }
 
     public static void setDefaultProfilePicOnStorage(){

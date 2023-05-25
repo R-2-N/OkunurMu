@@ -71,8 +71,8 @@ public class MentorSignUpActivity extends Activity {
 
         binding.backButtonMentor.setOnClickListener(v -> {
 
-            Intent intent = new Intent(msa, FirstPageActivity.class);
-            startActivity(intent);
+            updateUI(null);
+
         });
     }
 
@@ -140,7 +140,7 @@ public class MentorSignUpActivity extends Activity {
     private void reload() { }
 
     private void updateUI(FirebaseUser user) {
-        Intent intent = new Intent(msa, MainActivity.class);
+        Intent intent = new Intent(msa, FirstPageActivity.class);
         startActivity(intent);
     }
 }
