@@ -4,6 +4,10 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -14,6 +18,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.ungratz.okunurmu.MainActivity;
+import com.ungratz.okunurmu.R;
 import com.ungratz.okunurmu.databinding.SignupFormentorsPageBinding;
 import com.ungratz.okunurmu.singleton.CurrentUser;
 
@@ -36,6 +41,12 @@ public class MentorSignUpActivity extends Activity {
     private String password;
     private String passwordAgain;
 
+    private EditText passwordAgainText;
+    private EditText passwordText;
+    private EditText emailText;
+
+
+
     private String[] uniMailNameCheck =
             {"ug.bilkent.edu.tr", "sabaniuniv.edu", "itü.edu.tr",
             "hacettepe.edu.tr", "ku.edu.tr"};
@@ -45,6 +56,11 @@ public class MentorSignUpActivity extends Activity {
         super.onCreate(savedInstanceState);
         binding = SignupFormentorsPageBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        passwordAgainText = findViewById(R.id.passwordAgainMentorSignUp);
+        passwordText = findViewById(R.id.passwordMentorSignUp);
+        emailText = findViewById(R.id.emailMentorSignUp);
+
 
         // [START initialize_auth]
         // Initialize Firebase Auth
@@ -63,17 +79,50 @@ public class MentorSignUpActivity extends Activity {
 
             boolean uniReal = checkIfUniExists(email);
 
-            if (((password.equals(passwordAgain)) && (password!="")) && uniReal) {
+            if(!uniReal){
+                emailText.setError("Invalid email!");
+            }
+            if(password.trim().length()<8){
+                passwordText.setError("Too short for a password");
+            }
+            if(password.trim().length()==0)
+            {
+                passwordText.setError("Field cannot be left blank!");
+            }
+            if(passwordAgain.trim().length()==0) {
+                passwordAgainText.setError("Field cannot be left blank!");
+            }
+            if(!password.trim().equals(passwordAgain.trim())){
+                passwordAgainText.setError("Passwords do not match!");
+            }
+            if (((password.equals(passwordAgain)) && (password.trim().length()!=0)) && uniReal && password.trim().length()>=8 && passwordAgain.trim().length()>=8) {
                 createAccount(email, password);
             }
 
+
+
         });
+
 
         binding.backButtonMentor.setOnClickListener(v -> {
 
             Intent intent = new Intent(msa, FirstPageActivity.class);
             startActivity(intent);
         });
+    }
+
+   public void signupButtonClick(View v)
+    {
+        if(passwordText.getText().length()==0)
+        {
+            passwordText.setError("Field cannot be left blank!");
+        }
+        if(passwordAgainText.getText().length()==0){
+            passwordAgainText.setError("Field cannot be left blank!");
+        }
+        if(!passwordText.equals(passwordAgainText)){
+            passwordAgainText.setError("Passwords do not match!");
+        }
     }
 
 
