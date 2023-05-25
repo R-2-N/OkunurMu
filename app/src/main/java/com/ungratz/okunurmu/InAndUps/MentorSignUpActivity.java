@@ -5,9 +5,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -22,7 +24,7 @@ import com.ungratz.okunurmu.R;
 import com.ungratz.okunurmu.databinding.SignupFormentorsPageBinding;
 import com.ungratz.okunurmu.singleton.CurrentUser;
 
-public class MentorSignUpActivity extends Activity {
+public class MentorSignUpActivity extends Activity{
 
     private static FirebaseUser user;
     private MentorSignUpActivity msa = this;
@@ -45,11 +47,19 @@ public class MentorSignUpActivity extends Activity {
     private EditText passwordText;
     private EditText emailText;
 
+    private Spinner dropdown;
+
 
 
     private String[] uniMailNameCheck =
             {"ug.bilkent.edu.tr", "sabaniuniv.edu", "itü.edu.tr",
             "hacettepe.edu.tr", "ku.edu.tr"};
+
+    private String[] uniNameCheck= {"Bilkent", "Sabancı", "ITÜ",
+            "Hacettepe", "Koç"};
+
+    String[] unis = new String[]{"Bilkent", "Sabancı", "ITÜ",
+            "Hacettepe", "Koç"};
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -57,9 +67,14 @@ public class MentorSignUpActivity extends Activity {
         binding = SignupFormentorsPageBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        passwordAgainText = findViewById(R.id.passwordAgainMentorSignUp);
-        passwordText = findViewById(R.id.passwordMentorSignUp);
-        emailText = findViewById(R.id.emailMentorSignUp);
+        passwordAgainText = binding.passwordAgainMentorSignUp;
+        passwordText = binding.passwordMentorSignUp;
+        emailText = binding.emailMentorSignUp;
+        dropdown = binding.spinner1;
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, unis);
+        dropdown.setAdapter(adapter);
+        dropdown.setPrompt("Choose Your University");
+
 
 
         // [START initialize_auth]
@@ -71,13 +86,14 @@ public class MentorSignUpActivity extends Activity {
 
             name = binding.nameMentorSignUp.getText().toString();
             userName = binding.usernameMentorSignUp.getText().toString();
-            uniName = binding.uniMentorSignUp.getText().toString();
+            uniName= unis[dropdown.getSelectedItemPosition()];
             departmentName = binding.departmentMentorSignUp.getText().toString();
             email = binding.emailMentorSignUp.getText().toString();
             password = binding.passwordMentorSignUp.getText().toString();
             passwordAgain = binding.passwordAgainMentorSignUp.getText().toString();
 
             boolean uniReal = checkIfUniExists(email);
+            //errors -kbc0
 
             if(!uniReal){
                 emailText.setError("Invalid email!");
@@ -185,6 +201,7 @@ public class MentorSignUpActivity extends Activity {
         }
         return false;
     }
+
 
     private void reload() { }
 

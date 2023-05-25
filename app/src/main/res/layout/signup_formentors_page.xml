@@ -56,17 +56,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/uniMentorSignUp"
-        android:layout_width="350dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="246dp"
-        android:ems="10"
-        android:fontFamily="@font/inter"
-        android:hint="@string/signup_university"
-        android:inputType="text"
-        android:textColor="#000000"
+
+    <Spinner
+        android:id="@+id/spinner1"
+        android:layout_width="351dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="248dp"
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
