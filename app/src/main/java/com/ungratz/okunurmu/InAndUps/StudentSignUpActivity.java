@@ -32,6 +32,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.ungratz.okunurmu.MainActivity;
 import com.ungratz.okunurmu.R;
+
 import com.ungratz.okunurmu.databinding.SignupForstudentsPageBinding;
 import com.ungratz.okunurmu.singleton.CurrentUser;
 
@@ -102,8 +103,7 @@ public class StudentSignUpActivity extends Activity {
 
         binding.backButtonStudent.setOnClickListener(v -> {
 
-            Intent intent = new Intent(ssa, FirstPageActivity.class);
-            startActivity(intent);
+            updateUI(null);
 
         });
     }
@@ -167,7 +167,7 @@ public class StudentSignUpActivity extends Activity {
     private void updateUI(FirebaseUser user) {
 
         try {
-            Intent intent = new Intent(ssa, MainActivity.class);
+            Intent intent = new Intent(ssa, FirstPageActivity.class);
             startActivity(intent);
         }
         catch (Exception e){

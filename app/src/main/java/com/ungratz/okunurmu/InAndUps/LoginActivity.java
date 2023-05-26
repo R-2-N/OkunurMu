@@ -76,7 +76,8 @@ public class LoginActivity extends Activity {
 
                     CurrentUser.setRealName(task.getResult().getString("realName"));
                     CurrentUser.setUserName(task.getResult().getString("userName"));
-                    CurrentUser.setBio(task.getResult().getString("Bio"));
+                    CurrentUser.setBio(task.getResult().getString("bio"));
+                    CurrentUser.setAmountOfPersonalPhotos(task.getResult().get("photoAmount", Integer.class));
 
                     if (task.getResult().getBoolean("isMentor")) {
                         CurrentUser.setUniversity(task.getResult().getString("university"));

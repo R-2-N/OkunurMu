@@ -1,18 +1,14 @@
 package com.ungratz.okunurmu;
 
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.ungratz.okunurmu.databinding.MainActivityBinding;
 import com.ungratz.okunurmu.fragments.ProfileFragment;
 import com.ungratz.okunurmu.fragments.SearchFragment;
-import com.ungratz.okunurmu.singleton.CurrentUser;
 
 public class MainActivity extends FragmentActivity {
 
@@ -41,4 +37,5 @@ public class MainActivity extends FragmentActivity {
         binding.homeProfile.setOnClickListener(v -> ft.replace(R.id.main_fragment, pf));
 
     }
+
 }
