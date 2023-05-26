@@ -4,6 +4,10 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -17,7 +21,7 @@ import com.ungratz.okunurmu.MainActivity;
 import com.ungratz.okunurmu.databinding.SignupFormentorsPageBinding;
 import com.ungratz.okunurmu.singleton.CurrentUser;
 
-public class MentorSignUpActivity extends Activity {
+public class MentorSignUpActivity extends Activity{
 
     private static FirebaseUser user;
     private MentorSignUpActivity msa = this;
@@ -36,15 +40,35 @@ public class MentorSignUpActivity extends Activity {
     private String password;
     private String passwordAgain;
 
-    private String[] uniMailNameCheck =
-            {"ug.bilkent.edu.tr", "sabaniuniv.edu", "itü.edu.tr",
+    private EditText passwordAgainText;
+    private EditText passwordText;
+    private EditText emailText;
+
+    private Spinner dropdown;
+
+
+
+    private final String[] uniMailNameCheck =
+            {"ug.bilkent.edu.tr", "sabanciuniv.edu", "itü.edu.tr",
             "hacettepe.edu.tr", "ku.edu.tr"};
+    private final String[] uniNames = new String[]{"Bilkent", "Sabanci", "İTÜ",
+            "Hacettepe", "Koç"};
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = SignupFormentorsPageBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        passwordAgainText = binding.passwordAgainMentorSignUp;
+        passwordText = binding.passwordMentorSignUp;
+        emailText = binding.emailMentorSignUp;
+        dropdown = binding.spinner1;
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, uniNames);
+        dropdown.setAdapter(adapter);
+        dropdown.setPrompt("Choose Your University");
+
+
 
         // [START initialize_auth]
         // Initialize Firebase Auth
@@ -55,25 +79,60 @@ public class MentorSignUpActivity extends Activity {
 
             name = binding.nameMentorSignUp.getText().toString();
             userName = binding.usernameMentorSignUp.getText().toString();
-            uniName = binding.uniMentorSignUp.getText().toString();
+            uniName= uniNames[dropdown.getSelectedItemPosition()];
             departmentName = binding.departmentMentorSignUp.getText().toString();
             email = binding.emailMentorSignUp.getText().toString();
             password = binding.passwordMentorSignUp.getText().toString();
             passwordAgain = binding.passwordAgainMentorSignUp.getText().toString();
 
             boolean uniReal = checkIfUniExists(email);
+            //errors -kbc0
 
-            if (((password.equals(passwordAgain)) && (password!="")) && uniReal) {
+            if(!uniReal){
+                emailText.setError("Invalid email!");
+            }
+
+            if(password.trim().length()<8){
+                passwordText.setError("Too short for a password");
+            }
+            if(password.trim().length()==0)
+            {
+                passwordText.setError("Field cannot be left blank!");
+            }
+            if(passwordAgain.trim().length()==0) {
+                passwordAgainText.setError("Field cannot be left blank!");
+            }
+            if(!password.trim().equals(passwordAgain.trim())){
+                passwordAgainText.setError("Passwords do not match!");
+            }
+            if (((password.equals(passwordAgain)) && (password.trim().length()!=0)) && uniReal && password.trim().length()>=8 && passwordAgain.trim().length()>=8) {
                 createAccount(email, password);
             }
 
+
+
         });
+
 
         binding.backButtonMentor.setOnClickListener(v -> {
 
             updateUI(null);
 
         });
+    }
+
+   public void signupButtonClick(View v)
+    {
+        if(passwordText.getText().length()==0)
+        {
+            passwordText.setError("Field cannot be left blank!");
+        }
+        if(passwordAgainText.getText().length()==0){
+            passwordAgainText.setError("Field cannot be left blank!");
+        }
+        if(!passwordText.equals(passwordAgainText)){
+            passwordAgainText.setError("Passwords do not match!");
+        }
     }
 
 
@@ -136,6 +195,9 @@ public class MentorSignUpActivity extends Activity {
         }
         return false;
     }
+
+
+
 
     private void reload() { }
 
