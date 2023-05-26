@@ -83,7 +83,18 @@ public class ProfileFragment extends Fragment {
         binding.userName.setText(CurrentUser.getUserName());
         binding.bio.setText(CurrentUser.getBio());
         if (CurrentUser.getAmountOfPersonalPhotos()!=0){showPersonalPhotos();}
-/*      Glide would be good but I am not a good programmer
+
+        if (CurrentUser.getIsMentor()==true){
+            binding.uniText.setText("University:\n" + CurrentUser.getUniversity());
+            binding.departmentText.setText("Department:\n" + CurrentUser.getDepartment());
+
+            binding.uniText.setVisibility(View.VISIBLE);
+            binding.departmentText.setVisibility(View.VISIBLE);
+
+        }
+
+
+        /*      Glide would be good but I am not a good programmer
         Glide.with(this)
                 .load(CurrentUser.getStorageRef().child(CurrentUser.getID()+"/userProfilePic"))
                 .placeholder(R.drawable.chat_avatar)
