@@ -38,7 +38,6 @@ public class ProfileFragment extends Fragment {
     ActivityResultLauncher<Intent> ppUploading =
             registerForActivityResult(new ActivityResultContracts.StartActivityForResult()
                     , new ActivityResultCallback<ActivityResult>() {
-                        @Override
                         public void onActivityResult(ActivityResult result) {
                             if (result.getResultCode() == Activity.RESULT_OK){
                                 binding.currentUserProfilePic.setImageURI(result.getData().getData());
@@ -51,13 +50,10 @@ public class ProfileFragment extends Fragment {
 
     ActivityResultLauncher<Intent> personalPhotoUploading =
             registerForActivityResult(new ActivityResultContracts.StartActivityForResult()
-                    , new ActivityResultCallback<ActivityResult>() {
-                        @Override
-                        public void onActivityResult(ActivityResult result) {
-                            if (result.getResultCode() == Activity.RESULT_OK){
-                                CurrentUser.uploadPersonalPhotoToStorage(result.getData().getData());
-                                showPersonalPhotos();
-                            }
+                    , result -> {
+                        if (result.getResultCode() == Activity.RESULT_OK) {
+                            CurrentUser.uploadPersonalPhotoToStorage(result.getData().getData());
+                            ProfileFragment.this.showPersonalPhotos();
                         }
                     });
 

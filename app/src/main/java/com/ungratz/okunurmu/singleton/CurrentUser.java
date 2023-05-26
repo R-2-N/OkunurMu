@@ -32,7 +32,7 @@ public class CurrentUser {
     // everytime on the DocumentReference
     private static DocumentSnapshot ds;
     private static FirebaseStorage fs = FirebaseStorage.getInstance();
-    private static StorageReference sr;
+    private static StorageReference sr = fs.getReference();
     private static String id;
     private static String realName;
     private static String mail;
@@ -47,23 +47,26 @@ public class CurrentUser {
     public static void setFirebaseUser(FirebaseUser u){
         user = u;
         setID(user.getUid());
-        ff = FirebaseFirestore.getInstance();
+
         /*
         Quick tutorial on how to get field data from Firestore
         Do what I do in lines 63 to 78
         */
 
         setUserDocumentRef(ff.collection("users").document(getID()));
-
         setStorageRef(fs.getReference());
         setMail(user.getEmail());
     }
 
     public static void setNewFirebaseUser
             (FirebaseUser u, String userRealName, String userName, boolean isItMentor, String university, String department){
+        setStorageRef(fs.getReference());
+        setID(u.getUid());
+        setDefaultProfilePicOnStorage();
 
         setIsMentor(isItMentor);
-        setDefaultProfilePicOnStorage();
+
+
 
         //writing the info into the database
         ff.collection("users").document(u.getUid()).
