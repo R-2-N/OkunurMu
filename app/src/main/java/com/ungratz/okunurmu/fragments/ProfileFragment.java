@@ -1,6 +1,7 @@
 package com.ungratz.okunurmu.fragments;
 
 import android.app.Activity;
+import android.app.usage.NetworkStats;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -20,11 +21,18 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.bumptech.glide.load.model.ResourceLoader;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.UploadTask;
 import com.ungratz.okunurmu.R;
 import com.ungratz.okunurmu.databinding.FragmentCurrentuserprofileBinding;
 import com.ungratz.okunurmu.singleton.CurrentUser;
 
 import org.checkerframework.checker.nullness.qual.NonNull;
+
+import java.io.File;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class ProfileFragment extends Fragment {
 
@@ -33,6 +41,10 @@ public class ProfileFragment extends Fragment {
     private Uri profilePicUri;
     private final int MAX_DOWNLOAD_SIZE = 2048*2048;
     private Intent photoPicking = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+
+    private Bitmap bm;
+
+    private boolean photosAreClickable = false;
 
 
     ActivityResultLauncher<Intent> ppUploading =
@@ -101,14 +113,19 @@ public class ProfileFragment extends Fragment {
             binding.savedText.setVisibility(View.VISIBLE);
             new Handler().postDelayed(() -> binding.savedText.setVisibility(View.INVISIBLE), 3000);
         });
-        binding.currentUserProfilePic.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setNewPP();
-            }
-        });
+
+        binding.currentUserProfilePic.setOnClickListener(v -> setNewPP());
 
         binding.uploadPhoto.setOnClickListener(v -> addPersonalPhoto());
+
+        binding.deletePhoto.setOnClickListener(v -> changePhotoClickability(true));
+
+        binding.getRoot().setOnClickListener(v -> {
+            if (photosAreClickable){
+                changePhotoClickability(false);
+                binding.deletePhoto.setText("Delete Photo");
+            }
+        });
     }
 
     public void putProfilePic(){
@@ -116,7 +133,7 @@ public class ProfileFragment extends Fragment {
         CurrentUser.getStorageRef().child(CurrentUser.getID()+"/userProfilePic")
                 .getBytes(MAX_DOWNLOAD_SIZE)
                 .addOnSuccessListener(bytes -> {
-                    Bitmap bm = BitmapFactory.decodeByteArray(bytes,0, bytes.length);
+                    bm = BitmapFactory.decodeByteArray(bytes,0, bytes.length);
                     binding.currentUserProfilePic.setImageBitmap(bm);
                 })
                 .addOnFailureListener(e -> binding.currentUserProfilePic.setImageURI(Uri.parse("android.resource://com.ungratz.okunurmu/drawable/chat_avatar")));
@@ -145,10 +162,62 @@ public class ProfileFragment extends Fragment {
                 .addOnSuccessListener(bytes -> {
                     ImageView iv = new ImageView(getContext());
                     iv.setImageBitmap(BitmapFactory.decodeByteArray(bytes,0,bytes.length));
+                    iv.setClickable(false);
+
+                    iv.setOnClickListener(v -> {
+                        deleteClickedPhoto(binding.linearLayoutForPhotos.indexOfChild(iv));
+                        binding.linearLayoutForPhotos.removeAllViews();
+                    });
+
                     binding.linearLayoutForPhotos.addView(iv);
                     index++;
 
                     showPersonalPhotos();
                 });
+    }
+
+    private int pos = 0;
+    public void deleteClickedPhoto(int positionOfView){
+
+        if (pos == 0){pos = positionOfView+1;}
+        if (pos == CurrentUser.getAmountOfPersonalPhotos()){
+            resultOfDeletion();
+            pos = 0;
+            return;
+        }
+        CurrentUser.getStorageRef().child(CurrentUser.getID()+"/"+pos)
+                .getBytes(MAX_DOWNLOAD_SIZE)
+                .addOnSuccessListener(bytes -> CurrentUser.getStorageRef().child(CurrentUser.getID() + "/" + (pos - 1))
+                        .putBytes(bytes)
+                        .addOnSuccessListener(taskSnapshot -> {
+                            pos++;
+                            deleteClickedPhoto(pos);
+                        }));
+    }
+
+    public void resultOfDeletion(){
+        CurrentUser.getStorageRef().child(CurrentUser.getID() + "/" + (CurrentUser.getAmountOfPersonalPhotos()-1))
+                .delete()
+                .addOnSuccessListener(unused -> {
+                    changePhotoClickability(false);
+                    CurrentUser.updatePhotoAmountBy(-1);
+                    showPersonalPhotos();
+                    binding.deletePhoto.setText("Photo Deleted");
+                    binding.deletePhoto.setClickable(false);
+                    new Handler().postDelayed(() -> {
+                        binding.deletePhoto.setText("Delete Photo");
+                        binding.deletePhoto.setClickable(true);
+                    }, 2000);
+                })
+                .addOnFailureListener(e -> resultOfDeletion());
+    }
+
+    public void changePhotoClickability(boolean b){
+        for (int i = 0; i < binding.linearLayoutForPhotos.getChildCount(); i++){
+            binding.linearLayoutForPhotos.setClickable(b);
+        }
+        if (b == true){
+            photosAreClickable = true;
+        }
     }
 }

@@ -1,5 +1,6 @@
 package com.ungratz.okunurmu.singleton;
 
+import android.app.usage.NetworkStats;
 import android.net.Uri;
 import android.util.Log;
 
@@ -118,10 +119,10 @@ public class CurrentUser {
                 });
     }
 
-    public static void updatePhotoAmount(int p){
-        ff.collection("users").document(getID()).update("photoAmount", p)
+    public static void updatePhotoAmountBy(int change){
+        ff.collection("users").document(getID()).update("photoAmount", getAmountOfPersonalPhotos()+change)
                 .addOnSuccessListener(unused -> {
-                    setAmountOfPersonalPhotos(p);
+                    setAmountOfPersonalPhotos(getAmountOfPersonalPhotos()+change);
                     //code for writing that they were successfull in updating their bio
                 });
     }
@@ -145,7 +146,7 @@ public class CurrentUser {
 
     public static void uploadPersonalPhotoToStorage(Uri u){
         getStorageRef().child(getID()+"/"+(getAmountOfPersonalPhotos())).putFile(u);
-        updatePhotoAmount(getAmountOfPersonalPhotos()+1);
+        updatePhotoAmountBy(1);
     }
 
     public static void changeProfilePicOnStorage(Uri uri){
