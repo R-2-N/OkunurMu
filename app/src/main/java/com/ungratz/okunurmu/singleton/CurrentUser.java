@@ -144,6 +144,7 @@ public class CurrentUser {
         return newUserMap;
     }
 
+    // Probably won't be used since I need the success listener of these
     public static void uploadPersonalPhotoToStorage(Uri u){
         getStorageRef().child(getID()+"/"+(getAmountOfPersonalPhotos())).putFile(u);
         updatePhotoAmountBy(1);

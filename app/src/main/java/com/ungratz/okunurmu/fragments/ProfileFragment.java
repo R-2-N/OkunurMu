@@ -38,12 +38,9 @@ public class ProfileFragment extends Fragment {
 
     private final int GALLERY_CODE = 1000;
     private FragmentCurrentuserprofileBinding binding;
-    private Uri profilePicUri;
     private final int MAX_DOWNLOAD_SIZE = 2048*2048;
     private Intent photoPicking = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
-
     private Bitmap bm;
-
     private boolean photosAreClickable = false;
 
 
@@ -59,13 +56,18 @@ public class ProfileFragment extends Fragment {
                     });
 
 
-
     ActivityResultLauncher<Intent> personalPhotoUploading =
             registerForActivityResult(new ActivityResultContracts.StartActivityForResult()
                     , result -> {
                         if (result.getResultCode() == Activity.RESULT_OK) {
-                            CurrentUser.uploadPersonalPhotoToStorage(result.getData().getData());
-                            ProfileFragment.this.showPersonalPhotos();
+                            CurrentUser.getStorageRef().child(CurrentUser.getID()+"/"+CurrentUser.getAmountOfPersonalPhotos())
+                                    .putFile(result.getData().getData())
+                                    .addOnSuccessListener(taskSnapshot -> {
+                                        ImageView iv = new ImageView(getContext());
+                                        iv.setImageURI(result.getData().getData());
+                                        binding.linearLayoutForPhotos.addView(iv);
+                                        CurrentUser.updatePhotoAmountBy(1);
+                                    });
                         }
                     });
 
@@ -88,7 +90,8 @@ public class ProfileFragment extends Fragment {
         binding.currentUserProfilePic.setImageURI(
                 Uri.parse("android.resource://com.ungratz.okunurmu/drawable/aby_photo"));
         putProfilePic();
-        binding.userName.setText(CurrentUser.getUserName());
+        binding.userName.setText("User Name: " + CurrentUser.getUserName()
+            + "\nReal Name: " + CurrentUser.getRealName());
         binding.bio.setText(CurrentUser.getBio());
         if (CurrentUser.getAmountOfPersonalPhotos()!=0){showPersonalPhotos();}
 
@@ -150,9 +153,25 @@ public class ProfileFragment extends Fragment {
     public void addPersonalPhoto(){
         personalPhotoUploading.launch(photoPicking);
     }
+    public void addImageToLinearLayoutAsByteArray(byte[] bytes){
+        ImageView iv = new ImageView(getContext());
+        iv.setImageBitmap(BitmapFactory.decodeByteArray(bytes,0,bytes.length));
+        iv.setClickable(false);
 
+        iv.setOnClickListener(v -> {
+            binding.deletePhoto.setText("Deleting");
+            binding.deletePhoto.setClickable(false);
+            deleteClickedPhoto(binding.linearLayoutForPhotos.indexOfChild(iv), binding.linearLayoutForPhotos.indexOfChild(iv));
+        });
+
+        binding.linearLayoutForPhotos.addView(iv);
+    }
     private int index = 0;
     public void showPersonalPhotos(){
+
+        if (index == 0){
+            binding.linearLayoutForPhotos.removeAllViews();
+        }
         if (index==CurrentUser.getAmountOfPersonalPhotos()){
             index=0;
             return;
@@ -160,16 +179,7 @@ public class ProfileFragment extends Fragment {
         CurrentUser.getStorageRef().child(CurrentUser.getID()+"/"+index)
                 .getBytes(MAX_DOWNLOAD_SIZE)
                 .addOnSuccessListener(bytes -> {
-                    ImageView iv = new ImageView(getContext());
-                    iv.setImageBitmap(BitmapFactory.decodeByteArray(bytes,0,bytes.length));
-                    iv.setClickable(false);
-
-                    iv.setOnClickListener(v -> {
-                        deleteClickedPhoto(binding.linearLayoutForPhotos.indexOfChild(iv));
-                        binding.linearLayoutForPhotos.removeAllViews();
-                    });
-
-                    binding.linearLayoutForPhotos.addView(iv);
+                    addImageToLinearLayoutAsByteArray(bytes);
                     index++;
 
                     showPersonalPhotos();
@@ -177,13 +187,16 @@ public class ProfileFragment extends Fragment {
     }
 
     private int pos = 0;
-    public void deleteClickedPhoto(int positionOfView){
+    public void deleteClickedPhoto(int positionOfView, int positionOfViewToDelete){
 
-        if (pos == 0){pos = positionOfView+1;}
         if (pos == CurrentUser.getAmountOfPersonalPhotos()){
             resultOfDeletion();
             pos = 0;
+            binding.linearLayoutForPhotos.removeViewAt(positionOfViewToDelete);
             return;
+        }
+        if (pos == 0){
+            pos = positionOfView+1;
         }
         CurrentUser.getStorageRef().child(CurrentUser.getID()+"/"+pos)
                 .getBytes(MAX_DOWNLOAD_SIZE)
@@ -191,7 +204,7 @@ public class ProfileFragment extends Fragment {
                         .putBytes(bytes)
                         .addOnSuccessListener(taskSnapshot -> {
                             pos++;
-                            deleteClickedPhoto(pos);
+                            deleteClickedPhoto(pos, positionOfViewToDelete);
                         }));
     }
 
@@ -201,13 +214,11 @@ public class ProfileFragment extends Fragment {
                 .addOnSuccessListener(unused -> {
                     changePhotoClickability(false);
                     CurrentUser.updatePhotoAmountBy(-1);
-                    showPersonalPhotos();
-                    binding.deletePhoto.setText("Photo Deleted");
-                    binding.deletePhoto.setClickable(false);
+                    binding.deletePhoto.setText("Deleted");
                     new Handler().postDelayed(() -> {
                         binding.deletePhoto.setText("Delete Photo");
                         binding.deletePhoto.setClickable(true);
-                    }, 2000);
+                    }, 2700);
                 })
                 .addOnFailureListener(e -> resultOfDeletion());
     }
