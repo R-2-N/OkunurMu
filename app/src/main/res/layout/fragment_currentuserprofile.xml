@@ -62,13 +62,24 @@
         android:id="@+id/uploadPhoto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="9dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="7dp"
         android:text="Upload Photo"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
+
+    <Button
+        android:id="@+id/deletePhoto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="9dp"
+        android:text="Delete Photo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
 
     <HorizontalScrollView
+        android:id="@+id/horizontalScrollView"
         android:layout_width="match_parent"
         android:layout_height="137dp"
         android:layout_marginBottom="64dp"
@@ -98,8 +109,8 @@
 
     <TextView
         android:id="@+id/uniText"
-        android:layout_width="77dp"
-        android:layout_height="50dp"
+        android:layout_width="85dp"
+        android:layout_height="40dp"
         android:layout_marginStart="28dp"
         android:layout_marginTop="16dp"
         android:text="TextView"
@@ -109,12 +120,12 @@
 
     <TextView
         android:id="@+id/departmentText"
-        android:layout_width="77dp"
-        android:layout_height="50dp"
+        android:layout_width="85dp"
+        android:layout_height="40dp"
         android:layout_marginStart="29dp"
         android:layout_marginTop="20dp"
-        android:visibility="invisible"
         android:text="TextView"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/uniText" />
 

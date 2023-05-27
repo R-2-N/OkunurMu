@@ -1,5 +1,6 @@
 package com.ungratz.okunurmu.singleton;
 
+import android.app.usage.NetworkStats;
 import android.net.Uri;
 import android.util.Log;
 
@@ -32,7 +33,7 @@ public class CurrentUser {
     // everytime on the DocumentReference
     private static DocumentSnapshot ds;
     private static FirebaseStorage fs = FirebaseStorage.getInstance();
-    private static StorageReference sr;
+    private static StorageReference sr = fs.getReference();
     private static String id;
     private static String realName;
     private static String mail;
@@ -47,23 +48,26 @@ public class CurrentUser {
     public static void setFirebaseUser(FirebaseUser u){
         user = u;
         setID(user.getUid());
-        ff = FirebaseFirestore.getInstance();
+
         /*
         Quick tutorial on how to get field data from Firestore
         Do what I do in lines 63 to 78
         */
 
         setUserDocumentRef(ff.collection("users").document(getID()));
-
         setStorageRef(fs.getReference());
         setMail(user.getEmail());
     }
 
     public static void setNewFirebaseUser
             (FirebaseUser u, String userRealName, String userName, boolean isItMentor, String university, String department){
+        setStorageRef(fs.getReference());
+        setID(u.getUid());
+        setDefaultProfilePicOnStorage();
 
         setIsMentor(isItMentor);
-        setDefaultProfilePicOnStorage();
+
+
 
         //writing the info into the database
         ff.collection("users").document(u.getUid()).
@@ -115,10 +119,10 @@ public class CurrentUser {
                 });
     }
 
-    public static void updatePhotoAmount(int p){
-        ff.collection("users").document(getID()).update("photoAmount", p)
+    public static void updatePhotoAmountBy(int change){
+        ff.collection("users").document(getID()).update("photoAmount", getAmountOfPersonalPhotos()+change)
                 .addOnSuccessListener(unused -> {
-                    setAmountOfPersonalPhotos(p);
+                    setAmountOfPersonalPhotos(getAmountOfPersonalPhotos()+change);
                     //code for writing that they were successfull in updating their bio
                 });
     }
@@ -140,9 +144,10 @@ public class CurrentUser {
         return newUserMap;
     }
 
+    // Probably won't be used since I need the success listener of these
     public static void uploadPersonalPhotoToStorage(Uri u){
         getStorageRef().child(getID()+"/"+(getAmountOfPersonalPhotos())).putFile(u);
-        updatePhotoAmount(getAmountOfPersonalPhotos()+1);
+        updatePhotoAmountBy(1);
     }
 
     public static void changeProfilePicOnStorage(Uri uri){
