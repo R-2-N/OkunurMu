@@ -1,16 +1,17 @@
 package com.ungratz.okunurmu.singleton;
 
-import android.app.usage.NetworkStats;
 import android.net.Uri;
 import android.util.Log;
 
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,6 +28,7 @@ public class CurrentUser {
 
     private static FirebaseFirestore ff = FirebaseFirestore.getInstance();
     private static FirebaseUser user;
+    private static CollectionReference uc;
     private static DocumentReference dr;
 
     // I actually cannot store DocumentSnapshot. I have to call .addOnCompleteListener
@@ -54,9 +56,15 @@ public class CurrentUser {
         Do what I do in lines 63 to 78
         */
 
+        setUsersCollectionReference(ff.collection("users"));
         setUserDocumentRef(ff.collection("users").document(getID()));
         setStorageRef(fs.getReference());
         setMail(user.getEmail());
+
+
+        Map<String, Object> typesenseHashMap = new HashMap<>();
+        typesenseHashMap.put("trigger", true);
+        ff.collection("typesense_sync").document("backfill").set(typesenseHashMap);
     }
 
     public static void setNewFirebaseUser
@@ -66,7 +74,6 @@ public class CurrentUser {
         setDefaultProfilePicOnStorage();
 
         setIsMentor(isItMentor);
-
 
 
         //writing the info into the database
@@ -83,6 +90,7 @@ public class CurrentUser {
 
     //setters
     public static void setID(String i){id = i;}
+    public static void setUsersCollectionReference(CollectionReference cr){uc = cr;}
     public static void setUserDocumentRef(DocumentReference d){dr = d;}
     public static void setUserDocumentSnapshot(DocumentSnapshot d){ds = d;}
     public static void setStorageRef(StorageReference s){sr = s;}
@@ -99,6 +107,8 @@ public class CurrentUser {
     //getters
     public static FirebaseUser getUser(){return user;}
     public static String getID(){return id;}
+    public static FirebaseFirestore getFirebaseFirestore(){return ff;}
+    public static CollectionReference getUsersCollectionReference(){return uc;};
     public static DocumentReference getUserDocumentRef(){return dr;}
     public static DocumentSnapshot getUserDocumentSnapshot(){return ds;}
     public static StorageReference getStorageRef(){return sr;}
@@ -139,6 +149,7 @@ public class CurrentUser {
         if (b==true){
             newUserMap.put("university", uniN);
             newUserMap.put("department", d);
+            newUserMap.put("meetingRequests", Arrays.asList());
         }
 
         return newUserMap;
