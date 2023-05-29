@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="600dp"
     tools:context=".SearchFragment">
 
 
@@ -51,10 +51,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="240dp"
         android:layout_marginTop="328dp"
+        android:fontFamily="@font/inter"
         android:text="@string/send_meeting_req"
         android:textColor="#FFFFFF"
         android:textSize="13sp"
-        android:fontFamily="@font/inter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -165,5 +165,21 @@
         android:src="@drawable/search_icon"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:id="@+id/scrollViewForSearch"
+        android:layout_width="match_parent"
+        android:layout_height="190dp"
+        android:layout_marginBottom="40dp"
+        android:contentDescription="ScrollView for profile previews"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:id="@+id/linearLayoutForSearch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"/>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

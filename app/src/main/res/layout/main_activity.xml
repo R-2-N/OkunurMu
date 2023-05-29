@@ -35,7 +35,11 @@
         android:id="@+id/search_icon"
         android:layout_width="49dp"
         android:layout_height="50dp"
+<<<<<<< Updated upstream
         android:layout_marginStart="240dp"
+=======
+        android:layout_marginStart="100dp"
+>>>>>>> Stashed changes
         android:layout_marginBottom="16dp"
         android:clickable="true"
         android:contentDescription="search button"
@@ -43,6 +47,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+<<<<<<< Updated upstream
     <ImageView
         android:id="@+id/meetings_icon"
         android:layout_width="49dp"
@@ -68,6 +73,8 @@
         app:layout_constraintStart_toStartOf="parent" />
 
 
+=======
+>>>>>>> Stashed changes
     <FrameLayout
         android:id="@+id/main_fragment"
         android:layout_width="match_parent"
