@@ -65,13 +65,11 @@
         android:layout_width="99dp"
         android:layout_height="50dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        android:background="@color/orange"
-        android:textColor="@color/blue"
+        android:layout_marginEnd="32dp" android:background="@drawable/button_background"
         android:fontFamily="@font/inter"
-        android:textStyle="bold"
         android:text="Save"
-
+        android:textColor="@color/blue"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bio" />
 
@@ -97,13 +95,13 @@
         android:id="@+id/uploadPhoto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="16dp"
+        android:background="@drawable/button_background"
         android:fontFamily="@font/inter"
-        android:textStyle="bold"
-        android:background="@color/orange"
-        android:textColor="@color/blue"
         android:text="Upload Photo"
+        android:textColor="@color/blue"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
 
@@ -112,12 +110,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/button_background"
         android:fontFamily="@font/inter"
-        android:background="@color/orange"
+        android:text="Delete Photo"
         android:textColor="@color/blue"
         android:textStyle="bold"
-        android:text="Delete Photo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
 
