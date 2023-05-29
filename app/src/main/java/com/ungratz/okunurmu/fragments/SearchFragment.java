@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -15,6 +16,8 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 
 public class SearchFragment extends Fragment {
     private FragmentSearchBinding binding;
+
+    private final String[] filterOptions = {"Name", "University", "Department"};
 
     public SearchFragment(){
         super(R.layout.fragment_search);
@@ -30,6 +33,9 @@ public class SearchFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState){
 
+        ArrayAdapter<String> filterAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, filterOptions);
+        binding.searchSpinner.setAdapter(filterAdapter);
+        binding.searchSpinner.setPrompt("Set Filter");
 
 
         /*

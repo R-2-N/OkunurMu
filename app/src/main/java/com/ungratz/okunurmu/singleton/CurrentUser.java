@@ -60,6 +60,11 @@ public class CurrentUser {
         setUserDocumentRef(ff.collection("users").document(getID()));
         setStorageRef(fs.getReference());
         setMail(user.getEmail());
+
+
+        Map<String, Object> typesenseHashMap = new HashMap<>();
+        typesenseHashMap.put("trigger", true);
+        ff.collection("typesense_sync").document("backfill").set(typesenseHashMap);
     }
 
     public static void setNewFirebaseUser
@@ -69,7 +74,6 @@ public class CurrentUser {
         setDefaultProfilePicOnStorage();
 
         setIsMentor(isItMentor);
-
 
 
         //writing the info into the database

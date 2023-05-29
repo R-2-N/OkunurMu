@@ -72,7 +72,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView11"
+        android:id="@+id/searchButton"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginStart="28dp"
