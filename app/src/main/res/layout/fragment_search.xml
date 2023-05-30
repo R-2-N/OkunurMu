@@ -10,25 +10,16 @@
 
     <EditText
         android:id="@+id/searchText"
-        android:layout_width="147dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="68dp"
+        android:layout_width="206dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="48dp"
+        android:drawableStart="@drawable/search_icon"
         android:ems="10"
         android:fontFamily="@font/inter"
         android:hint="Search"
         android:inputType="text"
         android:textColorHint="@color/clicked_blue"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/searchButton"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="48dp"
-        android:src="@drawable/search_icon"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
