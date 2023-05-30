@@ -34,7 +34,15 @@ public class MainActivity extends FragmentActivity {
         sf = new SearchFragment();
         ft.replace(R.id.main_fragment, pf).commit();
 
-        binding.homeProfile.setOnClickListener(v -> ft.replace(R.id.main_fragment, pf));
+        binding.homeProfile.setOnClickListener(v -> {
+            FragmentTransaction ft = fm.beginTransaction();
+            ft.replace(R.id.main_fragment, pf).commit();
+        });
+
+        binding.searchIcon.setOnClickListener(v -> {
+            FragmentTransaction ft = fm.beginTransaction();
+            ft.replace(R.id.main_fragment, sf).commit();
+        });
 
     }
 

@@ -4,166 +4,67 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="600dp"
     tools:context=".SearchFragment">
 
 
-    <View
-        android:id="@+id/rectangle"
-        android:layout_width="164dp"
-        android:layout_height="43dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="316dp"
-        android:background="@drawable/rectangle_search"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <View
-        android:id="@+id/rectangle2"
-        android:layout_width="164dp"
-        android:layout_height="42dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="224dp"
-        android:layout_marginTop="316dp"
-        android:background="@drawable/rectangle_search"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textViewSendAMessage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="328dp"
-        android:fontFamily="@font/inter"
-        android:text="@string/send_message"
-        android:textColor="#FFFFFF"
-        android:textSize="15sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textViewSendMeetingRequest"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="240dp"
-        android:layout_marginTop="328dp"
-        android:text="@string/send_meeting_req"
-        android:textColor="#FFFFFF"
-        android:textSize="13sp"
-        android:fontFamily="@font/inter"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textViewSearch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="176dp"
-        android:layout_marginTop="36dp"
-        android:fontFamily="@font/inter"
-        android:text="@string/search_title"
-        android:textColor="#000000"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/ahmet_burak"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="224dp"
-        android:layout_marginTop="176dp"
-        android:fontFamily="@font/inter"
-        android:gravity="top"
-        android:lineSpacingExtra="-2sp"
-        android:text="@string/mentor_name"
-        android:textColor="#000000"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/bilkent_uni"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="224dp"
-        android:layout_marginTop="220dp"
-        android:fontFamily="@font/inter"
-        android:gravity="top"
-        android:lineSpacingExtra="1sp"
-        android:text="@string/mentor_university_with_dept"
-        android:translationY="-0.74sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="224dp"
-        android:layout_marginTop="256dp"
-        android:fontFamily="@font/inter"
-        android:gravity="top"
-        android:lineSpacingExtra="1sp"
-        android:text="@string/mentor_hourly_price"
-        android:translationY="-0.74sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/imageView8"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="30dp"
-        android:contentDescription="@string/back_button_description"
-        android:src="@drawable/baseline_keyboard_arrow_left_24"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/photoOfMentor"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="176dp"
-        android:src="@drawable/aby_photo"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <EditText
         android:id="@+id/searchText"
-        android:layout_width="255dp"
-        android:layout_height="54dp"
-        android:layout_marginStart="96dp"
-        android:layout_marginTop="104dp"
+        android:layout_width="147dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="68dp"
+        android:layout_marginTop="48dp"
         android:ems="10"
         android:fontFamily="@font/inter"
-        android:hint="@string/mentor_name"
+        android:hint="Search"
         android:inputType="text"
         android:textColorHint="@color/clicked_blue"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView11"
+        android:id="@+id/searchButton"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="116dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="48dp"
         android:src="@drawable/search_icon"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:id="@+id/scrollViewForSearch"
+        android:layout_width="match_parent"
+        android:layout_height="402dp"
+        android:layout_marginBottom="80dp"
+        android:contentDescription="ScrollView for profile previews"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:id="@+id/linearLayoutForSearch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+    </ScrollView>
+
+    <Spinner
+        android:id="@+id/searchSpinner"
+        android:layout_width="122dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/showMoreResults"
+        android:layout_width="80dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="165dp"
+        android:layout_marginBottom="16dp"
+        android:text="Show more"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
