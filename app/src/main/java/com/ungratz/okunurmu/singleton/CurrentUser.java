@@ -74,10 +74,21 @@ public class CurrentUser {
         setMail(user.getEmail());
 
 
-
         Map<String, Object> typesenseHashMap = new HashMap<>();
         typesenseHashMap.put("trigger", true);
-        ff.collection("typesense_sync").document("backfill").set(typesenseHashMap);
+
+        ff.collection("typesense_sync").document("backfill").get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()){
+
+                        ff.collection("typesense_sync").document("backfill").update("trigger", true)
+                                .addOnSuccessListener(unused -> ff.collection("typesense_sync").document("backfill").update("trigger", false));
+
+                    }
+                    else {
+                        ff.collection("typesense_sync").document("backfill").set(typesenseHashMap);
+                    }
+                });
 
         nodes.add(new Node("https","i8w0qd72xsjz4u63p-1.a1.typesense.net","443"));
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
