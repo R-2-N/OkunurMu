@@ -19,11 +19,12 @@ import org.typesense.resources.Node;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CurrentUser {
-    public static CurrentUser u;
+public class CurrentUser extends AppCompatActivity implements Serializable {
+    private static CurrentUser u;
     public CurrentUser(){}
 
     public static CurrentUser getInstance(){
