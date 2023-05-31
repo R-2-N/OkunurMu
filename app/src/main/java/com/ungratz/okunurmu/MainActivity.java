@@ -17,10 +17,6 @@ public class MainActivity extends FragmentActivity {
     private ProfileFragment pf;
     private SearchFragment sf;
 
-    private MeetingsFragment mf;
-
-    private ChatFragment cf;
-
     private FragmentManager fm = getSupportFragmentManager();
     private FragmentTransaction ft = fm.beginTransaction();
 
@@ -36,8 +32,6 @@ public class MainActivity extends FragmentActivity {
 
         pf = new ProfileFragment();
         sf = new SearchFragment();
-        mf= new MeetingsFragment();
-        cf = new ChatFragment();
         ft.replace(R.id.main_fragment, pf).commit();
 
         binding.homeProfile.setOnClickListener(v -> {
@@ -48,16 +42,6 @@ public class MainActivity extends FragmentActivity {
         binding.searchIcon.setOnClickListener(v -> {
             FragmentTransaction ft = fm.beginTransaction();
             ft.replace(R.id.main_fragment, sf).commit();
-        });
-
-        binding.meetingsIcon.setOnClickListener(v -> {
-            FragmentTransaction ft = fm.beginTransaction();
-            ft.replace(R.id.main_fragment, mf).commit();
-        });
-
-        binding.chatIcon.setOnClickListener(v -> {
-            FragmentTransaction ft = fm.beginTransaction();
-            ft.replace(R.id.main_fragment, cf).commit();
         });
 
     }
