@@ -1,7 +1,6 @@
 package com.ungratz.okunurmu.fragments;
 
 import android.app.Activity;
-import android.app.usage.NetworkStats;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -21,18 +20,11 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.bumptech.glide.load.model.ResourceLoader;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.storage.UploadTask;
 import com.ungratz.okunurmu.R;
 import com.ungratz.okunurmu.databinding.FragmentCurrentuserprofileBinding;
 import com.ungratz.okunurmu.singleton.CurrentUser;
 
 import org.checkerframework.checker.nullness.qual.NonNull;
-
-import java.io.File;
-import java.util.concurrent.atomic.AtomicReference;
 
 public class ProfileFragment extends Fragment {
 
@@ -65,6 +57,7 @@ public class ProfileFragment extends Fragment {
                                     .addOnSuccessListener(taskSnapshot -> {
                                         ImageView iv = new ImageView(getContext());
                                         iv.setImageURI(result.getData().getData());
+                                        iv.setClickable(false);
                                         binding.linearLayoutForPhotos.addView(iv);
                                         CurrentUser.updatePhotoAmountBy(1);
                                     });
@@ -121,13 +114,16 @@ public class ProfileFragment extends Fragment {
 
         binding.uploadPhoto.setOnClickListener(v -> addPersonalPhoto());
 
-        binding.deletePhoto.setOnClickListener(v -> changePhotoClickability(true));
-
-        binding.getRoot().setOnClickListener(v -> {
-            if (photosAreClickable){
+        binding.deletePhoto.setOnClickListener(v -> {
+            if (binding.deletePhoto.getText().toString().equals("Delete Photo")) {
+                changePhotoClickability(true);
+                binding.deletePhoto.setText("Cancel");
+            }
+            else {
                 changePhotoClickability(false);
                 binding.deletePhoto.setText("Delete Photo");
             }
+
         });
     }
 
@@ -156,14 +152,8 @@ public class ProfileFragment extends Fragment {
     public void addImageToLinearLayoutAsByteArray(byte[] bytes){
         ImageView iv = new ImageView(getContext());
         iv.setImageBitmap(BitmapFactory.decodeByteArray(bytes,0,bytes.length));
+
         iv.setClickable(false);
-
-        iv.setOnClickListener(v -> {
-            binding.deletePhoto.setText("Deleting");
-            binding.deletePhoto.setClickable(false);
-            deleteClickedPhoto(binding.linearLayoutForPhotos.indexOfChild(iv), binding.linearLayoutForPhotos.indexOfChild(iv));
-        });
-
         binding.linearLayoutForPhotos.addView(iv);
     }
     private int index = 0;
@@ -187,7 +177,7 @@ public class ProfileFragment extends Fragment {
     }
 
     private int pos = 0;
-    public void deleteClickedPhoto(int positionOfView, int positionOfViewToDelete){
+    public void deleteClickedPhoto(int positionOfViewToDelete){
 
         if (pos == CurrentUser.getAmountOfPersonalPhotos()){
             resultOfDeletion();
@@ -196,7 +186,7 @@ public class ProfileFragment extends Fragment {
             return;
         }
         if (pos == 0){
-            pos = positionOfView+1;
+            pos = positionOfViewToDelete+1;
         }
         CurrentUser.getStorageRef().child(CurrentUser.getID()+"/"+pos)
                 .getBytes(MAX_DOWNLOAD_SIZE)
@@ -204,7 +194,7 @@ public class ProfileFragment extends Fragment {
                         .putBytes(bytes)
                         .addOnSuccessListener(taskSnapshot -> {
                             pos++;
-                            deleteClickedPhoto(pos, positionOfViewToDelete);
+                            deleteClickedPhoto(positionOfViewToDelete);
                         }));
     }
 
@@ -225,7 +215,13 @@ public class ProfileFragment extends Fragment {
 
     public void changePhotoClickability(boolean b){
         for (int i = 0; i < binding.linearLayoutForPhotos.getChildCount(); i++){
-            binding.linearLayoutForPhotos.setClickable(b);
+            int finalI = i;
+            binding.linearLayoutForPhotos.getChildAt(i).setOnClickListener(v -> {
+                binding.deletePhoto.setText("Deleting");
+                binding.deletePhoto.setClickable(false);
+                deleteClickedPhoto(finalI);
+            });
+            binding.linearLayoutForPhotos.getChildAt(i).setClickable(b);
         }
         if (b == true){
             photosAreClickable = true;

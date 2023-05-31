@@ -20,19 +20,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
+    <Button
         android:id="@+id/studentSignUpView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="345dp"
+        android:layout_height="50dp"
         android:layout_marginStart="27dp"
         android:layout_marginBottom="208dp"
-        android:clickable="true"
+        android:background="@drawable/button_background_solid_orange"
         android:contentDescription="Click to sign in"
+        android:fontFamily="@font/inter"
+        android:text="Sign Up"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:src="@drawable/sign_up_button"
-        android:focusable="true"
-        tools:ignore="HardcodedText" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/backButtonStudent"

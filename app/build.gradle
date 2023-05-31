@@ -77,6 +77,9 @@ dependencies {
     // When using the BoM, don't specify versions in Firebase dependencies
     implementation 'com.google.firebase:firebase-analytics'
 
+    // Typesense library for searching in database
+    implementation 'org.typesense:typesense-java:0.2.0'
+
 
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'androidx.appcompat:appcompat:1.0.0'
