@@ -32,24 +32,41 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
+    <Button
         android:id="@+id/rectangle3"
         android:layout_width="354dp"
         android:layout_height="84dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="364dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="31dp"
+        android:background="@drawable/button_background_gradient_blue"
+        android:fontFamily="@font/inter"
+        android:text="Add to Your Calendar"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/april_tue_3"
         app:srcCompat="@drawable/rectangle_scheduled" />
-    <ImageView
+
+    <Button
         android:id="@+id/rectangle4"
         android:layout_width="354dp"
         android:layout_height="84dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="472dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/button_background_gradient_blue"
+        android:fontFamily="@font/inter"
+        android:text="Join Zoom Meeting"
+        android:textAllCaps="false"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rectangle3"
+        app:layout_constraintVertical_bias="0.081"
         app:srcCompat="@drawable/rectangle_scheduled" />
+
 
     <TextView
         android:id="@+id/nameOfMentor4"
@@ -58,7 +75,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="256dp"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/inter"
         android:gravity="top"
         android:lineSpacingExtra="-2sp"
@@ -67,43 +84,7 @@
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/nameOfMentor6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="152dp"
-        android:layout_marginTop="500dp"
-        android:fontFamily="@font/inter"
-        android:lineSpacingExtra="-2sp"
-        android:text="@string/join_zoom"
-        android:textColor="#000000"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-
-    <TextView
-        android:id="@+id/nameOfMentor5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="152dp"
-        android:layout_marginTop="392dp"
-        android:fontFamily="@font/inter"
-        android:lineSpacingExtra="-2sp"
-        android:text="@string/add_to_calendar"
-        android:textColor="#000000"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/photoOfMentor4" />
 
     <TextView
         android:id="@+id/april_tue_3"
@@ -112,7 +93,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="304dp"
+        android:layout_marginTop="14dp"
         android:fontFamily="@font/inter"
         android:gravity="top"
         android:lineSpacingExtra="-2sp"
@@ -120,7 +101,7 @@
         android:textColor="#000000"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/nameOfMentor4" />
 
     <TextView
         android:id="@+id/textViewScheduledMeetings2"

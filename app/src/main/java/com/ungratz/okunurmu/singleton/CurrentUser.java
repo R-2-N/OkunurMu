@@ -1,6 +1,7 @@
 package com.ungratz.okunurmu.singleton;
 
 import android.net.Uri;
+import android.os.Build;
 import android.util.Log;
 
 import com.google.firebase.auth.FirebaseUser;
@@ -11,6 +12,12 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import org.typesense.api.Client;
+import org.typesense.api.Configuration;
+import org.typesense.resources.Node;
+
+import java.time.Duration;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -47,6 +54,11 @@ public class CurrentUser {
     private static int amountOfPersonalPhotos;
 
 
+    private static ArrayList<Node> nodes = new ArrayList<>();
+    private static Configuration typesenseConfiguration;
+    private static Client typensenseClient;
+
+
     public static void setFirebaseUser(FirebaseUser u){
         user = u;
         setID(user.getUid());
@@ -62,9 +74,16 @@ public class CurrentUser {
         setMail(user.getEmail());
 
 
+
         Map<String, Object> typesenseHashMap = new HashMap<>();
         typesenseHashMap.put("trigger", true);
         ff.collection("typesense_sync").document("backfill").set(typesenseHashMap);
+
+        nodes.add(new Node("https","i8w0qd72xsjz4u63p-1.a1.typesense.net","443"));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            setTypesenseConfiguration(new Configuration(nodes, Duration.ofSeconds(2), "DswDykKECeI3u0YZCs3FaPX2yB7BJfww"));
+        }
+        setTypensenseClient(new Client(getTypesenseConfiguration()));
     }
 
     public static void setNewFirebaseUser
@@ -78,7 +97,7 @@ public class CurrentUser {
 
         //writing the info into the database
         ff.collection("users").document(u.getUid()).
-                set(createUserHashMap(userRealName, userName, u.getEmail(), isMentor, university, department))
+                set(createUserHashMap(u.getUid(), userRealName, userName, u.getEmail(), isMentor, university, department))
                 .addOnSuccessListener(unused -> {
                     Log.d("W", "Data is written");
                     setFirebaseUser(u);
@@ -103,6 +122,9 @@ public class CurrentUser {
     public static void setBio(String b){bio=b;}
     public static void setAmountOfPersonalPhotos(int a){amountOfPersonalPhotos = a;}
 
+    public static void setTypesenseConfiguration(Configuration tc){typesenseConfiguration = tc;}
+    public static void setTypensenseClient(Client c){typensenseClient = c;}
+
 
     //getters
     public static FirebaseUser getUser(){return user;}
@@ -121,6 +143,10 @@ public class CurrentUser {
     public static String getBio(){return bio;}
     public static int getAmountOfPersonalPhotos(){return amountOfPersonalPhotos;}
 
+    public static Configuration getTypesenseConfiguration(){return typesenseConfiguration;}
+    public static Client getTypensenseClient(){return typensenseClient;}
+
+
     public static void updateBio(String b){
         ff.collection("users").document(getID()).update("bio", b)
                 .addOnSuccessListener(unused -> {
@@ -138,8 +164,9 @@ public class CurrentUser {
     }
 
     public static Map<String, Object>
-    createUserHashMap(String rn, String un, String e, boolean b, String uniN, String d){
+    createUserHashMap(String id, String rn, String un, String e, boolean b, String uniN, String d){
         Map<String, Object> newUserMap = new HashMap<>();
+        newUserMap.put("id", id);
         newUserMap.put("realName", rn);
         newUserMap.put("userName", un);
         newUserMap.put("email", e);
