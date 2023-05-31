@@ -1,5 +1,6 @@
 package com.ungratz.okunurmu.fragments;
 
+import android.app.Dialog;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -7,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -24,12 +26,14 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 import org.typesense.model.SearchParameters;
 import org.typesense.model.SearchResult;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 
 public class SearchFragment extends Fragment {
+    private AsyncClassForCollectionSearching async;
     private FragmentSearchBinding binding;
     private SearchParameters sp;
     private SearchResult sr;
@@ -63,12 +67,14 @@ public class SearchFragment extends Fragment {
                 createProfilePreviews(sr, iterationNo);
         });
 
-        binding.searchButton.setOnClickListener(v -> SearchFragment.this.searchFunction());
+        binding.searchButton.setOnClickListener(v -> {
+            binding.searchButton.setClickable(false);
+            SearchFragment.this.searchFunction();
+        });
+
     }
 
     public void searchFunction(){
-
-        binding.searchButton.setClickable(false);
 
         binding.linearLayoutForSearch.removeAllViews();
         binding.showMoreResults.setVisibility(View.VISIBLE);
@@ -106,7 +112,8 @@ public class SearchFragment extends Fragment {
                 .prioritizeExactMatch(true);
 
         //asyncClassForSearchResult acfsr = new asyncClassForSearchResult();
-        executor.execute(new AsyncClassForCollectionSearching(this, sp, iterationNo));
+        async = new AsyncClassForCollectionSearching(this, sp, iterationNo);
+        executor.execute(async);
     }
 
     private int index = 0;
@@ -114,6 +121,14 @@ public class SearchFragment extends Fragment {
 
         if ((sr.getHits().size() == 0) || (sr == null)){
             binding.showMoreResults.setText("Could not find any results");
+            binding.searchButton.setClickable(true);
+
+            binding.searchButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
         }
 
         else{
@@ -198,6 +213,28 @@ public class SearchFragment extends Fragment {
     }
 
     public void sendMeetingRequestToTutor(String idOfTutor){
+
+        Dialog d = new Dialog(getContext());
+        d.setContentView(R.layout.meeting_pop_up);
+        d.show();
+        d.findViewById(R.id.exitForMeetingArrangement).setOnClickListener(v -> d.dismiss());
+
+        d.findViewById(R.id.sendRequestForMeetingArrangement).setOnClickListener(v -> {
+
+            EditText day = d.findViewById(R.id.meetingDay);
+
+            Map<String, Object> meetingFields = new HashMap<>();
+            meetingFields.put("studentID", CurrentUser.getID());
+            meetingFields.put("mentorID", idOfTutor);
+            meetingFields.put("day", day.getText().toString());
+            meetingFields.put("month", ((EditText)d.findViewById(R.id.meetingMonth)).getText().toString());
+            meetingFields.put("year", ((EditText)d.findViewById(R.id.meetingYear)).getText().toString());
+            meetingFields.put("hour", ((EditText)d.findViewById(R.id.meetingHour)).getText().toString());
+            meetingFields.put("minute", ((EditText)d.findViewById(R.id.meetingMinute)).getText().toString());
+
+            CurrentUser.getFirebaseFirestore().collection("meetings")
+                    .document(CurrentUser.getID()+idOfTutor).set(meetingFields);
+        });
 
     }
 

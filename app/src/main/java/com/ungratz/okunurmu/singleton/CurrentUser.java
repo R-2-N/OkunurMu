@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Timer;
 
 public class CurrentUser {
     public static CurrentUser u;
@@ -52,13 +53,35 @@ public class CurrentUser {
     private static String department;
     private static String bio;
     private static int amountOfPersonalPhotos;
+    private static CollectionReference mc;
 
 
+    private static Map<String, Object> typesenseHashMap;
     private static ArrayList<Node> nodes = new ArrayList<>();
     private static Configuration typesenseConfiguration;
     private static Client typensenseClient;
 
+    private static Timer timer = new Timer();
 
+    /*
+    static class SayHello extends TimerTask {
+        public void run() {
+            ff.collection("typesense_sync").document("backfill").get()
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()){
+
+                            ff.collection("typesense_sync").document("backfill").update("trigger", true)
+                                    .addOnSuccessListener(unused -> ff.collection("typesense_sync").document("backfill").update("trigger", false));
+
+                        }
+                        else {
+                            ff.collection("typesense_sync").document("backfill").set(typesenseHashMap);
+                        }
+                    });
+        }
+    }*/
+
+    // And From your main() method or any other method
     public static void setFirebaseUser(FirebaseUser u){
         user = u;
         setID(user.getUid());
@@ -69,32 +92,22 @@ public class CurrentUser {
         */
 
         setUsersCollectionReference(ff.collection("users"));
+        setMeetingsCollectionReference(ff.collection("meetings"));
         setUserDocumentRef(ff.collection("users").document(getID()));
         setStorageRef(fs.getReference());
         setMail(user.getEmail());
 
-
-        Map<String, Object> typesenseHashMap = new HashMap<>();
+        typesenseHashMap = new HashMap<>();
         typesenseHashMap.put("trigger", true);
-
-        ff.collection("typesense_sync").document("backfill").get()
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()){
-
-                        ff.collection("typesense_sync").document("backfill").update("trigger", true)
-                                .addOnSuccessListener(unused -> ff.collection("typesense_sync").document("backfill").update("trigger", false));
-
-                    }
-                    else {
-                        ff.collection("typesense_sync").document("backfill").set(typesenseHashMap);
-                    }
-                });
+        ff.collection("typesense_sync").document("backfill").set(typesenseHashMap);
 
         nodes.add(new Node("https","i8w0qd72xsjz4u63p-1.a1.typesense.net","443"));
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             setTypesenseConfiguration(new Configuration(nodes, Duration.ofSeconds(2), "DswDykKECeI3u0YZCs3FaPX2yB7BJfww"));
         }
         setTypensenseClient(new Client(getTypesenseConfiguration()));
+
+
     }
 
     public static void setNewFirebaseUser
@@ -121,6 +134,7 @@ public class CurrentUser {
     //setters
     public static void setID(String i){id = i;}
     public static void setUsersCollectionReference(CollectionReference cr){uc = cr;}
+    public static void setMeetingsCollectionReference(CollectionReference cr){mc = cr;}
     public static void setUserDocumentRef(DocumentReference d){dr = d;}
     public static void setUserDocumentSnapshot(DocumentSnapshot d){ds = d;}
     public static void setStorageRef(StorageReference s){sr = s;}
@@ -142,6 +156,7 @@ public class CurrentUser {
     public static String getID(){return id;}
     public static FirebaseFirestore getFirebaseFirestore(){return ff;}
     public static CollectionReference getUsersCollectionReference(){return uc;};
+    public static CollectionReference getMeetingsCollectionReference(){return mc;}
     public static DocumentReference getUserDocumentRef(){return dr;}
     public static DocumentSnapshot getUserDocumentSnapshot(){return ds;}
     public static StorageReference getStorageRef(){return sr;}
