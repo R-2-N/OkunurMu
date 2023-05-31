@@ -15,5 +15,5 @@
 
     //clicked colors (experimental)
     <color name="clicked_blue">#4D285181</color>
-    <color name="clicked_orange">#2DE49B63</color>
+    <color name="clicked_orange">#4DE49B63</color>
 </resources>

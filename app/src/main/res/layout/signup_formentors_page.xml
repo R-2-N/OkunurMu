@@ -63,7 +63,7 @@
         android:layout_height="53dp"
         android:layout_marginStart="28dp"
         android:layout_marginTop="22dp"
-        android:background="@drawable/button_background_gradient_orange"
+        android:background="@android:drawable/btn_dropdown"
         android:spinnerMode="dropdown"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/usernameMentorSignUp" />
@@ -74,7 +74,7 @@
         android:layout_height="53dp"
         android:layout_marginStart="28dp"
         android:layout_marginTop="13dp"
-        android:background="@drawable/button_background_gradient_orange"
+        android:background="@android:drawable/btn_dropdown"
         android:spinnerMode="dropdown"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/uniSpinner" />
@@ -121,21 +121,19 @@
         tools:ignore="MissingConstraints" />
 
 
-    <Button
+    <ImageView
         android:id="@+id/mentorSignUpView"
-        android:layout_width="357dp"
-        android:layout_height="49dp"
+        android:layout_width="355dp"
+        android:layout_height="64dp"
         android:layout_marginStart="28dp"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/button_background_solid_orange"
-        android:fontFamily="@font/inter"
+        android:layout_marginTop="12dp"
+        android:clickable="true"
+        android:focusable="true"
         android:onClick="signupButtonClick"
-        android:text="Sign Up"
-        android:textAllCaps="false"
-        android:textColor="#FFFFFF"
-        android:textStyle="bold"
+        android:src="@drawable/sign_up_button"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passwordAgainMentorSignUp" />
+        app:layout_constraintTop_toBottomOf="@+id/passwordAgainMentorSignUp"
+        tools:ignore="ContentDescription,SpeakableTextPresentCheck,ImageContrastCheck" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
