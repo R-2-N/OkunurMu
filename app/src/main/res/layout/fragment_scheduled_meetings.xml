@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <ImageView
         android:id="@+id/rectangle5"
         android:layout_width="354dp"
@@ -12,7 +13,7 @@
         android:layout_marginTop="345dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/rectangle_scheduled" />
+        app:srcCompat="@drawable/button_background_solid_blue" />
 
     <TextView
         android:id="@+id/nameOfMentor1"
@@ -64,7 +65,7 @@
         android:layout_marginTop="112dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/rectangle_scheduled" />
+        app:srcCompat="@drawable/button_background_solid_blue" />
 
     <TextView
         android:id="@+id/nameOfMentor2"
@@ -85,7 +86,6 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-
     <ImageView
         android:id="@+id/rectangle6"
         android:layout_width="354dp"
@@ -94,7 +94,7 @@
         android:layout_marginTop="228dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/rectangle_scheduled" />
+        app:srcCompat="@drawable/button_background_solid_blue" />
 
 
     <TextView
