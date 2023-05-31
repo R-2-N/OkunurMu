@@ -6,21 +6,16 @@
     android:layout_height="match_parent"
     android:background="@color/orange">
 
-    <TextView
-        android:id="@+id/slogan"
+    <ImageView
+        android:id="@+id/imageView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="112dp"
-        android:fontFamily="@font/inter"
-        android:text="Choose your future university, \n              with a little help"
-        android:textColor="@color/blue"
-        android:textFontWeight="1000"
-        android:textSize="22dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginBottom="172dp"
         app:layout_constraintBottom_toTopOf="@+id/imageView7"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView27"
-        app:layout_constraintVertical_bias="0.125" />
+        android:src="@drawable/choose_your_future_university_with_a_little_help"
+        tools:ignore="MissingConstraints" />
 
     <ImageView
         android:id="@+id/imageView7"
