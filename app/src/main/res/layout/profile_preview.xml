@@ -8,69 +8,47 @@
 
     <ImageView
         android:id="@+id/mentorPpForSearch"
-        android:layout_width="78dp"
-        android:layout_height="78dp"
+        android:layout_width="68dp"
+        android:layout_height="60dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="4dp"
-        android:src="@drawable/aby_photo"
         android:contentDescription="ImageView for mentor pp for search"
+        android:src="@drawable/aby_photo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <View
+    <Button
         android:id="@+id/sendMessageToTutorView"
         android:layout_width="162dp"
-        android:layout_height="34dp"
+        android:layout_height="48dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="2dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/rectangle_search"
         android:clickable="false"
+        android:text="Send a message"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="14dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mentorPpForSearch" />
 
-    <TextView
-        android:id="@+id/sendMessageToTutorForSearchText"
-        android:layout_width="110dp"
-        android:layout_height="18dp"
-        android:layout_marginStart="56dp"
-        android:layout_marginTop="92dp"
-        android:fontFamily="@font/inter"
-        android:text="@string/send_message"
-        android:textColor="#FFFFFF"
-        android:textSize="15sp"
-        android:clickable="false"
-        android:contentDescription="Send message to tutor text"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <View
+    <Button
         android:id="@+id/sendMeetingRequestToTutorView"
         android:layout_width="158dp"
-        android:layout_height="34dp"
+        android:layout_height="48dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="212dp"
         android:background="@drawable/rectangle_search"
         android:clickable="false"
+        android:text="Send meeting request"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="14dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/sendMessageToTutorView" />
-
-    <TextView
-        android:id="@+id/sendMeetingRequestToTutorText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="232dp"
-        android:layout_marginTop="92dp"
-        android:clickable="false"
-        android:contentDescription="Send meeting request to tutor text"
-        android:fontFamily="@font/inter"
-        android:text="@string/send_meeting_req"
-        android:textColor="#FFFFFF"
-        android:textSize="13sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/uniAndDepartmentForSearch"
@@ -78,8 +56,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="14dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="24dp"
         android:fontFamily="@font/inter"
         android:gravity="top"
         android:lineSpacingExtra="1sp"
@@ -94,14 +72,15 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="18dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/inter"
         android:gravity="top"
         android:lineSpacingExtra="-2sp"
         android:text="@string/mentor_name"
         android:textColor="#000000"
         android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/mentorPpForSearch"
         app:layout_constraintTop_toTopOf="parent" />
 

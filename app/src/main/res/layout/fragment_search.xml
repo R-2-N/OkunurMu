@@ -44,7 +44,7 @@
         android:layout_height="48dp"
         android:layout_marginTop="48dp"
         android:layout_marginEnd="16dp"
-        android:background="@drawable/button_background_gradient_orange"
+        android:background="@drawable/button_background_solid_orange"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
