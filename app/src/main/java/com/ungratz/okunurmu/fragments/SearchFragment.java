@@ -147,7 +147,7 @@ public class SearchFragment extends Fragment {
         TextView mentorNameText = pp.findViewById(R.id.mentorNameForSearch);
         TextView uniAndDepartmentText = pp.findViewById(R.id.uniAndDepartmentForSearch);
         View sendMessageView = pp.findViewById(R.id.sendMessageToTutorView);
-        View sendMeetingRequestView = pp.findViewById(R.id.sendMeetingRequestToTutorText);
+        View sendMeetingRequestView = pp.findViewById(R.id.sendMeetingRequestToTutorView);
 
 
         CurrentUser.getStorageRef().child(idOfMentorForSearch+"/userProfilePic")
