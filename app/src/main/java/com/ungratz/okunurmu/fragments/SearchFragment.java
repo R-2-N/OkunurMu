@@ -63,58 +63,36 @@ public class SearchFragment extends Fragment {
                 createProfilePreviews(sr, iterationNo);
         });
 
-        binding.searchButton.setOnClickListener(v -> {
-            binding.linearLayoutForSearch.removeAllViews();
-            binding.showMoreResults.setVisibility(View.VISIBLE);
-            binding.showMoreResults.setClickable(true);
-            index = 0;
-            iterationNo = 1;
-            switch (binding.searchSpinner.getSelectedItem().toString()){
-                case "Name":
-                    searchByFilter("realName");
-                    break;
-
-                case "University":
-                    searchByFilter("university");
-                    break;
-
-                case "Department":
-                    searchByFilter("department");
-                    break;
-
-                default:
-                    searchByFilter("");
-                    break;
-            }
-        });
-
-
-        /*
-        ConstraintLayout cl = (ConstraintLayout) getLayoutInflater().inflate(R.layout.profile_preview, binding.linearLayoutForSearch, false);
-        TextView t = cl.findViewById(R.id.mentorNameForSearch);
-        t.setText("Amogus");
-
-        binding.linearLayoutForSearch.addView(cl);
-
-        ConstraintLayout cl2 = (ConstraintLayout) getLayoutInflater().inflate(R.layout.profile_preview, binding.linearLayoutForSearch, false);
-        TextView t2 = cl2.findViewById(R.id.mentorNameForSearch);
-        t2.setText("amogus2electricboogaloo");
-
-        View v = cl2.findViewById(R.id.sendMessageToTutorView);
-        v.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                TextView t12 = cl2.findViewById(R.id.sendMeetingRequestToTutorText);
-                t12.setText("amongusboogaloo");
-            }
-        });
-
-        binding.linearLayoutForSearch.addView(cl2);
-        */
+        binding.searchButton.setOnClickListener(v -> SearchFragment.this.searchFunction());
     }
 
-    // CurrentUser.getTypensenseClient().collections("users").documents().search(sp);
-    // Method on top requires
+    public void searchFunction(){
+
+        binding.searchButton.setClickable(false);
+
+        binding.linearLayoutForSearch.removeAllViews();
+        binding.showMoreResults.setVisibility(View.VISIBLE);
+        binding.showMoreResults.setClickable(true);
+        index = 0;
+        iterationNo = 1;
+        switch (binding.searchSpinner.getSelectedItem().toString()){
+            case "Name":
+                searchByFilter("realName");
+                break;
+
+            case "University":
+                searchByFilter("university");
+                break;
+
+            case "Department":
+                searchByFilter("department");
+                break;
+
+            default:
+                searchByFilter("");
+                break;
+        }
+    }
 
     private int iterationNo = 1;
     public void searchByFilter(String filter){
@@ -135,7 +113,7 @@ public class SearchFragment extends Fragment {
     public void createProfilePreviews(SearchResult sr, int iterationNo){
 
         if ((sr.getHits().size() == 0) || (sr == null)){
-            //something to show that no matches were found
+            binding.showMoreResults.setText("Could not find any results");
         }
 
         else{
@@ -172,7 +150,6 @@ public class SearchFragment extends Fragment {
         View sendMeetingRequestView = pp.findViewById(R.id.sendMeetingRequestToTutorText);
 
 
-
         CurrentUser.getStorageRef().child(idOfMentorForSearch+"/userProfilePic")
                 .getBytes(MAX_DOWNLOAD_SIZE)
                 .addOnSuccessListener(bytes -> {
@@ -205,8 +182,19 @@ public class SearchFragment extends Fragment {
                                 iv.setOnClickListener(v -> ((MainActivity)SearchFragment.this.getActivity()).switchToTutorProfile(idOfMentorForSearch));
 
                                 binding.linearLayoutForSearch.addView(pp);
+
+                                binding.searchButton.setClickable(true);
+                                binding.searchButton.setOnClickListener(v -> SearchFragment.this.searchFunction());
+                            })
+                            .addOnFailureListener(e -> {
+                                binding.searchButton.setClickable(true);
+                                binding.searchButton.setOnClickListener(v -> SearchFragment.this.searchFunction());
                             });
-                });
+                })
+                .addOnFailureListener(e -> binding.searchButton.setOnClickListener(v -> {
+                    binding.searchButton.setClickable(true);
+                    binding.searchButton.setOnClickListener(v1 -> SearchFragment.this.searchFunction());
+                }));
     }
 
     public void sendMeetingRequestToTutor(String idOfTutor){
