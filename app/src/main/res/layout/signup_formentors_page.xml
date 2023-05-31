@@ -63,7 +63,7 @@
         android:layout_height="53dp"
         android:layout_marginStart="28dp"
         android:layout_marginTop="22dp"
-        android:background="@drawable/button_background_gradient_orange"
+        android:background="@drawable/button_background_solid_blue"
         android:spinnerMode="dropdown"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/usernameMentorSignUp" />
@@ -74,7 +74,7 @@
         android:layout_height="53dp"
         android:layout_marginStart="28dp"
         android:layout_marginTop="13dp"
-        android:background="@drawable/button_background_gradient_orange"
+        android:background="@drawable/button_background_solid_blue"
         android:spinnerMode="dropdown"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/uniSpinner" />
