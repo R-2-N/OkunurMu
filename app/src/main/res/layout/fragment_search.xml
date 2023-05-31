@@ -97,24 +97,7 @@
         android:layout_marginTop="220dp"
         android:gravity="top"
         android:lineSpacingExtra="1sp"
-        android:text="Bilkent University - CS"
-        android:translationY="-0.74sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/price"
-        android:layout_width="0dp"
-        android:layout_height="16dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginStart="228dp"
-
-        android:layout_marginTop="256dp"
-        android:gravity="top"
-        android:lineSpacingExtra="1sp"
-        android:text="1 Hour Price - 100 ₺"
+        android:text="Bilkent University"
         android:translationY="-0.74sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -161,5 +144,13 @@
         android:src="@drawable/search_icon"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="83dp"
+        android:layout_height="24dp"
+        android:text="CS"
+        tools:layout_editor_absoluteX="232dp"
+        tools:layout_editor_absoluteY="254dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

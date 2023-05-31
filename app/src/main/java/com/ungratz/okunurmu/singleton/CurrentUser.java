@@ -9,10 +9,11 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CurrentUser extends AppCompatActivity {
+public class CurrentUser extends AppCompatActivity implements Serializable {
     private static CurrentUser u;
     public CurrentUser(){}
 
