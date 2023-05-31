@@ -20,6 +20,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -30,6 +31,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.ungratz.okunurmu.MainActivity;
+import com.ungratz.okunurmu.R;
+
 import com.ungratz.okunurmu.databinding.SignupForstudentsPageBinding;
 import com.ungratz.okunurmu.singleton.CurrentUser;
 
@@ -50,6 +53,10 @@ public class StudentSignUpActivity extends Activity {
     private String password;
     private String passwordAgain;
 
+    private EditText passwordAgainText;
+    private EditText passwordText;
+    private EditText emailText;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +68,10 @@ public class StudentSignUpActivity extends Activity {
         mAuth = FirebaseAuth.getInstance();
         // [END initialize_auth]
 
+        passwordAgainText = findViewById(R.id.passwordAgainStudentSignUp);
+        passwordText = findViewById(R.id.passwordStudentSignUp);
+        emailText = findViewById(R.id.emailStudentSignUp);
+
         binding.studentSignUpView.setOnClickListener(v -> {
 
             name = binding.nameStudentSignUp.getText().toString();
@@ -69,7 +80,22 @@ public class StudentSignUpActivity extends Activity {
             password = binding.passwordStudentSignUp.getText().toString();
             passwordAgain = binding.passwordAgainStudentSignUp.getText().toString();
 
-            if ((password.equals(passwordAgain)) && (password!="")) {
+
+            if(password.trim().length()<8){
+                passwordText.setError("Too short for a password");
+            }
+            if(password.trim().length()==0)
+            {
+                passwordText.setError("Field cannot be left blank!");
+            }
+            if(passwordAgain.trim().length()==0) {
+                passwordAgainText.setError("Field cannot be left blank!");
+            }
+            if(!password.trim().equals(passwordAgain.trim())){
+                passwordAgainText.setError("Passwords do not match!");
+            }
+
+            if ((password.equals(passwordAgain)) && (password.trim().length()!=0)&& password.trim().length()>=8 && passwordAgain.trim().length()>=8) {
                 createAccount(email, password);
             }
 
@@ -77,8 +103,7 @@ public class StudentSignUpActivity extends Activity {
 
         binding.backButtonStudent.setOnClickListener(v -> {
 
-            Intent intent = new Intent(ssa, FirstPageActivity.class);
-            startActivity(intent);
+            updateUI(null);
 
         });
     }
@@ -97,6 +122,7 @@ public class StudentSignUpActivity extends Activity {
     }
     // [END on_start_check_user]
     */
+
 
 
     private void createAccount(String email, String password) {
@@ -135,10 +161,17 @@ public class StudentSignUpActivity extends Activity {
         // [END send_email_verification]
     }
 
+
     private void reload() { }
 
     private void updateUI(FirebaseUser user) {
-        Intent intent = new Intent(ssa, MainActivity.class);
-        startActivity(intent);
+
+        try {
+            Intent intent = new Intent(ssa, FirstPageActivity.class);
+            startActivity(intent);
+        }
+        catch (Exception e){
+            updateUI(user);
+        }
     }
 }

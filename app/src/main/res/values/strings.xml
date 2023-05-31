@@ -1,8 +1,61 @@
 <resources>
-    <string name="app_name">My Application</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="username">Username</string>
+
+    <!-- Navigation -->
+    <string name="back_button_description">Go back button</string>
+
+    <!-- First Page -->
+    <string name="create_acc_student_desc">Create account as student</string>
+    <string name="create_acc_mentor_desc">Create account as mentor</string>
+
+
+
+    <!-- Login Page -->
+    <string name="login_title">Log In</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+
+    <!-- Mentee Sign Up Page -->
+    <string name="mentee_signup_title">Mentee Sign Up</string>
+    <string name="signup_name">Name</string>
+    <string name="signup_username">Username</string>
+    <string name="signup_second_password">Password Again</string>
+
+    <!-- Mentor Sign Up Page -->
+    <string name="mentor_signup_title">Mentor Sign Up</string>
+    <string name="signup_university">University</string>
+    <string name="signup_department">Department</string>
+
+    <!-- Search Page -->
+    <string name="search_title">Search</string>
+    <string name="send_message">Send a message</string>
+    <string name="send_meeting_req">Send meeting request</string>
+    <string name="mentor_name">Mentor Name</string>
+    <string name="mentor_university_with_dept">University - Department</string>
+    <string name="mentor_hourly_price">1 Hour Price - X</string>
+
+    <!-- Meeting Details Page -->
+    <string name="meeting_details_title">Meeting Details</string>
+    <string name="meeting_details">Meeting Details</string>
+    <string name="meeting_date">Date - Hour</string>
+    <string name="add_to_calendar">Add to your calendar</string>
+    <string name="join_zoom">Join Zoom Meeting</string>
+
+    <!-- Inbox Page -->
+    <string name="inbox_title">Inbox</string>
+    <string name="chat_search">Search</string>
+    <string name="chat_mentor_name">Mentor Name</string>
+    <string name="chat_text">Message</string>
+    <string name="message_date">Message Date</string>
+
+    <!-- Scheduled Meeting Page -->
+    <string name="scheduled_meetings_title">Scheduled Meetings</string>
+
+
 </resources>

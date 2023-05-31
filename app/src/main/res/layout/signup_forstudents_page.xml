@@ -8,13 +8,15 @@
 
     <TextView
         android:id="@+id/textViewSignUpForStudents"
-        android:layout_width="171dp"
-        android:layout_height="36dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="120dp"
         android:layout_marginTop="36dp"
-        android:text="Mentee Sign Up"
+        android:fontFamily="@font/inter"
+        android:text="@string/mentee_signup_title"
         android:textColor="#000000"
-        android:textSize="24sp"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -28,14 +30,17 @@
         android:contentDescription="Click to sign in"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:src="@drawable/sign_up_button" />
+        android:src="@drawable/sign_up_button"
+        android:focusable="true"
+        tools:ignore="HardcodedText" />
 
     <ImageView
         android:id="@+id/backButtonStudent"
-        android:layout_width="35dp"
-        android:layout_height="42dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_marginStart="27dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="30dp"
+        android:contentDescription="@string/back_button_description"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:src="@drawable/baseline_keyboard_arrow_left_24" />
@@ -47,8 +52,9 @@
         android:layout_marginStart="27dp"
         android:layout_marginTop="101dp"
         android:ems="10"
-        android:hint="Name"
+        android:hint="@string/signup_name"
         android:inputType="text"
+        android:fontFamily="@font/inter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -59,8 +65,9 @@
         android:layout_marginStart="27dp"
         android:layout_marginTop="167dp"
         android:ems="10"
-        android:hint="Username"
+        android:hint="@string/signup_username"
         android:inputType="text"
+        android:fontFamily="@font/inter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -71,8 +78,9 @@
         android:layout_marginStart="27dp"
         android:layout_marginTop="238dp"
         android:ems="10"
-        android:hint="E-mail"
+        android:hint="@string/email"
         android:inputType="textEmailAddress"
+        android:fontFamily="@font/inter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -83,8 +91,9 @@
         android:layout_marginStart="27dp"
         android:layout_marginTop="313dp"
         android:ems="10"
-        android:hint="password"
+        android:hint="@string/password"
         android:inputType="textPassword"
+        android:fontFamily="@font/inter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -95,8 +104,9 @@
         android:layout_marginStart="27dp"
         android:layout_marginTop="388dp"
         android:ems="10"
-        android:hint="password again"
+        android:hint="@string/signup_second_password"
         android:inputType="textPassword"
+        android:fontFamily="@font/inter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

@@ -1,26 +1,49 @@
 package com.ungratz.okunurmu;
 
-import android.app.Activity;
 import android.os.Bundle;
 
-import com.ungratz.okunurmu.databinding.LaunchPageBinding;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
-public class MainActivity extends Activity {
+import com.ungratz.okunurmu.databinding.MainActivityBinding;
+import com.ungratz.okunurmu.fragments.ProfileFragment;
+import com.ungratz.okunurmu.fragments.SearchFragment;
+
+public class MainActivity extends FragmentActivity {
 
     private MainActivity ma = this;
 
-    private LaunchPageBinding binding;
+    private ProfileFragment pf;
+    private SearchFragment sf;
+
+    private FragmentManager fm = getSupportFragmentManager();
+    private FragmentTransaction ft = fm.beginTransaction();
+
+    private MainActivityBinding binding;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
-        binding = LaunchPageBinding.inflate(getLayoutInflater());
+
+        binding = MainActivityBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        pf = new ProfileFragment();
+        sf = new SearchFragment();
+        ft.replace(R.id.main_fragment, pf).commit();
 
+        binding.homeProfile.setOnClickListener(v -> {
+            FragmentTransaction ft = fm.beginTransaction();
+            ft.replace(R.id.main_fragment, pf).commit();
+        });
+
+        binding.searchIcon.setOnClickListener(v -> {
+            FragmentTransaction ft = fm.beginTransaction();
+            ft.replace(R.id.main_fragment, sf).commit();
+        });
 
     }
-
-
 
 }

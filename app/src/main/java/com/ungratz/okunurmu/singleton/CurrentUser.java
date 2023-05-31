@@ -1,19 +1,22 @@
 package com.ungratz.okunurmu.singleton;
 
+import android.net.Uri;
 import android.util.Log;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CurrentUser extends AppCompatActivity {
-    private static CurrentUser u;
+public class CurrentUser {
+    public static CurrentUser u;
     public CurrentUser(){}
 
     public static CurrentUser getInstance(){
@@ -23,10 +26,16 @@ public class CurrentUser extends AppCompatActivity {
         return u;
     }
 
-    private static FirebaseFirestore fs = FirebaseFirestore.getInstance();
+    private static FirebaseFirestore ff = FirebaseFirestore.getInstance();
     private static FirebaseUser user;
+    private static CollectionReference uc;
     private static DocumentReference dr;
+
+    // I actually cannot store DocumentSnapshot. I have to call .addOnCompleteListener
+    // everytime on the DocumentReference
     private static DocumentSnapshot ds;
+    private static FirebaseStorage fs = FirebaseStorage.getInstance();
+    private static StorageReference sr = fs.getReference();
     private static String id;
     private static String realName;
     private static String mail;
@@ -34,6 +43,8 @@ public class CurrentUser extends AppCompatActivity {
     private static boolean isMentor;
     private static String university;
     private static String department;
+    private static String bio;
+    private static int amountOfPersonalPhotos;
 
 
     public static void setFirebaseUser(FirebaseUser u){
@@ -42,29 +53,31 @@ public class CurrentUser extends AppCompatActivity {
 
         /*
         Quick tutorial on how to get field data from Firestore
-        First by using get() you have to turn document reference into Task<DocumentSnapshot>
-        After which you can turn that into a documentSnapshot with getResult()
-        and finally you could get the field using a string to indicate its name
+        Do what I do in lines 63 to 78
         */
 
-        setUserDocumentRef(fs.collection("users").document(getID()));
-        setUserDocumentSnapshot(dr.get().getResult());
-        setRealName(ds.getString("realName"));
-        setUserName(ds.getString("userName"));
+        setUsersCollectionReference(ff.collection("users"));
+        setUserDocumentRef(ff.collection("users").document(getID()));
+        setStorageRef(fs.getReference());
         setMail(user.getEmail());
-        if(ds.getBoolean("isMentor")){
-            setUniversity(ds.getString("university"));
-            setDepartment(ds.getString("department"));
-        }
+
+
+        Map<String, Object> typesenseHashMap = new HashMap<>();
+        typesenseHashMap.put("trigger", true);
+        ff.collection("typesense_sync").document("backfill").set(typesenseHashMap);
     }
 
     public static void setNewFirebaseUser
             (FirebaseUser u, String userRealName, String userName, boolean isItMentor, String university, String department){
+        setStorageRef(fs.getReference());
+        setID(u.getUid());
+        setDefaultProfilePicOnStorage();
 
         setIsMentor(isItMentor);
 
+
         //writing the info into the database
-        fs.collection("users").document(u.getUid()).
+        ff.collection("users").document(u.getUid()).
                 set(createUserHashMap(userRealName, userName, u.getEmail(), isMentor, university, department))
                 .addOnSuccessListener(unused -> {
                     Log.d("W", "Data is written");
@@ -77,28 +90,52 @@ public class CurrentUser extends AppCompatActivity {
 
     //setters
     public static void setID(String i){id = i;}
+    public static void setUsersCollectionReference(CollectionReference cr){uc = cr;}
     public static void setUserDocumentRef(DocumentReference d){dr = d;}
     public static void setUserDocumentSnapshot(DocumentSnapshot d){ds = d;}
+    public static void setStorageRef(StorageReference s){sr = s;}
     public static void setRealName(String n){realName = n;}
     public static void setUserName(String u){userName = u;}
     public static void setMail(String m){mail = m;}
     public static void setIsMentor(boolean b){isMentor = b;}
     public static void setUniversity(String u){university = u;}
     public static void setDepartment(String d){department = d;}
+    public static void setBio(String b){bio=b;}
+    public static void setAmountOfPersonalPhotos(int a){amountOfPersonalPhotos = a;}
 
 
     //getters
     public static FirebaseUser getUser(){return user;}
     public static String getID(){return id;}
+    public static FirebaseFirestore getFirebaseFirestore(){return ff;}
+    public static CollectionReference getUsersCollectionReference(){return uc;};
     public static DocumentReference getUserDocumentRef(){return dr;}
     public static DocumentSnapshot getUserDocumentSnapshot(){return ds;}
-    public static String getRealName(){return ds.getString("realName");}
-    public static String getUserName(){return ds.getString("userName");}
-    public static String getMail(){return ds.getString("email");}
+    public static StorageReference getStorageRef(){return sr;}
+    public static String getRealName(){return realName;}
+    public static String getUserName(){return userName;}
+    public static String getMail(){return mail;}
     public static boolean getIsMentor(){return isMentor;}
     public static String getUniversity(){return university;}
     public static String getDepartment(){return department;}
+    public static String getBio(){return bio;}
+    public static int getAmountOfPersonalPhotos(){return amountOfPersonalPhotos;}
 
+    public static void updateBio(String b){
+        ff.collection("users").document(getID()).update("bio", b)
+                .addOnSuccessListener(unused -> {
+                    setBio(b);
+                    //code for writing that they were successfull in updating their bio
+                });
+    }
+
+    public static void updatePhotoAmountBy(int change){
+        ff.collection("users").document(getID()).update("photoAmount", getAmountOfPersonalPhotos()+change)
+                .addOnSuccessListener(unused -> {
+                    setAmountOfPersonalPhotos(getAmountOfPersonalPhotos()+change);
+                    //code for writing that they were successfull in updating their bio
+                });
+    }
 
     public static Map<String, Object>
     createUserHashMap(String rn, String un, String e, boolean b, String uniN, String d){
@@ -107,11 +144,29 @@ public class CurrentUser extends AppCompatActivity {
         newUserMap.put("userName", un);
         newUserMap.put("email", e);
         newUserMap.put("isMentor", b);
+        newUserMap.put("bio", "");
+        newUserMap.put("photoAmount",0);
         if (b==true){
             newUserMap.put("university", uniN);
             newUserMap.put("department", d);
+            newUserMap.put("meetingRequests", Arrays.asList());
         }
 
         return newUserMap;
+    }
+
+    // Probably won't be used since I need the success listener of these
+    public static void uploadPersonalPhotoToStorage(Uri u){
+        getStorageRef().child(getID()+"/"+(getAmountOfPersonalPhotos())).putFile(u);
+        updatePhotoAmountBy(1);
+    }
+
+    public static void changeProfilePicOnStorage(Uri uri){
+        getStorageRef().child(getID()+"/userProfilePic").putFile(uri);
+    }
+
+    public static void setDefaultProfilePicOnStorage(){
+        Uri uri = Uri.parse("android.resource://com.ungratz.okunurmu/drawable/aby_photo");
+        getStorageRef().child(getID()+"/userProfilePic").putFile(uri);
     }
 }

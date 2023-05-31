@@ -7,45 +7,50 @@
 
     <ImageView
         android:id="@+id/backButtonLogin"
-        android:layout_width="56dp"
-        android:layout_height="52dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="36dp"
         android:clickable="true"
-        android:contentDescription="Button to go back to launch page"
+        android:contentDescription="@string/back_button_description"
         android:scrollbarSize="26dp"
         android:src="@drawable/baseline_keyboard_arrow_left_24"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="HardcodedText,MissingConstraints"
+        android:focusable="true" />
 
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="78dp"
-        android:layout_height="45dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="164dp"
-        android:text="Log in"
+        android:text="@string/login_title"
         android:textColor="#000000"
-        android:textSize="26sp"
+        android:textSize="18sp"
+        android:fontFamily="@font/inter"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/forgotPasswordView"
-        android:layout_width="219dp"
-        android:layout_height="65dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginBottom="296dp"
         android:clickable="true"
-        android:text="Forgot password?"
+        android:text="@string/forgot_password"
         android:textColor="#0B1D5E"
         android:textSize="20sp"
+        android:fontFamily="@font/inter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        android:focusable="true" />
 
     <ImageView
         android:id="@+id/loginView"
@@ -57,7 +62,9 @@
         android:clickable="true"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/login_button" />
+        android:src="@drawable/login_button"
+        android:focusable="true"
+        tools:ignore="HardcodedText" />
 
     <EditText
         android:id="@+id/emailLogIn"
@@ -66,10 +73,12 @@
         android:layout_marginStart="30dp"
         android:layout_marginTop="144dp"
         android:ems="10"
-        android:hint="E-mail"
+        android:hint="@string/email"
         android:inputType="text"
+        android:fontFamily="@font/inter"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TextFields" />
 
     <EditText
         android:id="@+id/passwordLogIn"
@@ -78,8 +87,9 @@
         android:layout_marginStart="30dp"
         android:layout_marginTop="219dp"
         android:ems="10"
-        android:hint="password"
+        android:hint="@string/password"
         android:inputType="textPassword"
+        android:fontFamily="@font/inter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

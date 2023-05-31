@@ -4,21 +4,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <ImageView
+        android:id="@+id/rectangle5"
+        android:layout_width="354dp"
+        android:layout_height="84dp"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="345dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/rectangle_scheduled" />
 
     <TextView
         android:id="@+id/nameOfMentor1"
-        android:layout_width="0dp"
-        android:layout_height="30dp"
-        android:layout_alignParentLeft="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
         android:layout_marginStart="116dp"
         android:layout_marginTop="360dp"
         android:gravity="top"
         android:lineSpacingExtra="-2sp"
-        android:text="Kamil Berkay Çetin"
+        android:text="@string/mentor_name"
         android:textColor="#000000"
-        android:textSize="16dp"
+        android:textSize="16sp"
+        android:fontFamily="@font/inter"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -26,21 +36,22 @@
         android:id="@+id/textViewScheduledMeetings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="108dp"
-        android:layout_marginTop="16dp"
-        android:text="Scheduled Meetings"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="36dp"
+        android:text="@string/scheduled_meetings_title"
         android:textColor="#000000"
-        android:textSize="24sp"
-        android:textStyle="normal"
+        android:textSize="18sp"
+        android:fontFamily="@font/inter"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageView9"
-        android:layout_width="44dp"
-        android:layout_height="43dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="27dp"
+        android:layout_marginTop="30dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/baseline_keyboard_arrow_left_24" />
@@ -49,7 +60,7 @@
         android:id="@+id/rectangle"
         android:layout_width="354dp"
         android:layout_height="84dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="26dp"
         android:layout_marginTop="112dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -57,30 +68,23 @@
 
     <TextView
         android:id="@+id/nameOfMentor2"
-        android:layout_width="0dp"
-        android:layout_height="30dp"
-        android:layout_alignParentLeft="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
         android:layout_marginStart="116dp"
         android:layout_marginTop="128dp"
         android:gravity="top"
         android:lineSpacingExtra="-2sp"
-        android:text="Emre Uçar"
+        android:text="@string/mentor_name"
         android:textColor="#000000"
-        android:textSize="16dp"
+        android:textSize="16sp"
+        android:fontFamily="@font/inter"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/rectangle5"
-        android:layout_width="354dp"
-        android:layout_height="84dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="345dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/rectangle_scheduled" />
+
 
     <ImageView
         android:id="@+id/rectangle6"
@@ -92,20 +96,22 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/rectangle_scheduled" />
 
+
     <TextView
         android:id="@+id/nameOfMentor3"
-        android:layout_width="0dp"
-        android:layout_height="30dp"
-        android:layout_alignParentLeft="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
         android:layout_marginStart="116dp"
         android:layout_marginTop="244dp"
         android:gravity="top"
         android:lineSpacingExtra="-2sp"
-        android:text="R2N"
+        android:text="@string/mentor_name"
         android:textColor="#000000"
-        android:textSize="16dp"
+        android:textSize="16sp"
+        android:fontFamily="@font/inter"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -140,44 +146,47 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/april_tue_1"
-        android:layout_width="156dp"
-        android:layout_height="22dp"
-        android:layout_alignParentLeft="true"
+        android:id="@+id/meeting_date1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="116dp"
         android:layout_marginTop="158dp"
         android:gravity="top"
         android:lineSpacingExtra="-2sp"
-        android:text="25 April Tue - 18:30"
+        android:text="@string/meeting_date"
+        android:fontFamily="@font/inter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/april_tue_"
-        android:layout_width="156dp"
-        android:layout_height="22dp"
-        android:layout_alignParentLeft="true"
+        android:id="@+id/meeting_date2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="116dp"
         android:layout_marginTop="274dp"
         android:gravity="top"
         android:lineSpacingExtra="-2sp"
-        android:text="9 May Wed - 21:30"
+        android:text="@string/meeting_date"
+        android:fontFamily="@font/inter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/april_tue_2"
-        android:layout_width="156dp"
-        android:layout_height="22dp"
-        android:layout_alignParentLeft="true"
+        android:id="@+id/meeting_date3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="116dp"
         android:layout_marginTop="390dp"
         android:gravity="top"
         android:lineSpacingExtra="-2sp"
-        android:text="11 May Thu - 8:30"
+        android:text="@string/meeting_date"
+        android:fontFamily="@font/inter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
