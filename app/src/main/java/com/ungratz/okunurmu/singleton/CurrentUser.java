@@ -36,6 +36,7 @@ public class CurrentUser {
     private static FirebaseFirestore ff = FirebaseFirestore.getInstance();
     private static FirebaseUser user;
     private static CollectionReference uc;
+    private static CollectionReference mc;
     private static DocumentReference dr;
 
     // I actually cannot store DocumentSnapshot. I have to call .addOnCompleteListener
@@ -69,6 +70,7 @@ public class CurrentUser {
         */
 
         setUsersCollectionReference(ff.collection("users"));
+        setMeetingsCollectionReference(ff.collection("meetings"));
         setUserDocumentRef(ff.collection("users").document(getID()));
         setStorageRef(fs.getReference());
         setMail(user.getEmail());
@@ -121,6 +123,7 @@ public class CurrentUser {
     //setters
     public static void setID(String i){id = i;}
     public static void setUsersCollectionReference(CollectionReference cr){uc = cr;}
+    public static void setMeetingsCollectionReference(CollectionReference cr){mc = cr;}
     public static void setUserDocumentRef(DocumentReference d){dr = d;}
     public static void setUserDocumentSnapshot(DocumentSnapshot d){ds = d;}
     public static void setStorageRef(StorageReference s){sr = s;}
@@ -142,6 +145,7 @@ public class CurrentUser {
     public static String getID(){return id;}
     public static FirebaseFirestore getFirebaseFirestore(){return ff;}
     public static CollectionReference getUsersCollectionReference(){return uc;};
+    public static CollectionReference getMeetingsCollectionReference(){return mc;}
     public static DocumentReference getUserDocumentRef(){return dr;}
     public static DocumentSnapshot getUserDocumentSnapshot(){return ds;}
     public static StorageReference getStorageRef(){return sr;}

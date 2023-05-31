@@ -24,6 +24,7 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 import org.typesense.model.SearchParameters;
 import org.typesense.model.SearchResult;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -198,6 +199,13 @@ public class SearchFragment extends Fragment {
     }
 
     public void sendMeetingRequestToTutor(String idOfTutor){
+
+        Map<String, Object> meetingMap = new HashMap<>();
+        meetingMap.put("studentID", CurrentUser.getID());
+        meetingMap.put("mentorID", idOfTutor);
+        meetingMap.put("timeAndDate", 0);
+
+        CurrentUser.getMeetingsCollectionReference().document(CurrentUser.getID()+idOfTutor).set(meetingMap);
 
     }
 
