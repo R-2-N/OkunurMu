@@ -66,6 +66,9 @@
         android:inputType="text"
         android:drawableStart="@drawable/email_icon"
         android:drawablePadding="10dp"
+        android:background="@drawable/custom_edittext"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
         tools:ignore="TextFields" />
@@ -82,6 +85,9 @@
         android:inputType="textPassword"
         android:drawableStart="@drawable/baseline_lock_24"
         android:drawablePadding="10dp"
+        android:background="@drawable/custom_edittext"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/emailLogIn" />
 

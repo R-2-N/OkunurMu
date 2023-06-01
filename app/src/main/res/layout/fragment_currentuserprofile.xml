@@ -3,16 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="650dp">
+    android:layout_height="600dp">
 
     <ImageView
         android:id="@+id/currentUserProfilePic"
         android:layout_width="90dp"
         android:layout_height="90dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="33dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.093"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.057"
         app:srcCompat="@drawable/chat_avatar" />
 
     <TextView
@@ -23,6 +25,8 @@
         android:layout_marginTop="32dp"
         android:clickable="false"
         android:text="Names"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/currentUserProfilePic"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -30,22 +34,61 @@
         android:id="@+id/about"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="25dp"
         android:clickable="false"
         android:fontFamily="@font/inter"
         android:text="About"
         android:textColor="#000000"
         android:textSize="24sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/bio"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.052"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/currentUserProfilePic" />
+        app:layout_constraintTop_toBottomOf="@+id/currentUserProfilePic"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <EditText
+        android:id="@+id/bio"
+        android:layout_width="360dp"
+        android:layout_height="93dp"
+        android:layout_marginTop="116dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/custom_edittext"
+        android:ems="10"
+        android:fontFamily="@font/inter"
+        android:hint="Let the world know about you"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userName" />
+
+    <Button
+        android:id="@+id/uploadPhoto"
+        android:layout_width="160dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/button_background_solid_orange"
+        android:fontFamily="@font/inter"
+        android:text="Upload Photo"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.92"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView"
+        app:layout_constraintVertical_bias="0.021" />
 
     <TextView
         android:id="@+id/about2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="19dp"
         android:layout_marginBottom="60dp"
         android:clickable="false"
         android:fontFamily="@font/inter"
@@ -54,49 +97,11 @@
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/horizontalScrollView"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
-        android:id="@+id/bio"
-        android:layout_width="360dp"
-        android:layout_height="93dp"
-        android:layout_marginTop="152dp"
-        android:layout_marginEnd="20dp"
-        android:background="@drawable/custom_edittext"
-        android:fontFamily="@font/inter"
-        android:paddingStart="12dp"
-        android:paddingEnd="12dp"
-        android:hint="Let the world know about you"
-        android:ems="10"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userName" />
-
-    <TextView
-        android:id="@+id/savedText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="40dp"
-        android:text="Saved Successfully"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/saveProfile" />
-
-    <Button
-        android:id="@+id/saveProfile"
-        android:layout_width="131dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        android:background="@drawable/button_background_solid_orange"
-        android:fontFamily="@font/inter"
-        android:text="Save"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bio" />
+        app:layout_constraintEnd_toStartOf="@+id/saveProfile"
+        app:layout_constraintHorizontal_bias="0.026"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bio"
+        app:layout_constraintVertical_bias="0.354" />
 
     <HorizontalScrollView
         android:id="@+id/horizontalScrollView"
@@ -105,7 +110,9 @@
         android:layout_marginBottom="88dp"
         android:contentDescription="For user photos"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bio"
+        app:layout_constraintVertical_bias="0.823">
 
         <LinearLayout
             android:id="@+id/linearLayoutForPhotos"
@@ -117,19 +124,23 @@
     </HorizontalScrollView>
 
     <Button
-        android:id="@+id/uploadPhoto"
-        android:layout_width="160dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="32dp"
+        android:id="@+id/saveProfile"
+        android:layout_width="131dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="58dp"
         android:background="@drawable/button_background_solid_orange"
         android:fontFamily="@font/inter"
-        android:text="Upload Photo"
+        android:text="Save"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/horizontalScrollView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
+        app:layout_constraintHorizontal_bias="0.932"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bio"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/deletePhoto"
@@ -137,14 +148,32 @@
         android:layout_height="48dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="12dp"
+        android:layout_marginEnd="43dp"
         android:background="@drawable/button_background_solid_orange"
         android:fontFamily="@font/inter"
         android:text="Delete Photo"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/uploadPhoto"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
+        app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView"
+        app:layout_constraintVertical_bias="0.021" />
+
+    <TextView
+        android:id="@+id/savedText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Saved Successfully"
+        android:visibility="invisible"
+        android:textColor="@android:color/darker_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/saveProfile" />
 
     <TextView
         android:id="@+id/uniText"
@@ -155,6 +184,8 @@
         android:clickable="false"
         android:text="University"
         android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/currentUserProfilePic"
         app:layout_constraintTop_toBottomOf="@+id/userName" />
 
@@ -164,11 +195,16 @@
         android:layout_height="19dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
-        android:text="Department"
+        android:layout_marginBottom="96dp"
         android:clickable="false"
+        android:text="Department"
         android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/bio"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/currentUserProfilePic"
-        app:layout_constraintTop_toBottomOf="@+id/uniText" />
+        app:layout_constraintTop_toBottomOf="@+id/uniText"
+        app:layout_constraintVertical_bias="1.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
