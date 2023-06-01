@@ -8,7 +8,7 @@
 
 
     <ImageView
-        android:id="@+id/mentorPpForSearch"
+        android:id="@+id/chatPPpreview"
         android:layout_width="78dp"
         android:layout_height="78dp"
         android:layout_marginStart="32dp"
@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/mentorNameForSearch"
+        android:id="@+id/chatPreviewName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -33,11 +33,11 @@
         android:text="@string/mentor_name"
         android:textColor="#000000"
         android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@+id/mentorPpForSearch"
+        app:layout_constraintStart_toEndOf="@+id/chatPPpreview"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/uniAndDepartmentForSearch"
+        android:id="@+id/chatUniDepPreview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -50,8 +50,8 @@
         android:lineSpacingExtra="1sp"
         android:text="@string/mentor_university_with_dept"
         android:translationY="-0.74sp"
-        app:layout_constraintStart_toEndOf="@+id/mentorPpForSearch"
-        app:layout_constraintTop_toBottomOf="@+id/mentorNameForSearch" />
+        app:layout_constraintStart_toEndOf="@+id/chatPPpreview"
+        app:layout_constraintTop_toBottomOf="@+id/chatPreviewName" />
 
     <Button
         android:id="@+id/sendMessageToTutorView"
@@ -68,7 +68,7 @@
         android:textColor="@color/white"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/uniAndDepartmentForSearch" />
+        app:layout_constraintTop_toBottomOf="@+id/chatUniDepPreview" />
 
     <Button
         android:id="@+id/sendMeetingRequestToTutorView"
@@ -84,6 +84,6 @@
 
         android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/uniAndDepartmentForSearch" />
+        app:layout_constraintTop_toBottomOf="@+id/chatUniDepPreview" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

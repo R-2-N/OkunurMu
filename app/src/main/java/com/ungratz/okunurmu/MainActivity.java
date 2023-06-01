@@ -7,6 +7,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.ungratz.okunurmu.databinding.MainActivityBinding;
+import com.ungratz.okunurmu.fragments.Chat;
+import com.ungratz.okunurmu.fragments.ChatFragment;
 import com.ungratz.okunurmu.fragments.MeetingsFragment;
 import com.ungratz.okunurmu.fragments.ProfileFragment;
 import com.ungratz.okunurmu.fragments.ProfileToExamineFragment;
@@ -38,8 +40,10 @@ public class MainActivity extends FragmentActivity {
 
         pf = new ProfileFragment();
         sf = new SearchFragment();
-        mf = new MeetingsFragment();
         cf = new ChatFragment();
+        mf = new MeetingsFragment();
+
+
         ft.replace(R.id.main_fragment, pf).commit();
 
         binding.homeProfile.setOnClickListener(v -> {
@@ -71,6 +75,13 @@ public class MainActivity extends FragmentActivity {
         ProfileToExamineFragment ptef = new ProfileToExamineFragment(idOfTutor);
         FragmentTransaction ft = fm.beginTransaction();
         ft.replace(R.id.main_fragment, ptef).commit();
+        binding.fragmentNameShowcase.setText("Tutor");
+    }
+
+    public void switchToChat(String idOfChatter){
+        Chat c = new Chat(idOfChatter);
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.main_fragment, c).commit();
         binding.fragmentNameShowcase.setText("Tutor");
     }
 

@@ -46,7 +46,7 @@ public class MeetingsFragment extends Fragment {
     private final int MAX_DOWNLOAD_SIZE = 2048*2048;
     private Bitmap bm;
     public MeetingsFragment(){
-        super(R.layout.fragment_search);
+        super(R.layout.fragment_meetings);
     }
 
     @Nullable

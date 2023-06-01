@@ -26,6 +26,7 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 import org.typesense.model.SearchParameters;
 import org.typesense.model.SearchResult;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
@@ -150,9 +151,9 @@ public class SearchFragment extends Fragment {
 
         ConstraintLayout pp = (ConstraintLayout) getLayoutInflater().inflate(R.layout.profile_preview, binding.linearLayoutForSearch, false);
 
-        ImageView iv = pp.findViewById(R.id.mentorPpForSearch);
-        TextView mentorNameText = pp.findViewById(R.id.mentorNameForSearch);
-        TextView uniAndDepartmentText = pp.findViewById(R.id.uniAndDepartmentForSearch);
+        ImageView iv = pp.findViewById(R.id.chatPPpreview);
+        TextView mentorNameText = pp.findViewById(R.id.chatPreviewName);
+        TextView uniAndDepartmentText = pp.findViewById(R.id.chatUniDepPreview);
         View sendMessageView = pp.findViewById(R.id.sendMessageToTutorView);
         View sendMeetingRequestView = pp.findViewById(R.id.sendMeetingRequestToTutorView);
 
@@ -173,7 +174,22 @@ public class SearchFragment extends Fragment {
                                 sendMessageView.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
-                                        //Stuff for when we get the messaging function
+
+
+                                        Map<String, Object> chatMap2 = new HashMap<>();
+                                        chatMap2.put("name", CurrentUser.getRealName());
+                                        chatMap2.put("messages", Arrays.asList("0"));
+
+                                        CurrentUser.getFirebaseFirestore().collection("chat").document(idOfMentorForSearch)
+                                                .collection("chatters").document(CurrentUser.getID()).set(chatMap2);
+
+                                        Map<String, Object> chatMap = new HashMap<>();
+                                        chatMap.put("name", document.get("realName"));
+                                        chatMap.put("messages", Arrays.asList("0"));
+
+                                        CurrentUser.getFirebaseFirestore().collection("chat").document(CurrentUser.getID())
+                                                .collection("chatters").document(idOfMentorForSearch).set(chatMap)
+                                                .addOnCompleteListener(task1 -> ((MainActivity)SearchFragment.this.getActivity()).switchToChat(idOfMentorForSearch));
                                     }
                                 });
 
