@@ -10,57 +10,73 @@
         android:layout_width="96dp"
         android:layout_height="85dp"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/meetingDetails"
         app:srcCompat="@drawable/chat_avatar" />
 
-    <TextView
+    <Button
         android:id="@+id/meetingDetails"
-        android:layout_width="115dp"
-        android:layout_height="28dp"
-        android:layout_marginStart="29dp"
-        android:layout_marginBottom="12dp"
+        android:layout_width="139dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/button_background_gradient_blue"
+        android:fontFamily="@font/inter"
         android:text="Meeting Details"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/dateText"
         app:layout_constraintStart_toStartOf="@+id/dateText" />
-
-    <TextView
-        android:id="@+id/dateText"
-        android:layout_width="45dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginBottom="103dp"
-        android:text="Date:"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/meetingPP" />
 
     <TextView
         android:id="@+id/actualDate"
         android:layout_width="151dp"
         android:layout_height="21dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="11dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/inter"
         android:text="Actual Date"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/dateText"
         app:layout_constraintTop_toBottomOf="@+id/meetingDetails" />
+
+    <TextView
+        android:id="@+id/infoOfPerson"
+        android:layout_width="170dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/inter"
+        android:text="TextView"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/whoText"
+        app:layout_constraintTop_toBottomOf="@+id/actualDate" />
+
+    <TextView
+        android:id="@+id/dateText"
+        android:layout_width="45dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="96dp"
+        android:fontFamily="@font/inter"
+        android:text="Date:"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/meetingPP" />
 
     <TextView
         android:id="@+id/whoText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
-        android:layout_marginTop="21dp"
+        android:layout_marginTop="20dp"
         android:text="Who: "
+
+        android:fontFamily="@font/inter"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/meetingPP"
         app:layout_constraintTop_toBottomOf="@+id/dateText" />
 
-    <TextView
-        android:id="@+id/infoOfPerson"
-        android:layout_width="170dp"
-        android:layout_height="55dp"
-        android:layout_marginStart="38dp"
-        android:layout_marginTop="21dp"
-        android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/whoText"
-        app:layout_constraintTop_toBottomOf="@+id/actualDate" />
 </androidx.constraintlayout.widget.ConstraintLayout>
