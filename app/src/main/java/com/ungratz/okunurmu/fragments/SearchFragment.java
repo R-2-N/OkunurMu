@@ -64,11 +64,11 @@ public class SearchFragment extends Fragment {
 
         binding.showMoreResults.setOnClickListener(v -> {
             if (sr != null)
-                createProfilePreviews(sr, iterationNo);
+                createPreviews(sr, iterationNo);
         });
 
         binding.searchButton.setOnClickListener(v -> {
-            binding.searchButton.setClickable(false);
+
             SearchFragment.this.searchFunction();
         });
 
@@ -117,22 +117,14 @@ public class SearchFragment extends Fragment {
     }
 
     private int index = 0;
-    public void createProfilePreviews(SearchResult sr, int iterationNo){
+    public void createPreviews(SearchResult sr, int iterationNo){
 
         if ((sr.getHits().size() == 0) || (sr == null)){
             binding.showMoreResults.setText("Could not find any results");
-            binding.searchButton.setClickable(true);
-
-            binding.searchButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                }
-            });
         }
 
         else{
-
+            binding.searchButton.setClickable(false);
             if((sr.getHits().size()-index) < 5){
                 while(index<sr.getHits().size()){
                     addProfilePreview(sr.getHits().get(index).getDocument());
@@ -194,7 +186,7 @@ public class SearchFragment extends Fragment {
                                 });
 
 
-                                iv.setOnClickListener(v -> ((MainActivity)SearchFragment.this.getActivity()).switchToTutorProfile(idOfMentorForSearch));
+                                iv.setOnClickListener(v -> ((MainActivity)SearchFragment.this.getActivity()).switchToProfileExamine(idOfMentorForSearch));
 
                                 binding.linearLayoutForSearch.addView(pp);
 
@@ -222,18 +214,23 @@ public class SearchFragment extends Fragment {
         d.findViewById(R.id.sendRequestForMeetingArrangement).setOnClickListener(v -> {
 
             EditText day = d.findViewById(R.id.meetingDay);
+            EditText month = d.findViewById(R.id.meetingMonth);
+            EditText year = d.findViewById(R.id.meetingYear);
+            EditText hour = d.findViewById(R.id.meetingHour);
+            EditText minute = d.findViewById(R.id.meetingMinute);
 
             Map<String, Object> meetingFields = new HashMap<>();
             meetingFields.put("studentID", CurrentUser.getID());
             meetingFields.put("mentorID", idOfTutor);
             meetingFields.put("day", day.getText().toString());
-            meetingFields.put("month", ((EditText)d.findViewById(R.id.meetingMonth)).getText().toString());
-            meetingFields.put("year", ((EditText)d.findViewById(R.id.meetingYear)).getText().toString());
-            meetingFields.put("hour", ((EditText)d.findViewById(R.id.meetingHour)).getText().toString());
-            meetingFields.put("minute", ((EditText)d.findViewById(R.id.meetingMinute)).getText().toString());
+            meetingFields.put("month", month.getText().toString());
+            meetingFields.put("year", year.getText().toString());
+            meetingFields.put("hour", hour.getText().toString());
+            meetingFields.put("minute", minute.getText().toString());
+            meetingFields.put("dateAndTime", ("20"+year+"-"+month+"-"+day+" "+hour+":"+minute));
 
             CurrentUser.getFirebaseFirestore().collection("meetings")
-                    .document(CurrentUser.getID()+idOfTutor).set(meetingFields);
+                    .add(meetingFields);
         });
 
     }

@@ -30,11 +30,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.ungratz.okunurmu.MainActivity;
 import com.ungratz.okunurmu.R;
-
 import com.ungratz.okunurmu.databinding.SignupForstudentsPageBinding;
 import com.ungratz.okunurmu.singleton.CurrentUser;
+
+import java.util.Random;
 
 public class StudentSignUpActivity extends Activity {
 
@@ -56,6 +56,8 @@ public class StudentSignUpActivity extends Activity {
     private EditText passwordAgainText;
     private EditText passwordText;
     private EditText emailText;
+
+    private Random rand = new Random();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -96,7 +98,44 @@ public class StudentSignUpActivity extends Activity {
             }
 
             if ((password.equals(passwordAgain)) && (password.trim().length()!=0)&& password.trim().length()>=8 && passwordAgain.trim().length()>=8) {
+
                 createAccount(email, password);
+
+                /*
+                int c = rand.nextInt(10000);
+                String check = Integer.toString(c);
+
+                Map<String, Object> mailMap = new HashMap<>();
+                mailMap.put("to", email);
+
+                Map<String, Object> subMailMap = new HashMap<>();
+                subMailMap.put("subject", "Hello from team at OkunurMu");
+                subMailMap.put("text", "Please enter this code to the dialog box that popped in the app: " + check);
+
+                mailMap.put("message", subMailMap);
+
+                FirebaseFirestore.getInstance().collection("mail").add(mailMap);
+
+
+                Dialog d = new Dialog(StudentSignUpActivity.this);
+                d.setContentView(R.layout.authetication_pop_up);
+                d.show();
+
+                d.findViewById(R.id.submitCodeButton).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (((EditText)v).getText().toString().equals(check)){
+                            createAccount(email, password);
+                            d.dismiss();
+                        }
+                        else{
+                            ((TextView)(d.findViewById(R.id.lookAtMailMessage))).setText("Wrong code");
+                        }
+                    }
+                });
+                */
+
+
             }
 
         });

@@ -7,6 +7,7 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.ungratz.okunurmu.databinding.FirstPageActivityBinding;
+import com.ungratz.okunurmu.singleton.CurrentUser;
 
 public class FirstPageActivity extends AppCompatActivity {
 
@@ -18,6 +19,8 @@ public class FirstPageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = FirstPageActivityBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        CurrentUser.getInstance();
 
         binding.createStudent.setOnClickListener(new View.OnClickListener() {
             @Override

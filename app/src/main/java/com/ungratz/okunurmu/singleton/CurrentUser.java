@@ -100,6 +100,8 @@ public class CurrentUser {
         typesenseHashMap = new HashMap<>();
         typesenseHashMap.put("trigger", true);
         ff.collection("typesense_sync").document("backfill").set(typesenseHashMap);
+        ff.collection("typesense_sync").document("backfill").delete()
+                .addOnSuccessListener(unused -> ff.collection("typensense_sync").document("backfill").set(typesenseConfiguration));
 
         nodes.add(new Node("https","i8w0qd72xsjz4u63p-1.a1.typesense.net","443"));
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {

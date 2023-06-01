@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="600dp">
+
+    <ScrollView
+        android:id="@+id/scrollViewForMeetingBoxes"
+        android:layout_width="match_parent"
+        android:layout_height="525dp"
+        android:layout_marginTop="1dp"
+        android:contentDescription="ScrollView for meeting boxes"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:id="@+id/linearLayoutForMeetingBoxes"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" />
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/showMoreMeetings"
+        android:layout_width="89dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="167dp"
+        android:layout_marginBottom="4dp"
+        android:clickable="true"
+        android:text="Show Meets"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

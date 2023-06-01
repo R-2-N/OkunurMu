@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.ungratz.okunurmu.databinding.MainActivityBinding;
+import com.ungratz.okunurmu.fragments.MeetingsFragment;
 import com.ungratz.okunurmu.fragments.ProfileFragment;
 import com.ungratz.okunurmu.fragments.ProfileToExamineFragment;
 import com.ungratz.okunurmu.fragments.SearchFragment;
@@ -37,36 +38,40 @@ public class MainActivity extends FragmentActivity {
 
         pf = new ProfileFragment();
         sf = new SearchFragment();
-        mf= new MeetingsFragment();
+        mf = new MeetingsFragment();
         cf = new ChatFragment();
         ft.replace(R.id.main_fragment, pf).commit();
 
         binding.homeProfile.setOnClickListener(v -> {
             FragmentTransaction ft = fm.beginTransaction();
             ft.replace(R.id.main_fragment, pf).commit();
+            binding.fragmentNameShowcase.setText("Profile");
         });
 
         binding.searchIcon.setOnClickListener(v -> {
             FragmentTransaction ft = fm.beginTransaction();
             ft.replace(R.id.main_fragment, sf).commit();
+            binding.fragmentNameShowcase.setText("Search");
         });
 
         binding.meetingsIcon.setOnClickListener(v -> {
             FragmentTransaction ft = fm.beginTransaction();
             ft.replace(R.id.main_fragment, mf).commit();
+            binding.fragmentNameShowcase.setText("Meets");
         });
 
         binding.chatIcon.setOnClickListener(v -> {
             FragmentTransaction ft = fm.beginTransaction();
             ft.replace(R.id.main_fragment, cf).commit();
+            binding.fragmentNameShowcase.setText("Chat");
         });
-
     }
 
-    public void switchToTutorProfile(String idOfTutor){
+    public void switchToProfileExamine(String idOfTutor){
         ProfileToExamineFragment ptef = new ProfileToExamineFragment(idOfTutor);
         FragmentTransaction ft = fm.beginTransaction();
         ft.replace(R.id.main_fragment, ptef).commit();
+        binding.fragmentNameShowcase.setText("Tutor");
     }
 
 }

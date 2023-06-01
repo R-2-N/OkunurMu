@@ -56,11 +56,13 @@ public class ProfileToExamineFragment extends Fragment {
                 .addOnCompleteListener(task -> {
                     binding.userName.setText("Real Name: " + task.getResult().getString("realName")
                     + "\nUser Name: " + task.getResult().getString("userName"));
-                    binding.uniText.setVisibility(View.VISIBLE);
-                    binding.uniText.setText("University: "+task.getResult().getString("university").toString());
-                    binding.departmentText.setVisibility(View.VISIBLE);
-                    binding.departmentText.setText("Department: " + task.getResult().getString("department").toString());
-                    binding.bio.setText(task.getResult().getString("bio").toString());
+                    if (task.getResult().getBoolean("isMentor")) {
+                        binding.uniText.setVisibility(View.VISIBLE);
+                        binding.uniText.setText("University: " + task.getResult().getString("university").toString());
+                        binding.departmentText.setVisibility(View.VISIBLE);
+                        binding.departmentText.setText("Department: " + task.getResult().getString("department").toString());
+                        binding.bio.setText(task.getResult().getString("bio").toString());
+                    }
                 });
 
         showPersonalPhotos();
