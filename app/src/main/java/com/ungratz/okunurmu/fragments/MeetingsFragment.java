@@ -13,7 +13,10 @@ import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.ungratz.okunurmu.ClassesForAsync.AsyncClassForCollectionSearching;
 import com.ungratz.okunurmu.MainActivity;
 import com.ungratz.okunurmu.R;
@@ -24,6 +27,10 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 import org.typesense.model.SearchParameters;
 import org.typesense.model.SearchResult;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -53,23 +60,28 @@ public class MeetingsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState){
 
+        binding.showMoreMeetings.setOnClickListener(v -> callDatabaseAndProceed());
 
+    }
+
+    public void callDatabaseAndProceed(){
         String filter = "studentID, mentorID";
 
         sp = new SearchParameters()
                 .q(CurrentUser.getID())
                 .queryBy(filter)
-                .sortBy("dateAndTime:asc");
+                .sortBy("month:asc");
 
         async = new AsyncClassForCollectionSearching(this, sp, 0);
         executor.execute(async);
-
-
-        binding.showMoreMeetings.setOnClickListener(v -> createPreviews(sResult, iterationNo));
     }
 
     private int index = 0;
     public void createPreviews(SearchResult sr, int iterationNo){
+
+        Date date = Calendar.getInstance().getTime();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+        String strDate = dateFormat.format(date);
 
         sResult = sr;
 
@@ -80,7 +92,7 @@ public class MeetingsFragment extends Fragment {
         else{
 
             if((sResult.getHits().size()-index) < 5){
-                while(index<sResult.getHits().size()){
+                while((index<sResult.getHits().size())){
                     addMeetingPreview(sResult.getHits().get(index).getDocument());
                     index++;
                 }
@@ -102,7 +114,7 @@ public class MeetingsFragment extends Fragment {
 
         ImageView iv = box.findViewById(R.id.meetingPP);
         TextView actualDate = box.findViewById(R.id.actualDate);
-        TextView uniAndDepartmentText = box.findViewById(R.id.uniAndDepartmentForSearch);
+        TextView uniAndDepartmentText = box.findViewById(R.id.infoOfPerson);
 
         String idToDownloadFrom;
         if (CurrentUser.getIsMentor()) {idToDownloadFrom = document.get("studentID").toString();}
@@ -122,6 +134,16 @@ public class MeetingsFragment extends Fragment {
                                 ((MainActivity)MeetingsFragment.this.getActivity()).switchToProfileExamine(idToDownloadFrom);
                             }
                         });
+
+                        CurrentUser.getUsersCollectionReference().document(idToDownloadFrom)
+                                .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                    @Override
+                                    public void onComplete(@androidx.annotation.NonNull Task<DocumentSnapshot> task) {
+                                        uniAndDepartmentText.setText(task.getResult().getString("university") + " - " + task.getResult().getString("department"));
+                                        actualDate.setText(document.get("day") + "/"+ document.get("month") +"/" +document.get("year") + "  " + document.get("hour") + ":" + document.get("minute") );
+                                    }
+                                });
+
                         binding.linearLayoutForMeetingBoxes.addView(box);
                     }
                 });
