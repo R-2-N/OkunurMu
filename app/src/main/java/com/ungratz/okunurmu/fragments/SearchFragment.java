@@ -227,10 +227,10 @@ public class SearchFragment extends Fragment {
             meetingFields.put("year", year.getText().toString());
             meetingFields.put("hour", hour.getText().toString());
             meetingFields.put("minute", minute.getText().toString());
-            meetingFields.put("dateAndTime", "20"+year+"/"+month+"/"+day+" "+hour+":"+minute);
+            meetingFields.put("dateAndTime", ("20"+year+"-"+month+"-"+day+" "+hour+":"+minute));
 
             CurrentUser.getFirebaseFirestore().collection("meetings")
-                    .document(CurrentUser.getID()+idOfTutor).set(meetingFields);
+                    .add(meetingFields);
         });
 
     }
