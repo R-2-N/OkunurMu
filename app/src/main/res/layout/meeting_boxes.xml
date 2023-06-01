@@ -27,6 +27,7 @@
         android:textAllCaps="false"
         android:textColor="@color/black"
         android:textStyle="bold"
+        android:clickable="false"
         app:layout_constraintBottom_toTopOf="@+id/dateText"
         app:layout_constraintStart_toStartOf="@+id/dateText" />
 
@@ -38,6 +39,7 @@
         android:layout_marginTop="32dp"
         android:fontFamily="@font/inter"
         android:text="Actual Date"
+        android:textColor="@color/black"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/dateText"
         app:layout_constraintTop_toBottomOf="@+id/meetingDetails" />
@@ -46,10 +48,11 @@
         android:id="@+id/infoOfPerson"
         android:layout_width="170dp"
         android:layout_height="55dp"
-        android:layout_marginStart="40dp"
+        android:layout_marginStart="44dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/inter"
         android:text="TextView"
+        android:textColor="@color/black"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/whoText"
         app:layout_constraintTop_toBottomOf="@+id/actualDate" />
@@ -58,10 +61,11 @@
         android:id="@+id/dateText"
         android:layout_width="45dp"
         android:layout_height="20dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="12dp"
         android:layout_marginBottom="96dp"
         android:fontFamily="@font/inter"
         android:text="Date:"
+        android:textColor="@color/black"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/meetingPP" />
@@ -73,7 +77,7 @@
         android:layout_marginStart="12dp"
         android:layout_marginTop="20dp"
         android:text="Who: "
-
+        android:textColor="@color/black"
         android:fontFamily="@font/inter"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/meetingPP"
