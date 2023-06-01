@@ -9,6 +9,9 @@
 
     <ImageView
         android:id="@+id/mentorPpForSearch"
+        android:layout_width="68dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="16dp"
         android:layout_width="78dp"
         android:layout_height="78dp"
         android:layout_marginStart="32dp"

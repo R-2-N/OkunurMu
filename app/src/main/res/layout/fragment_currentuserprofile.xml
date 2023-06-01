@@ -30,13 +30,13 @@
         android:id="@+id/about"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginStart="30dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="12dp"
+        android:clickable="false"
         android:fontFamily="@font/inter"
         android:text="About"
         android:textColor="#000000"
-        android:clickable="false"
-        android:textSize="30sp"
+        android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/currentUserProfilePic" />
@@ -45,8 +45,8 @@
         android:id="@+id/bio"
         android:layout_width="360dp"
         android:layout_height="93dp"
-        android:layout_marginTop="152dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginTop="116dp"
+        android:layout_marginEnd="24dp"
         android:fontFamily="@font/inter"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
@@ -69,12 +69,13 @@
         android:layout_height="48dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
-        android:background="@drawable/button_background_gradient_orange"
+        android:background="@drawable/button_background_solid_orange"
         android:fontFamily="@font/inter"
         android:text="Save"
         android:textAllCaps="false"
-        android:textColor="@color/blue"
+        android:textColor="@color/black"
         android:textStyle="bold"
+        android:textSize="18dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bio" />
 
@@ -102,12 +103,13 @@
         android:layout_height="48dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="32dp"
-        android:background="@drawable/button_background_gradient_orange"
+        android:background="@drawable/button_background_solid_orange"
         android:fontFamily="@font/inter"
         android:text="Upload Photo"
         android:textAllCaps="false"
-        android:textColor="@color/blue"
+        android:textColor="@color/black"
         android:textStyle="bold"
+        android:textSize="18dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
 
@@ -117,12 +119,13 @@
         android:layout_height="48dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="12dp"
-        android:background="@drawable/button_background_gradient_orange"
+        android:background="@drawable/button_background_solid_orange"
         android:fontFamily="@font/inter"
         android:text="Delete Photo"
         android:textAllCaps="false"
-        android:textColor="@color/blue"
+        android:textColor="@color/black"
         android:textStyle="bold"
+        android:textSize="18dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
 
@@ -149,6 +152,18 @@
         android:visibility="invisible"
         app:layout_constraintStart_toEndOf="@+id/currentUserProfilePic"
         app:layout_constraintTop_toBottomOf="@+id/uniText" />
+
+    <TextView
+        android:id="@+id/photoGalleryText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/inter_regular"
+        android:text="Photo Gallery"
+        android:textColor="#000000"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="27dp"
+        tools:layout_editor_absoluteY="331dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

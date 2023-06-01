@@ -25,17 +25,16 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="164dp"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="172dp"
         android:fontFamily="@font/inter"
         android:text="@string/login_title"
         android:textColor="#000000"
-        android:textSize="18sp"
+        android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
-
 
     <TextView
         android:id="@+id/forgotPasswordView"
@@ -65,7 +64,7 @@
         android:text="Log in"
         android:textAllCaps="false"
         android:textColor="#FFFFFF"
-        android:textSize="16dp"
+        android:textSize="18dp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordLogIn" />
