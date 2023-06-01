@@ -33,7 +33,7 @@ public class MentorSignUpActivity extends Activity{
 
 
     private final String[] uniMailNameCheck =
-            {"ug.bilkent.edu.tr", "sabanciuniv.edu", "itü.edu.tr",
+            {"ug.bilkent.edu.tr", "sabanciuniv.edu", "itu.edu.tr",
             "hacettepe.edu.tr", "ku.edu.tr"};
     private final String[] uniNames = new String[]{"Bilkent", "Sabanci", "İTÜ",
             "Hacettepe", "Koç"};
