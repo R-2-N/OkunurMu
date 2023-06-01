@@ -9,12 +9,12 @@
         android:id="@+id/codeEditText"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:layout_marginStart="44dp"
         android:layout_marginTop="24dp"
+        android:drawableStart="@drawable/baseline_mail_lock_24"
         android:ems="10"
         android:inputType="text"
         android:text="  Code"
-        android:drawableStart="@drawable/baseline_mail_lock_24"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lookAtMailMessage" />
 

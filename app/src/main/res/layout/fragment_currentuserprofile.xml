@@ -46,15 +46,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
-        android:layout_marginTop="208dp"
+        android:layout_marginBottom="60dp"
         android:clickable="false"
         android:fontFamily="@font/inter"
         android:text="Photo Gallery"
         android:textColor="#000000"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/currentUserProfilePic" />
+        app:layout_constraintBottom_toTopOf="@+id/horizontalScrollView"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/bio"
@@ -62,7 +62,12 @@
         android:layout_height="93dp"
         android:layout_marginTop="152dp"
         android:layout_marginEnd="20dp"
+        android:background="@drawable/custom_edittext"
         android:fontFamily="@font/inter"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:hint="Let the world know about you"
+        android:ems="10"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/userName" />
@@ -88,7 +93,7 @@
         android:fontFamily="@font/inter"
         android:text="Save"
         android:textAllCaps="false"
-        android:textColor="@color/blue"
+        android:textColor="@color/white"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bio" />
@@ -121,7 +126,7 @@
         android:fontFamily="@font/inter"
         android:text="Upload Photo"
         android:textAllCaps="false"
-        android:textColor="@color/blue"
+        android:textColor="@color/white"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
@@ -136,7 +141,7 @@
         android:fontFamily="@font/inter"
         android:text="Delete Photo"
         android:textAllCaps="false"
-        android:textColor="@color/blue"
+        android:textColor="@color/white"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />

@@ -56,6 +56,9 @@
         android:layout_marginTop="101dp"
         android:ems="10"
         android:hint="@string/signup_name"
+        android:background="@drawable/custom_edittext"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
         android:inputType="text"
         android:fontFamily="@font/inter"
         android:drawableStart="@drawable/name_icon"
@@ -73,6 +76,9 @@
         android:hint="@string/signup_username"
         android:inputType="text"
         android:fontFamily="@font/inter"
+        android:background="@drawable/custom_edittext"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
         android:drawableStart="@drawable/username_icon"
         android:drawablePadding="10dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -90,6 +96,9 @@
         android:fontFamily="@font/inter"
         android:drawableStart="@drawable/email_icon"
         android:drawablePadding="10dp"
+        android:background="@drawable/custom_edittext"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -105,6 +114,9 @@
         android:fontFamily="@font/inter"
         android:drawableStart="@drawable/baseline_lock_24"
         android:drawablePadding="10dp"
+        android:background="@drawable/custom_edittext"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -120,6 +132,9 @@
         android:fontFamily="@font/inter"
         android:drawableStart="@drawable/baseline_lock_24"
         android:drawablePadding="10dp"
+        android:background="@drawable/custom_edittext"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
