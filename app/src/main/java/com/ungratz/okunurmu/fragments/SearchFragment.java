@@ -1,5 +1,6 @@
 package com.ungratz.okunurmu.fragments;
 
+import android.app.Dialog;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -7,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -24,12 +26,14 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 import org.typesense.model.SearchParameters;
 import org.typesense.model.SearchResult;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 
 public class SearchFragment extends Fragment {
+    private AsyncClassForCollectionSearching async;
     private FragmentSearchBinding binding;
     private SearchParameters sp;
     private SearchResult sr;
@@ -60,15 +64,17 @@ public class SearchFragment extends Fragment {
 
         binding.showMoreResults.setOnClickListener(v -> {
             if (sr != null)
-                createProfilePreviews(sr, iterationNo);
+                createPreviews(sr, iterationNo);
         });
 
-        binding.searchButton.setOnClickListener(v -> SearchFragment.this.searchFunction());
+        binding.searchButton.setOnClickListener(v -> {
+
+            SearchFragment.this.searchFunction();
+        });
+
     }
 
     public void searchFunction(){
-
-        binding.searchButton.setClickable(false);
 
         binding.linearLayoutForSearch.removeAllViews();
         binding.showMoreResults.setVisibility(View.VISIBLE);
@@ -106,18 +112,19 @@ public class SearchFragment extends Fragment {
                 .prioritizeExactMatch(true);
 
         //asyncClassForSearchResult acfsr = new asyncClassForSearchResult();
-        executor.execute(new AsyncClassForCollectionSearching(this, sp, iterationNo));
+        async = new AsyncClassForCollectionSearching(this, sp, iterationNo);
+        executor.execute(async);
     }
 
     private int index = 0;
-    public void createProfilePreviews(SearchResult sr, int iterationNo){
+    public void createPreviews(SearchResult sr, int iterationNo){
 
         if ((sr.getHits().size() == 0) || (sr == null)){
             binding.showMoreResults.setText("Could not find any results");
         }
 
         else{
-
+            binding.searchButton.setClickable(false);
             if((sr.getHits().size()-index) < 5){
                 while(index<sr.getHits().size()){
                     addProfilePreview(sr.getHits().get(index).getDocument());
@@ -179,7 +186,7 @@ public class SearchFragment extends Fragment {
                                 });
 
 
-                                iv.setOnClickListener(v -> ((MainActivity)SearchFragment.this.getActivity()).switchToTutorProfile(idOfMentorForSearch));
+                                iv.setOnClickListener(v -> ((MainActivity)SearchFragment.this.getActivity()).switchToProfileExamine(idOfMentorForSearch));
 
                                 binding.linearLayoutForSearch.addView(pp);
 
@@ -198,6 +205,33 @@ public class SearchFragment extends Fragment {
     }
 
     public void sendMeetingRequestToTutor(String idOfTutor){
+
+        Dialog d = new Dialog(getContext());
+        d.setContentView(R.layout.meeting_pop_up);
+        d.show();
+        d.findViewById(R.id.exitForMeetingArrangement).setOnClickListener(v -> d.dismiss());
+
+        d.findViewById(R.id.sendRequestForMeetingArrangement).setOnClickListener(v -> {
+
+            EditText day = d.findViewById(R.id.meetingDay);
+            EditText month = d.findViewById(R.id.meetingMonth);
+            EditText year = d.findViewById(R.id.meetingYear);
+            EditText hour = d.findViewById(R.id.meetingHour);
+            EditText minute = d.findViewById(R.id.meetingMinute);
+
+            Map<String, Object> meetingFields = new HashMap<>();
+            meetingFields.put("studentID", CurrentUser.getID());
+            meetingFields.put("mentorID", idOfTutor);
+            meetingFields.put("day", day.getText().toString());
+            meetingFields.put("month", month.getText().toString());
+            meetingFields.put("year", year.getText().toString());
+            meetingFields.put("hour", hour.getText().toString());
+            meetingFields.put("minute", minute.getText().toString());
+            meetingFields.put("dateAndTime", ("20"+year+"-"+month+"-"+day+" "+hour+":"+minute));
+
+            CurrentUser.getFirebaseFirestore().collection("meetings")
+                    .add(meetingFields);
+        });
 
     }
 

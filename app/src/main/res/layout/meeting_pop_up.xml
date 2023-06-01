@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="375dp"
+    android:layout_height="200dp">
+
+    <Button
+        android:id="@+id/exitForMeetingArrangement"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginBottom="32dp"
+        android:clickable="true"
+        android:text="Exit"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/sendRequestForMeetingArrangement"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="52dp"
+        android:layout_marginBottom="32dp"
+        android:clickable="true"
+        android:text="Send Request"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/exitForMeetingArrangement" />
+
+    <EditText
+        android:id="@+id/meetingDay"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="52dp"
+        android:clickable="true"
+        android:ems="10"
+        android:hint="Day"
+        android:inputType="number"
+        app:layout_constraintBottom_toTopOf="@+id/exitForMeetingArrangement"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/meetingMonth"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginBottom="52dp"
+        android:clickable="true"
+        android:ems="10"
+        android:hint="Mon"
+        android:inputType="number"
+        app:layout_constraintBottom_toTopOf="@+id/exitForMeetingArrangement"
+        app:layout_constraintStart_toEndOf="@+id/meetingDay" />
+
+    <EditText
+        android:id="@+id/meetingYear"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginBottom="52dp"
+        android:clickable="true"
+        android:ems="10"
+        android:hint="Year"
+        android:inputType="number"
+        app:layout_constraintBottom_toTopOf="@+id/exitForMeetingArrangement"
+        app:layout_constraintStart_toEndOf="@+id/meetingMonth" />
+
+    <EditText
+        android:id="@+id/meetingHour"
+        android:layout_width="63dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginBottom="52dp"
+        android:clickable="true"
+        android:ems="10"
+        android:hint="Hour"
+        android:inputType="number"
+        app:layout_constraintBottom_toTopOf="@+id/sendRequestForMeetingArrangement"
+        app:layout_constraintStart_toEndOf="@+id/exitForMeetingArrangement" />
+
+    <EditText
+        android:id="@+id/meetingMinute"
+        android:layout_width="63dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="144dp"
+        android:layout_marginBottom="52dp"
+        android:clickable="true"
+        android:ems="10"
+        android:hint="Minute"
+        android:inputType="number"
+        app:layout_constraintBottom_toTopOf="@+id/sendRequestForMeetingArrangement"
+        app:layout_constraintStart_toEndOf="@+id/exitForMeetingArrangement" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
