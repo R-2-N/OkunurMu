@@ -37,22 +37,6 @@
         tools:ignore="MissingConstraints" />
 
 
-    <TextView
-        android:id="@+id/forgotPasswordView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginBottom="328dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:fontFamily="@font/inter"
-        android:text="@string/forgot_password"
-        android:textColor="#0B1D5E"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints" />
-
     <Button
         android:id="@+id/loginView"
         android:layout_width="354dp"
@@ -80,6 +64,11 @@
         android:fontFamily="@font/inter"
         android:hint="@string/email"
         android:inputType="text"
+        android:drawableStart="@drawable/email_icon"
+        android:drawablePadding="10dp"
+        android:background="@drawable/custom_edittext"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
         tools:ignore="TextFields" />
@@ -94,6 +83,11 @@
         android:fontFamily="@font/inter"
         android:hint="@string/password"
         android:inputType="textPassword"
+        android:drawableStart="@drawable/baseline_lock_24"
+        android:drawablePadding="10dp"
+        android:background="@drawable/custom_edittext"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/emailLogIn" />
 

@@ -27,7 +27,7 @@
         android:layout_marginBottom="16dp"
         android:clickable="true"
         android:contentDescription="profile button"
-        android:src="@drawable/home_icon"
+        android:src="@drawable/profile_icon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -80,12 +80,16 @@
 
     <TextView
         android:id="@+id/fragmentNameShowcase"
-        android:layout_width="69dp"
-        android:layout_height="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="186dp"
-        android:text="Profile"
+        android:layout_marginEnd="176dp"
         android:contentDescription="Shows which part we are in"
+        android:fontFamily="@font/inter"
+        android:text="Profile"
+        android:textColor="@color/black"
+        android:textFontWeight="600"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
