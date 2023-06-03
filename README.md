@@ -30,6 +30,15 @@ In the scheduled meetings page, you can see your meeting details with your tutor
 -------
 **Dependencies:**
 
+constraints{
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.0"){
+        because("kotlin-stdlib-jdk7 is now a part of kotlin-stdlib")
+    }
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.0"){
+        because("kotlin-stdlib-jdk8 is now a part of kotlin-stdlib")
+    }
+}
+
 - androidx.appcompat:appcompat:1.6.1
 
 - androidx.fragment:fragment:1.5.7
@@ -38,9 +47,9 @@ In the scheduled meetings page, you can see your meeting details with your tutor
 
 - com.google.gms:google-services:4.3.15
 
-- com.google.firebase:firebase-storage
-
 - com.google.firebase:firebase-auth
+
+- com.google.firebase:firebase-storage
 
 - com.google.firebase:firebase-firestore
 
@@ -48,7 +57,26 @@ In the scheduled meetings page, you can see your meeting details with your tutor
 
 - com.github.bumptech.glide:glide:4.15.1
 
+- com.github.bumptech.glide:compiler:4.14.2
+
+- com.google.firebase:firebase-analytics
+
 - org.typesense:typesense-java:0.2.0
+
 - com.google.android.material:material:1.9.0
+
 - androidx.navigation:navigation-ui:2.5.3
+
 - androidx.navigation:navigation-fragment:2.5.3
+
+- androidx.constraintlayout:constraintlayout:2.1.4
+
+- androidx.lifecycle:lifecycle-livedata-ktx:2.6.1
+
+- androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1
+
+- junit:junit:4.13.2
+
+- androidx.test.ext:junit:1.1.5
+
+- androidx.test.espresso:espresso-core:3.5.1
