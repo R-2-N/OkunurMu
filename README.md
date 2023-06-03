@@ -30,14 +30,14 @@ In the scheduled meetings page, you can see your meeting details with your tutor
 -------
 **Dependencies:**
 
-constraints{
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.0"){
-        because("kotlin-stdlib-jdk7 is now a part of kotlin-stdlib")
+    constraints{
+        implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.0"){
+            because("kotlin-stdlib-jdk7 is now a part of kotlin-stdlib")
+        }
+        implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.0"){
+            because("kotlin-stdlib-jdk8 is now a part of kotlin-stdlib")
+        }
     }
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.0"){
-        because("kotlin-stdlib-jdk8 is now a part of kotlin-stdlib")
-    }
-}
 
 - androidx.appcompat:appcompat:1.6.1
 
