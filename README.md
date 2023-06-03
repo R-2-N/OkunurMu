@@ -1,4 +1,4 @@
-![image](app/src/main/res/drawable/okunur_mu.png)
+![image](app/src/main/res/drawable/okunur_mu_logo.png)
 # OkunurMu
 OkunurMu is a mobile app that connects high school students and graduates with current university students, assisting them in their university decision-making process. Our app enhances the user experience by offering a range of features such as messaging capabilities, scheduling Zoom meetings, and filtered search options to ensure students find the right tutor and have a seamless interaction throughout their academic journey.
 
