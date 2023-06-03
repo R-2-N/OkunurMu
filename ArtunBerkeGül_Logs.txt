@@ -1,0 +1,3 @@
+Artun Berke Gül
+
+I wrote every Java file plus configured the gradle files and did the first versions of some xml files.
